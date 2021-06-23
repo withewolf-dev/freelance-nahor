@@ -53,7 +53,7 @@ class Setting extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, "Change password"),
+            buildAccountOptionRow(context, "change password"),
             buildAccountOptionRow(context, "Content settings"),
             buildAccountOptionRow(context, "Social"),
             buildAccountOptionRow(context, "Language"),

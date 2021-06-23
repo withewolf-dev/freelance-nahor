@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "394342739600",
+    "project_id": "nahor-e3519",
+    "storage_bucket": "nahor-e3519.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394342739600:android:ba10022dcfcc27a68db215",
+        "android_client_info": {
+          "package_name": "com.company.nahor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394342739600-13kp7e2k8v3lskvj9d35kstvrip7atbg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.nahor",
+            "certificate_hash": "8c79df0f1dd8a0dad9b1669d0ac21a81a9336156"
+          }
+        },
+        {
+          "client_id": "394342739600-fj7trvihfk5anqqt98nc7ss0q6k7v6h5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlHthZwGghBOrP9y2ZEk5HiTTBWGhifXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394342739600-fj7trvihfk5anqqt98nc7ss0q6k7v6h5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

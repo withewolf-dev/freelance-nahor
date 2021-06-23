@@ -1,4 +1,4 @@
-package com.example.kilo
+package com.company.nahor
 
 import io.flutter.embedding.android.FlutterActivity
 

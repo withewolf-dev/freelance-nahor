@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:kilo/pages/ProfileSheet.dart' as Sheet;
 import 'package:kilo/router/app_router.gr.dart';
+import 'package:kilo/widgets/feedpage/profil.card.dart';
 
 class FeedPage extends StatelessWidget {
   @override
@@ -32,7 +32,7 @@ class FeedPage extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      'Nahor',
+                      'Example',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 40,
@@ -158,71 +158,6 @@ class _CategoryState extends State<Category> {
           promoCard('assets/images/four.jpg'),
         ],
       ),
-    );
-  }
-}
-
-class ProfileCard extends StatefulWidget {
-  const ProfileCard({Key? key}) : super(key: key);
-
-  @override
-  _ProfileCardState createState() => _ProfileCardState();
-}
-
-class _ProfileCardState extends State<ProfileCard> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            showModalBottomSheet<void>(
-                isScrollControlled: true,
-                backgroundColor: Colors.transparent,
-                shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20))),
-                context: context,
-                builder: (BuildContext context) => Sheet.ProfileSheet(
-                      context: context,
-                    ));
-          },
-          child: Container(
-            height: 150,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/images/three.jpg')),
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                gradient: LinearGradient(begin: Alignment.bottomRight, stops: [
-                  0.3,
-                  0.9
-                ], colors: [
-                  Colors.black.withOpacity(.8),
-                  Colors.black.withOpacity(.2)
-                ]),
-              ),
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text(
-                    'Best Design',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        )
-      ],
     );
   }
 }

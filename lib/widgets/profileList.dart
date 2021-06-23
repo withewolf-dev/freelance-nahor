@@ -79,7 +79,7 @@ class ProfileList extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
-                  CustomTabar(),
+                  //CustomTabar(),
                 ],
               ),
             )
