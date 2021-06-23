@@ -66,7 +66,7 @@ Widget signupHire({required BuildContext context}) => Container(
         minWidth: double.infinity,
         height: 60,
         onPressed: () {
-          //context.pushRoute(HireSignuPage());
+          context.pushRoute(HireSignuRoute());
         },
         color: Colors.yellow,
         elevation: 0,
