@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:kilo/router/app_router.gr.dart';
 
 class Introduction extends StatefulWidget {
   const Introduction({Key? key, required this.body, required this.header})
@@ -62,7 +64,11 @@ class _IntroductionState extends State<Introduction> {
                   primary: Colors.white,
                   textStyle: const TextStyle(fontSize: 20),
                 ),
-                onPressed: _isSelected ? () {} : null,
+                onPressed: _isSelected
+                    ? () {
+                        context.pushRoute(FreelanceStepOne());
+                      }
+                    : null,
                 child: const Text('Sign up with google'),
               ),
             ),

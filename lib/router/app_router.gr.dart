@@ -7,11 +7,12 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
+import '../pages/auth/auth_flow/freelanceStep_one.dart' as _i5;
 import '../pages/auth/freelanceSignuPage.dart' as _i4;
-import '../pages/auth/HireSignupPage.dart' as _i5;
-import '../pages/feedpage.dart' as _i6;
-import '../pages/ProfileSheet.dart' as _i8;
-import '../pages/setting.dart' as _i7;
+import '../pages/auth/HireSignupPage.dart' as _i6;
+import '../pages/feedpage.dart' as _i7;
+import '../pages/ProfileSheet.dart' as _i9;
+import '../pages/setting.dart' as _i8;
 import '../pages/welcomepage.dart' as _i3;
 
 class AppRouter extends _i1.RootStackRouter {
@@ -32,26 +33,33 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.FreelanceSignUp();
         }),
+    FreelanceStepOne.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<FreelanceStepOneArgs>(
+              orElse: () => const FreelanceStepOneArgs());
+          return _i5.FreelanceStepOne(key: args.key);
+        }),
     HireSignuRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i5.HireSignuPage();
+          return const _i6.HireSignuPage();
         }),
     FeedRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i6.FeedPage();
+          return _i7.FeedPage();
         }),
     Setting.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.Setting();
+          return const _i8.Setting();
         }),
     ProfileSheet.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ProfileSheetArgs>();
-          return _i8.ProfileSheet(key: args.key, context: args.context);
+          return _i9.ProfileSheet(key: args.key, context: args.context);
         })
   };
 
@@ -59,6 +67,7 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(WelcomeRoute.name, path: '/'),
         _i1.RouteConfig(FreelanceSignUp.name, path: '/freelance-sign-up'),
+        _i1.RouteConfig(FreelanceStepOne.name, path: '/freelance-step-one'),
         _i1.RouteConfig(HireSignuRoute.name, path: '/hire-signu-page'),
         _i1.RouteConfig(FeedRoute.name, path: '/feed-page'),
         _i1.RouteConfig(Setting.name, path: '/Setting'),
@@ -83,6 +92,20 @@ class FreelanceSignUp extends _i1.PageRouteInfo {
   const FreelanceSignUp() : super(name, path: '/freelance-sign-up');
 
   static const String name = 'FreelanceSignUp';
+}
+
+class FreelanceStepOne extends _i1.PageRouteInfo<FreelanceStepOneArgs> {
+  FreelanceStepOne({_i2.Key? key})
+      : super(name,
+            path: '/freelance-step-one', args: FreelanceStepOneArgs(key: key));
+
+  static const String name = 'FreelanceStepOne';
+}
+
+class FreelanceStepOneArgs {
+  const FreelanceStepOneArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class HireSignuRoute extends _i1.PageRouteInfo {
