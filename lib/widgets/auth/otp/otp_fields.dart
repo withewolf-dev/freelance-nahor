@@ -35,59 +35,56 @@ class _OtpFieldState extends State<OtpField> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-              width: 50.0,
-              child: TextField(
-                  onChanged: (value) {
-                    print(value);
-                    if (value != "") {
-                      two.requestFocus();
-                    }
-                  },
-                  //focusNode: one,
-                  autofocus: true,
-                  keyboardType: TextInputType.number,
-                  style: TextStyle(fontSize: 20.0, color: Colors.black))),
-          Container(
-              width: 50.0,
-              child: TextField(
-                  onChanged: (value) {
-                    print(value);
-                    if (value != "") {
-                      three.requestFocus();
-                    }
-                  },
-                  keyboardType: TextInputType.number,
-                  focusNode: two,
-                  style: TextStyle(fontSize: 20.0, color: Colors.black))),
-          Container(
-              width: 50.0,
-              child: TextField(
-                  onChanged: (value) {
-                    print(value);
-                    if (value != "") {
-                      four.requestFocus();
-                    }
-                  },
-                  keyboardType: TextInputType.number,
-                  focusNode: three,
-                  style: TextStyle(fontSize: 20.0, color: Colors.black))),
-          Container(
-              width: 50.0,
-              child: TextField(
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  keyboardType: TextInputType.number,
-                  focusNode: four,
-                  style: TextStyle(fontSize: 20.0, color: Colors.black))),
-        ],
-      )),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Container(
+            width: 50.0,
+            child: TextField(
+                onChanged: (value) {
+                  print(value);
+                  if (value != "") {
+                    two.requestFocus();
+                  }
+                },
+                //focusNode: one,
+                autofocus: true,
+                keyboardType: TextInputType.number,
+                style: TextStyle(fontSize: 20.0, color: Colors.black))),
+        Container(
+            width: 50.0,
+            child: TextField(
+                onChanged: (value) {
+                  print(value);
+                  if (value != "") {
+                    three.requestFocus();
+                  }
+                },
+                keyboardType: TextInputType.number,
+                focusNode: two,
+                style: TextStyle(fontSize: 20.0, color: Colors.black))),
+        Container(
+            width: 50.0,
+            child: TextField(
+                onChanged: (value) {
+                  print(value);
+                  if (value != "") {
+                    four.requestFocus();
+                  }
+                },
+                keyboardType: TextInputType.number,
+                focusNode: three,
+                style: TextStyle(fontSize: 20.0, color: Colors.black))),
+        Container(
+            width: 50.0,
+            child: TextField(
+                onChanged: (value) {
+                  print(value);
+                },
+                keyboardType: TextInputType.number,
+                focusNode: four,
+                style: TextStyle(fontSize: 20.0, color: Colors.black))),
+      ],
     );
   }
 }
