@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kilo/router/app_router.gr.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:kilo/widgets/auth/chooseCatg.dart';
 import 'package:kilo/widgets/auth/chooseDept.dart';
+import 'package:kilo/widgets/auth/nextBtn.dart';
 
 class FreelanceStepOne extends StatefulWidget {
   FreelanceStepOne({Key? key}) : super(key: key);
@@ -50,7 +50,7 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
                     isbool: isbool,
                     nextbtn: nextBtn),
                 ChooseCatg(),
-                nextButton(isbool: isbool, context: context),
+                nextButton(context: context, page: FreelanceStepTwo()),
               ],
             ),
           ),
@@ -86,15 +86,4 @@ Widget header() => Column(
           height: 25.0,
         ),
       ],
-    );
-
-Widget nextButton({required bool isbool, required BuildContext context}) =>
-    Container(
-      alignment: AlignmentDirectional.bottomEnd,
-      child: ElevatedButton(
-        onPressed: () {
-          context.pushRoute(FeedRoute());
-        },
-        child: Text("next"),
-      ),
     );
