@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -40,6 +41,7 @@ class WelcomePage extends StatelessWidget {
         height: 60,
         onPressed: () {
           //context.pushRoute(FreelancSingupS());
+          //BlocProvider(create: create)
           context.pushRoute(FreelanceSignUp());
         },
         shape: RoundedRectangleBorder(

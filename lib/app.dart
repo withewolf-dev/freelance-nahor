@@ -6,13 +6,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      // home: BlocProvider(
-      //   create: (context) => NavigationCubit(),
-      //   child: AppNavigation(),
-      // ),
       debugShowCheckedModeBanner: false,
       title: 'AutoRoute Bascis',
-      // theme: ThemeData.dark(),
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
     );
