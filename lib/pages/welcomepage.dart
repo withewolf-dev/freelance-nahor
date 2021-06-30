@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/google_signin_bloc.dart';
+import 'package:kilo/bloc/testing/testing_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -37,21 +39,19 @@ class WelcomePage extends StatelessWidget {
   }
 
   Widget signupFreelance({required BuildContext context}) => MaterialButton(
-        minWidth: double.infinity,
-        height: 60,
-        onPressed: () {
-          //context.pushRoute(FreelancSingupS());
-          //BlocProvider(create: create)
-          context.pushRoute(FreelanceSignUp());
-        },
-        shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(50)),
-        child: Text(
-          "signup to freelancer",
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-        ),
-      );
+      minWidth: double.infinity,
+      height: 60,
+      onPressed: () {
+        //context.pushRoute(FreelanceSignUp());
+        context.read<GoogleSigninBloc>().add(Signinasfreelance());
+      },
+      shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.black),
+          borderRadius: BorderRadius.circular(50)),
+      child: Text(
+        "signup to freelancer",
+        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+      ));
 }
 
 Widget signupHire({required BuildContext context}) => Container(
@@ -68,7 +68,7 @@ Widget signupHire({required BuildContext context}) => Container(
         minWidth: double.infinity,
         height: 60,
         onPressed: () {
-          context.pushRoute(HireSignuRoute());
+          context.read<TestingBloc>().add(ButtonClick());
         },
         color: Colors.yellow,
         elevation: 0,
