@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/google_signin_bloc.dart';
+import 'package:kilo/bloc/google_Signin/google_signin_bloc.dart';
+import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
 class WelcomePage extends StatelessWidget {
   WelcomePage({Key? key}) : super(key: key);
 
+  final auth = Authentication();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,14 +23,26 @@ class WelcomePage extends StatelessWidget {
             children: <Widget>[
               header(),
               illustration(context: context),
-              Column(
-                children: <Widget>[
-                  signupFreelance(context: context),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  signupHire(context: context),
-                ],
+              BlocBuilder<GoogleSigninBloc, GoogleSigninState>(
+                builder: (context, state) {
+                  if (state is GoogleSignedIn) {
+                    if (state.user != null) {
+                      context.pushRoute(FreelanceStepOne());
+                    }
+                    if (state.user == null) {
+                      return CircularProgressIndicator();
+                    }
+                  }
+                  return Column(
+                    children: <Widget>[
+                      signupFreelance(context: context),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      signupHire(context: context),
+                    ],
+                  );
+                },
               )
             ],
           ),
@@ -66,7 +80,9 @@ Widget signupHire({required BuildContext context}) => Container(
       child: MaterialButton(
         minWidth: double.infinity,
         height: 60,
-        onPressed: () {},
+        onPressed: () {
+          //context.read<GoogleSigninBloc>().add(Signinasfreelance());
+        },
         color: Colors.yellow,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),

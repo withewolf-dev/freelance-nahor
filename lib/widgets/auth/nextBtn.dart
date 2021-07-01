@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/google_Signin/google_signin_bloc.dart';
+import 'package:kilo/router/app_router.gr.dart';
 
 Widget nextButton({required BuildContext context, required page}) => Container(
       alignment: AlignmentDirectional.bottomEnd,
       child: ElevatedButton(
         onPressed: () {
-          context.pushRoute(page);
+          //BlocProvider.of<GoogleSigninBloc>(context).add(Signinasfreelance());
+          context.pushRoute(WelcomeRoute());
         },
         child: Text("next"),
       ),

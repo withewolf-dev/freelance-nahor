@@ -7,6 +7,8 @@ class GoogleSigninInitial extends GoogleSigninState {}
 class GoogleSigninFail extends GoogleSigninState {}
 
 class GoogleSignedIn extends GoogleSigninState {
-  final GoogleSignInAccount user;
+  final UserCredential user;
   GoogleSignedIn({required this.user});
 }
+
+class LogoutState extends GoogleSigninState {}
