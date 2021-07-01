@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_signin_bloc.dart';
-import 'package:kilo/bloc/testing/testing_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -67,9 +66,7 @@ Widget signupHire({required BuildContext context}) => Container(
       child: MaterialButton(
         minWidth: double.infinity,
         height: 60,
-        onPressed: () {
-          context.read<TestingBloc>().add(ButtonClick());
-        },
+        onPressed: () {},
         color: Colors.yellow,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
