@@ -4,7 +4,10 @@ abstract class GoogleSigninState {}
 
 class GoogleSigninInitial extends GoogleSigninState {}
 
-class GoogleSigninFail extends GoogleSigninState {}
+class GoogleSigninFail extends GoogleSigninState {
+  final String e;
+  GoogleSigninFail({required this.e});
+}
 
 class GoogleSignedIn extends GoogleSigninState {
   final UserCredential user;
@@ -12,3 +15,8 @@ class GoogleSignedIn extends GoogleSigninState {
 }
 
 class LogoutState extends GoogleSigninState {}
+
+class SigninLoading extends GoogleSigninState {
+  final bool loadingState;
+  SigninLoading({required this.loadingState});
+}

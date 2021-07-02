@@ -25,14 +25,12 @@ class WelcomePage extends StatelessWidget {
               illustration(context: context),
               BlocBuilder<GoogleSigninBloc, GoogleSigninState>(
                 builder: (context, state) {
-                  if (state is GoogleSignedIn) {
-                    if (state.user != null) {
-                      context.pushRoute(FreelanceStepOne());
-                    }
-                    if (state.user == null) {
+                  if (state is SigninLoading) {
+                    if (state.loadingState == true) {
                       return CircularProgressIndicator();
                     }
                   }
+
                   return Column(
                     children: <Widget>[
                       signupFreelance(context: context),
@@ -43,7 +41,7 @@ class WelcomePage extends StatelessWidget {
                     ],
                   );
                 },
-              )
+              ),
             ],
           ),
         ),
