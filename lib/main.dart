@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/app.dart';
+import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/bloc/google_Signin/google_signin_bloc.dart';
 
 void main() async {
@@ -11,6 +12,9 @@ void main() async {
     providers: [
       BlocProvider<GoogleSigninBloc>(
         create: (BuildContext context) => GoogleSigninBloc(),
+      ),
+      BlocProvider<AuthflowBloc>(
+        create: (BuildContext context) => AuthflowBloc(),
       ),
     ],
     child: App(),

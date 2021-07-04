@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
-import 'package:kilo/widgets/auth/chooseCatg.dart';
 import 'package:kilo/widgets/auth/chooseDept.dart';
 import 'package:kilo/widgets/auth/nextBtn.dart';
 
@@ -43,14 +43,16 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                header(),
+                Header(),
                 ChooseDept(
                     list: list,
                     typeAheadController: typeAheadController,
                     isbool: isbool,
                     nextbtn: nextBtn),
-                ChooseCatg(),
-                nextButton(context: context, page: FreelanceStepTwo()),
+                nextButton(
+                    context: context,
+                    page: FreelanceStepTwo(),
+                    Authevent: ChooseDeptEvent(dept: "dept")),
               ],
             ),
           ),
@@ -60,7 +62,12 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
   }
 }
 
-Widget header() => Column(
+class Header extends StatelessWidget {
+  const Header({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
       children: <Widget>[
         Text(
           "Welcome",
@@ -87,3 +94,19 @@ Widget header() => Column(
         ),
       ],
     );
+  }
+}
+
+class Session extends StatefulWidget {
+  const Session({Key? key}) : super(key: key);
+
+  @override
+  _SessionState createState() => _SessionState();
+}
+
+class _SessionState extends State<Session> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}

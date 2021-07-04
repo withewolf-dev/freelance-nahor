@@ -31,6 +31,7 @@ class Authentication {
     try {
       await googleSignin.disconnect();
       FirebaseAuth.instance.signOut();
+      print("logout ho gaya");
     } on FirebaseAuthException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);

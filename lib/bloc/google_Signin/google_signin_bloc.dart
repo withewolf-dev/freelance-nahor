@@ -18,9 +18,9 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
       yield SigninLoading(loadingState: true);
       try {
         UserCredential user = await _authentication.googleLogin();
+        yield SigninLoading(loadingState: false);
 
         yield GoogleSignedIn(user: user);
-        yield SigninLoading(loadingState: false);
       } catch (e) {
         yield GoogleSigninFail(e: e.toString());
         yield SigninLoading(loadingState: false);
@@ -28,7 +28,7 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
     }
 
     if (event is LogoutEvent) {
-      _authentication.logout();
+      await _authentication.logout();
       yield LogoutState();
     }
   }
