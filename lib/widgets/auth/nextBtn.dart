@@ -5,13 +5,13 @@ import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/bloc/google_Signin/google_signin_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 
-Widget nextButton({required BuildContext context, required page, Authevent}) =>
+Widget nextButton({required BuildContext context, required page, authevent}) =>
     Container(
       alignment: AlignmentDirectional.bottomEnd,
       child: ElevatedButton(
         onPressed: () {
-          // BlocProvider.of<AuthflowBloc>(context).add(Authevent());
-          context.pushRoute(page);
+          BlocProvider.of<AuthflowBloc>(context).add(authevent());
+          //context.pushRoute(page);
         },
         child: Text("next"),
       ),

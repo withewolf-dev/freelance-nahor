@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:http/http.dart';
 import 'package:meta/meta.dart';
 
 part 'authflow_event.dart';
@@ -14,5 +15,13 @@ class AuthflowBloc extends Bloc<AuthflowEvent, AuthflowState> {
     AuthflowEvent event,
   ) async* {
     // TODO: implement mapEventToState
+    if (event is StepOneEvent) {
+      yield CreateFreelanceUser(session: event.session, dept: event.dept);
+      yield StepOneDone();
+    }
+    if (event is StepTwoEvent) {
+      yield CreateFreelanceUser(campus: event.campus, hometown: event.hometown);
+      yield StepTwoDone();
+    }
   }
 }

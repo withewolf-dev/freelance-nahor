@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/bio.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/bio_title.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/payment.dart';
@@ -24,6 +26,17 @@ class FreelanceStepThree extends StatelessWidget {
                 Container(
                   child: Column(
                     children: [
+                      BlocBuilder<AuthflowBloc, AuthflowState>(
+                        builder: (context, state) {
+                          if (state is CreateFreelanceUser) {
+                            Text(
+                              state.dept.toString(),
+                            );
+                            Text(state.session.toString());
+                          }
+                          return Text("data");
+                        },
+                      ),
                       BioTitle(),
                       SizedBox(
                         height: 40.0,

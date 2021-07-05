@@ -7,18 +7,23 @@ class CancelRegistration extends AuthflowEvent {}
 
 class RegistrationDone extends AuthflowEvent {}
 
-class ChooseDeptEvent extends AuthflowEvent {
+class StepOneEvent extends AuthflowEvent {
+  final String session;
   final String dept;
-  ChooseDeptEvent({required this.dept});
+
+  StepOneEvent({required this.dept, required this.session});
 }
 
-class SessionEvent extends AuthflowEvent {
-  final String session = "asdasd";
+class StepTwoEvent extends AuthflowEvent {
+  final String hometown;
+  final String campus;
+
+  StepTwoEvent({required this.campus, required this.hometown});
 }
 
 class ChooseCategEvent extends AuthflowEvent {
-  final String category;
-  ChooseCategEvent({required this.category});
+  final String category = "asdadsada";
+  // ChooseCategEvent({required this.category});
 }
 
 class HomeTownEvent extends AuthflowEvent {
