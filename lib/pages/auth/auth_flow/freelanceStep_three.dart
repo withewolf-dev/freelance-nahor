@@ -12,6 +12,8 @@ class FreelanceStepThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CreateFreelanceUser user = CreateFreelanceUser();
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -26,17 +28,6 @@ class FreelanceStepThree extends StatelessWidget {
                 Container(
                   child: Column(
                     children: [
-                      BlocBuilder<AuthflowBloc, AuthflowState>(
-                        builder: (context, state) {
-                          if (state is CreateFreelanceUser) {
-                            Text(
-                              state.dept.toString(),
-                            );
-                            Text(state.session.toString());
-                          }
-                          return Text("data");
-                        },
-                      ),
                       BioTitle(),
                       SizedBox(
                         height: 40.0,
