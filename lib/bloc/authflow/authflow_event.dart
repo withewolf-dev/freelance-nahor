@@ -21,33 +21,16 @@ class StepTwoEvent extends AuthflowEvent {
   StepTwoEvent({required this.campus, required this.hometown});
 }
 
-class ChooseCategEvent extends AuthflowEvent {
-  final String category = "asdadsada";
-  // ChooseCategEvent({required this.category});
-}
-
-class HomeTownEvent extends AuthflowEvent {
-  final String homeTown;
-  HomeTownEvent({required this.homeTown});
-}
-
-class OnCampusEvent extends AuthflowEvent {
-  final bool onCampus;
-  OnCampusEvent({required this.onCampus});
-}
-
-class WriteTitleEvent extends AuthflowEvent {
-  final String event;
-  WriteTitleEvent({required this.event});
-}
-
-class WriteBioEvent extends AuthflowEvent {
+class StepThreeEvent extends AuthflowEvent {
+  final String biotitle;
   final String bio;
-  WriteBioEvent({required this.bio});
+  final String payment;
+
+  StepThreeEvent(
+      {required this.bio, required this.biotitle, required this.payment});
 }
 
-class PaymentEvent extends AuthflowEvent {
-  final int fees;
-  final String paymentInterval;
-  PaymentEvent({required this.fees, required this.paymentInterval});
+class StepfourEvent extends AuthflowEvent {
+  final String category;
+  StepfourEvent({required this.category});
 }

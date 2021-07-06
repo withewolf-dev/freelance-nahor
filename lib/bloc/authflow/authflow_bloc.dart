@@ -10,17 +10,28 @@ part 'authflow_state.dart';
 class AuthflowBloc extends Bloc<AuthflowEvent, AuthflowState> {
   AuthflowBloc() : super(AuthflowInitial());
 
+  CreateFreelanceUser user = CreateFreelanceUser();
   @override
   Stream<AuthflowState> mapEventToState(
     AuthflowEvent event,
   ) async* {
     // TODO: implement mapEventToState
     if (event is StepOneEvent) {
-      yield CreateFreelanceUser(session: event.session, dept: event.dept);
+      //yield CreateFreelanceUser(session: event.session, dept: event.dept);
+      user.setSession(event.session);
+      user.setDept(event.dept);
       yield StepOneDone();
     }
     if (event is StepTwoEvent) {
-      yield CreateFreelanceUser(campus: event.campus, hometown: event.hometown);
+      //  yield CreateFreelanceUser(campus: event.campus, hometown: event.hometown);
+      user.setCampus(event.campus);
+      user.setHometown(event.hometown);
+      yield StepTwoDone();
+    }
+    if (event is StepTwoEvent) {
+      //  yield CreateFreelanceUser(campus: event.campus, hometown: event.hometown);
+      user.setCampus(event.campus);
+      user.setHometown(event.hometown);
       yield StepTwoDone();
     }
   }

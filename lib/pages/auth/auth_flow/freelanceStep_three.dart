@@ -12,36 +12,39 @@ class FreelanceStepThree extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CreateFreelanceUser user = CreateFreelanceUser();
-
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  child: Column(
-                    children: [
-                      BioTitle(),
-                      SizedBox(
-                        height: 40.0,
-                      ),
-                      Bio(),
-                      SizedBox(
-                        height: 40.0,
-                      ),
-                      PaymentPerDay(),
-                    ],
+      body: BlocListener<AuthflowBloc, AuthflowState>(
+        listener: (context, state) {
+          // TODO: implement listener
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height,
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    child: Column(
+                      children: [
+                        BioTitle(),
+                        SizedBox(
+                          height: 40.0,
+                        ),
+                        Bio(),
+                        SizedBox(
+                          height: 40.0,
+                        ),
+                        PaymentPerDay(),
+                      ],
+                    ),
                   ),
-                ),
-                nextButton(context: context, page: FreelanceStepFour())
-              ],
+                  nextButton(context: context, page: FreelanceStepFour())
+                ],
+              ),
             ),
           ),
         ),
