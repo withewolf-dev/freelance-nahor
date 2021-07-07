@@ -7,6 +7,7 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
+import '../pages/auth/auth_flow/freelanceStep_catg.dart' as _i14;
 import '../pages/auth/auth_flow/freelanceStep_five.dart' as _i9;
 import '../pages/auth/auth_flow/freelanceStep_four.dart' as _i8;
 import '../pages/auth/auth_flow/freelanceStep_one.dart' as _i5;
@@ -84,6 +85,11 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (data) {
           final args = data.argsAs<ProfileSheetArgs>();
           return _i13.ProfileSheet(key: args.key, context: args.context);
+        }),
+    FreelanceStepCatg.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i14.FreelanceStepCatg();
         })
   };
 
@@ -99,7 +105,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(HireSignuRoute.name, path: '/hire-signu-page'),
         _i1.RouteConfig(FeedRoute.name, path: '/feed-page'),
         _i1.RouteConfig(Setting.name, path: '/Setting'),
-        _i1.RouteConfig(ProfileSheet.name, path: '/profile-sheet')
+        _i1.RouteConfig(ProfileSheet.name, path: '/profile-sheet'),
+        _i1.RouteConfig(FreelanceStepCatg.name, path: '/freelance-step-catg')
       ];
 }
 
@@ -193,4 +200,10 @@ class ProfileSheetArgs {
   final _i2.Key? key;
 
   final _i2.BuildContext context;
+}
+
+class FreelanceStepCatg extends _i1.PageRouteInfo {
+  const FreelanceStepCatg() : super(name, path: '/freelance-step-catg');
+
+  static const String name = 'FreelanceStepCatg';
 }

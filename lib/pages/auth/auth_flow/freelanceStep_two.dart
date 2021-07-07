@@ -37,7 +37,7 @@ class _FreelanceStepTwoState extends State<FreelanceStepTwo> {
         listener: (context, state) {
           // TODO: implement listener
           if (state is StepTwoDone) {
-            context.pushRoute(FreelanceStepThree());
+            context.pushRoute(FreelanceStepCatg());
           }
         },
         child: SafeArea(
