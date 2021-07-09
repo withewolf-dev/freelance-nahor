@@ -37,7 +37,7 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
     setState(() {
       session = year;
     });
-    print("****************************88");
+    print("****************************");
     print(session);
   }
 

@@ -30,7 +30,7 @@ class StepThreeEvent extends AuthflowEvent {
       {required this.bio, required this.biotitle, required this.payment});
 }
 
-class StepfourEvent extends AuthflowEvent {
-  final String category;
-  StepfourEvent({required this.category});
+class SelectCatgEvent extends AuthflowEvent {
+  final String? category;
+  SelectCatgEvent({required this.category});
 }

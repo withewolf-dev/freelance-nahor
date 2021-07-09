@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:http/http.dart';
+import 'package:kilo/repository/freelance/create-freelanceUser.dart';
 import 'package:meta/meta.dart';
 
 part 'authflow_event.dart';
@@ -11,6 +12,7 @@ class AuthflowBloc extends Bloc<AuthflowEvent, AuthflowState> {
   AuthflowBloc() : super(AuthflowInitial());
 
   CreateFreelanceUser user = CreateFreelanceUser();
+
   @override
   Stream<AuthflowState> mapEventToState(
     AuthflowEvent event,
@@ -28,11 +30,12 @@ class AuthflowBloc extends Bloc<AuthflowEvent, AuthflowState> {
       user.setHometown(event.hometown);
       yield StepTwoDone();
     }
-    if (event is StepTwoEvent) {
-      //  yield CreateFreelanceUser(campus: event.campus, hometown: event.hometown);
-      user.setCampus(event.campus);
-      user.setHometown(event.hometown);
-      yield StepTwoDone();
+
+    if (event is SelectCatgEvent) {
+      user.setCategory(event.category);
+      yield SelectCatgDone();
     }
+
+    if (event is RegistrationDone) {}
   }
 }

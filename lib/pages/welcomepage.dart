@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/repository/authentication.dart';
+import 'package:kilo/repository/freelance/create-freelanceUser.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -7,7 +9,7 @@ class WelcomePage extends StatelessWidget {
   WelcomePage({Key? key}) : super(key: key);
 
   final auth = Authentication();
-
+  //final freelance = FreelanceUser();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +44,7 @@ class WelcomePage extends StatelessWidget {
       minWidth: double.infinity,
       height: 60,
       onPressed: () {
+        //freelance.addUser();
         context.pushRoute(FreelanceSignUp());
         //context.read<GoogleSigninBloc>().add(Signinasfreelance());
       },

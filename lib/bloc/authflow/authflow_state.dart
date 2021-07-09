@@ -60,3 +60,5 @@ class StepOneDone extends AuthflowState {}
 class StepTwoDone extends AuthflowState {}
 
 class StepThreeDone extends AuthflowState {}
+
+class SelectCatgDone extends AuthflowState {}
