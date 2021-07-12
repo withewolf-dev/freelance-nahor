@@ -1,14 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
+import 'package:kilo/repository/freelance/create-freelanceUser.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/bio.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/bio_title.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/payment.dart';
 import 'package:kilo/widgets/auth/nextBtn.dart';
 import 'package:kilo/router/app_router.gr.dart';
 
-class FreelanceStepThree extends StatelessWidget {
+class FreelanceStepThree extends StatefulWidget {
   const FreelanceStepThree({Key? key}) : super(key: key);
+
+  @override
+  _FreelanceStepThreeState createState() => _FreelanceStepThreeState();
+}
+
+class _FreelanceStepThreeState extends State<FreelanceStepThree> {
+  CreateFreelanceUser user = CreateFreelanceUser();
+
+  String bio = "";
+  String biotitle = "";
+  String payment = "";
+
+  void getBio(data) {
+    setState(() {
+      bio = data;
+    });
+  }
+
+  void getBioTitle(data) {
+    setState(() {
+      biotitle = data;
+    });
+
+    print(biotitle);
+  }
+
+  void getPayment(data) {
+    setState(() {
+      payment = data;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +48,9 @@ class FreelanceStepThree extends StatelessWidget {
       body: BlocListener<AuthflowBloc, AuthflowState>(
         listener: (context, state) {
           // TODO: implement listener
+          if (state is StepThreeDone) {
+            BlocProvider.of<AuthflowBloc>(context).add(RegistrationDone());
+          }
         },
         child: SafeArea(
           child: SingleChildScrollView(
@@ -30,19 +65,33 @@ class FreelanceStepThree extends StatelessWidget {
                   Container(
                     child: Column(
                       children: [
-                        BioTitle(),
+                        BioTitle(getBioTitle: getBioTitle),
                         SizedBox(
                           height: 40.0,
                         ),
-                        Bio(),
+                        Bio(getBio: getBio),
                         SizedBox(
                           height: 40.0,
                         ),
-                        PaymentPerDay(),
+                        PaymentPerDay(getPayment: getPayment),
                       ],
                     ),
                   ),
-                  nextButton(context: context, page: FreelanceStepFour())
+                  Container(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // print(bio);
+                        BlocProvider.of<AuthflowBloc>(context).add(
+                            StepThreeEvent(
+                                bio: bio,
+                                biotitle: biotitle,
+                                payment: payment));
+                        //context.pushRoute(page);
+                      },
+                      child: Text("next"),
+                    ),
+                  ),
                 ],
               ),
             ),

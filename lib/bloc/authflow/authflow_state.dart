@@ -15,6 +15,9 @@ class CreateFreelanceUser extends AuthflowState {
   String? _dept;
   String? _hometown;
   String? _campus;
+  String? _bio;
+  String? _biotitle;
+  String? _payment;
 
   String get session => _session!;
 
@@ -44,6 +47,24 @@ class CreateFreelanceUser extends AuthflowState {
 
   void setCampus(newvalue) {
     _campus = newvalue;
+  }
+
+  String get bio => _bio!;
+
+  void setBio(newvalue) {
+    _bio = newvalue;
+  }
+
+  String get bioTitle => _biotitle!;
+
+  void setBioTitle(newvalue) {
+    _biotitle = newvalue;
+  }
+
+  String get payment => _payment!;
+
+  void setPayment(newvalue) {
+    _payment = newvalue;
   }
 
   factory CreateFreelanceUser() {

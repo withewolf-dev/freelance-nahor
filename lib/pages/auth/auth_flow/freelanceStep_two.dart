@@ -22,6 +22,7 @@ class _FreelanceStepTwoState extends State<FreelanceStepTwo> {
     setState(() {
       campus = data;
     });
+    print("campus $campus");
   }
 
   void getHomeTown(data) {
@@ -51,7 +52,11 @@ class _FreelanceStepTwoState extends State<FreelanceStepTwo> {
                 //crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   HomeTown(getHomeTown: getHomeTown),
-                  CampusStay(getCampus: getCampus),
+                  Text(campus),
+                  CampusStay(
+                    getCampus: getCampus,
+                    //typeAheadController: typeAheadController,
+                  ),
                   Container(
                     alignment: AlignmentDirectional.bottomEnd,
                     child: ElevatedButton(

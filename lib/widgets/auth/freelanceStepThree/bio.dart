@@ -1,13 +1,37 @@
 import 'package:flutter/material.dart';
 
 class Bio extends StatefulWidget {
-  const Bio({Key? key}) : super(key: key);
+  final Function getBio;
+  const Bio({Key? key, required this.getBio}) : super(key: key);
 
   @override
   _BioState createState() => _BioState();
 }
 
 class _BioState extends State<Bio> {
+  final myController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    myController.addListener(_printLatestValue);
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the widget tree.
+    // This also removes the _printLatestValue listener.
+    myController.dispose();
+    super.dispose();
+  }
+
+  void _printLatestValue() {
+    print('Second text field: ${myController.text}');
+    widget.getBio(myController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,6 +51,7 @@ class _BioState extends State<Bio> {
             ),
             maxLength: 300,
             maxLines: 8,
+            controller: myController,
           ),
         ],
       ),

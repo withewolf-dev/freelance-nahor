@@ -31,11 +31,19 @@ class AuthflowBloc extends Bloc<AuthflowEvent, AuthflowState> {
       yield StepTwoDone();
     }
 
+    if (event is StepThreeEvent) {
+      user.setBio(event.bio);
+      user.setBioTitle(event.biotitle);
+      user.setPayment(event.payment);
+      yield StepThreeDone();
+    }
     if (event is SelectCatgEvent) {
       user.setCategory(event.category);
       yield SelectCatgDone();
     }
 
-    if (event is RegistrationDone) {}
+    if (event is RegistrationDone) {
+      addUser(user.bio, user.hometown, user.bioTitle);
+    }
   }
 }

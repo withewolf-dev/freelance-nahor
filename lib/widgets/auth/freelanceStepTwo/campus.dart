@@ -3,9 +3,11 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class CampusStay extends StatefulWidget {
   final Function getCampus;
+  // final  typeAheadController;
   CampusStay({
     Key? key,
     required this.getCampus,
+    //required this.typeAheadController,
   }) : super(key: key);
 
   @override
@@ -60,7 +62,8 @@ class _CampusStayState extends State<CampusStay> {
             );
           },
           onSuggestionSelected: (suggestion) {
-            suggestion = typeAheadController.text;
+            typeAheadController.text = suggestion.toString();
+            widget.getCampus(typeAheadController.text);
           },
         ),
       ],

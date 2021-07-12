@@ -1,10 +1,19 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/authflow/authflow_bloc.dart';
+import 'package:kilo/repository/phoneVerification.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/nextBtn.dart';
+import 'package:kilo/router/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class FreelanceStepFour extends StatelessWidget {
-  const FreelanceStepFour({Key? key}) : super(key: key);
+  FreelanceStepFour({Key? key}) : super(key: key);
 
+  PhoneVerification phone = PhoneVerification();
+  final TextEditingController phoneNumber = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,15 +22,30 @@ class FreelanceStepFour extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-            VerificationField(),
-            nextButton(context: context, page: FreelanceStepFive())
+            VerificationField(
+              phoneNumber: phoneNumber,
+            ),
+            Container(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: ElevatedButton(
+                onPressed: () {
+                  // BlocProvider.of<AuthflowBloc>(context).add(
+                  //     StepTwoEvent(campus: campus, hometown: hometown));
+                  context.pushRoute(FreelanceStepFive());
+                  phone.phoneNumVerification(phoneNum: phoneNumber.text);
+                },
+                child: Text("next"),
+              ),
+            ),
           ])),
     );
   }
 }
 
 class VerificationField extends StatefulWidget {
-  const VerificationField({Key? key}) : super(key: key);
+  final TextEditingController phoneNumber;
+  const VerificationField({Key? key, required this.phoneNumber})
+      : super(key: key);
 
   @override
   _VerificationFieldState createState() => _VerificationFieldState();
@@ -46,6 +70,7 @@ class _VerificationFieldState extends State<VerificationField> {
           Container(
             width: 300,
             child: TextField(
+              controller: widget.phoneNumber,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.green.shade100,

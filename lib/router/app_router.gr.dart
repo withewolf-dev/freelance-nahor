@@ -57,8 +57,10 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     FreelanceStepFour.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i8.FreelanceStepFour();
+        builder: (data) {
+          final args = data.argsAs<FreelanceStepFourArgs>(
+              orElse: () => const FreelanceStepFourArgs());
+          return _i8.FreelanceStepFour(key: args.key);
         }),
     FreelanceStepFive.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -95,12 +97,12 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(WelcomeRoute.name, path: '/'),
+        _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(FreelanceSignUp.name, path: '/freelance-sign-up'),
         _i1.RouteConfig(FreelanceStepOne.name, path: '/freelance-step-one'),
         _i1.RouteConfig(FreelanceStepTwo.name, path: '/freelance-step-two'),
         _i1.RouteConfig(FreelanceStepThree.name, path: '/freelance-step-three'),
-        _i1.RouteConfig(FreelanceStepFour.name, path: '/freelance-step-four'),
+        _i1.RouteConfig(FreelanceStepFour.name, path: '/'),
         _i1.RouteConfig(FreelanceStepFive.name, path: '/freelance-step-five'),
         _i1.RouteConfig(HireSignuRoute.name, path: '/hire-signu-page'),
         _i1.RouteConfig(FeedRoute.name, path: '/feed-page'),
@@ -112,7 +114,7 @@ class AppRouter extends _i1.RootStackRouter {
 
 class WelcomeRoute extends _i1.PageRouteInfo<WelcomeRouteArgs> {
   WelcomeRoute({_i2.Key? key})
-      : super(name, path: '/', args: WelcomeRouteArgs(key: key));
+      : super(name, path: '/welcome-page', args: WelcomeRouteArgs(key: key));
 
   static const String name = 'WelcomeRoute';
 }
@@ -155,10 +157,17 @@ class FreelanceStepThree extends _i1.PageRouteInfo {
   static const String name = 'FreelanceStepThree';
 }
 
-class FreelanceStepFour extends _i1.PageRouteInfo {
-  const FreelanceStepFour() : super(name, path: '/freelance-step-four');
+class FreelanceStepFour extends _i1.PageRouteInfo<FreelanceStepFourArgs> {
+  FreelanceStepFour({_i2.Key? key})
+      : super(name, path: '/', args: FreelanceStepFourArgs(key: key));
 
   static const String name = 'FreelanceStepFour';
+}
+
+class FreelanceStepFourArgs {
+  const FreelanceStepFourArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class FreelanceStepFive extends _i1.PageRouteInfo {

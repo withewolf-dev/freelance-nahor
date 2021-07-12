@@ -16,14 +16,14 @@ CollectionReference freelanceUser =
 //     required this.feesduration,
 //     });
 
-Future<void> addUser(bio, hometown, title, uuid, feesduration) {
+Future<void> addUser(bio, hometown, title) {
   return freelanceUser
       .add({
         'bio': bio,
         'hometown': hometown,
         'title': title,
-        'uuid': uuid,
-        'fee_duration': feesduration
+        // 'uuid': uuid,
+        // 'fee_duration': feesduration
       })
       .then((value) => print("User Added"))
       .catchError((error) => print("Failed to add user: $error"));

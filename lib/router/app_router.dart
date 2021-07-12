@@ -16,12 +16,12 @@ import 'package:kilo/pages/welcomepage.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: WelcomePage, initial: true),
+    AutoRoute(page: WelcomePage),
     AutoRoute(page: FreelanceSignUp),
     AutoRoute(page: FreelanceStepOne),
     AutoRoute(page: FreelanceStepTwo),
     AutoRoute(page: FreelanceStepThree),
-    AutoRoute(page: FreelanceStepFour),
+    AutoRoute(page: FreelanceStepFour, initial: true),
     AutoRoute(page: FreelanceStepFive),
     AutoRoute(page: HireSignuPage),
     AutoRoute(page: FeedPage),
