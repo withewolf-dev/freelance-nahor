@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/app.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
-import 'package:kilo/bloc/google_Signin/google_signin_bloc.dart';
+import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 
 void main() async {
@@ -11,8 +11,8 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MultiBlocProvider(
     providers: [
-      BlocProvider<GoogleSigninBloc>(
-        create: (BuildContext context) => GoogleSigninBloc(),
+      BlocProvider<GoogleSignUpBloc>(
+        create: (BuildContext context) => GoogleSignUpBloc(),
       ),
       BlocProvider<AuthflowBloc>(
         create: (BuildContext context) => AuthflowBloc(),

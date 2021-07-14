@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/google_Signin/google_signin_bloc.dart';
+import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 
 class Introduction extends StatefulWidget {
@@ -68,8 +68,8 @@ class _IntroductionState extends State<Introduction> {
                 ),
                 onPressed: _isSelected
                     ? () {
-                        // BlocProvider.of<GoogleSigninBloc>(context)
-                        //     .add(Signinasfreelance());
+                        // BlocProvider.of<GoogleSignUpBloc>(context)
+                        //     .add(Signupfreelance());
                         context.pushRoute(FreelanceStepOne());
                       }
                     : null,

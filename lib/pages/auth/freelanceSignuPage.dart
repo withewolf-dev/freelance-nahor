@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/google_Signin/google_signin_bloc.dart';
+import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/introduction.dart';
 import 'package:auto_route/auto_route.dart';
@@ -12,10 +12,10 @@ class FreelanceSignUp extends StatelessWidget {
   final String header = "Freelancing";
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GoogleSigninBloc, GoogleSigninState>(
+    return BlocListener<GoogleSignUpBloc, GoogleSignupState>(
       listener: (context, state) {
         // TODO: implement listener
-        if (state is GoogleSignedIn) {
+        if (state is GoogleSignedUp) {
           context.pushRoute(FreelanceStepOne());
         }
       },
