@@ -25,8 +25,8 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
   final TextEditingController typeAheadController = TextEditingController();
 
   bool isbool = false;
-  String session = '0000';
-
+  String session = "";
+  bool isSessionEmpty = true;
   void nextBtn() {
     setState(() {
       isbool = true;
@@ -36,6 +36,7 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
   void getSession(year) {
     setState(() {
       session = year;
+      isSessionEmpty = false;
     });
     print("****************************");
     print(session);
@@ -71,11 +72,16 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
                   Container(
                     alignment: AlignmentDirectional.bottomEnd,
                     child: ElevatedButton(
-                      onPressed: () {
-                        BlocProvider.of<AuthflowBloc>(context).add(StepOneEvent(
-                            dept: typeAheadController.text, session: session));
-                        //context.pushRoute(page);
-                      },
+                      onPressed:
+                          session != "" && typeAheadController.text != " "
+                              ? () {
+                                  BlocProvider.of<AuthflowBloc>(context).add(
+                                      StepOneEvent(
+                                          dept: typeAheadController.text,
+                                          session: session));
+                                  //context.pushRoute(page);
+                                }
+                              : null,
                       child: Text("next"),
                     ),
                   ),

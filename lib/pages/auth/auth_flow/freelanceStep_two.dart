@@ -60,11 +60,14 @@ class _FreelanceStepTwoState extends State<FreelanceStepTwo> {
                   Container(
                     alignment: AlignmentDirectional.bottomEnd,
                     child: ElevatedButton(
-                      onPressed: () {
-                        BlocProvider.of<AuthflowBloc>(context).add(
-                            StepTwoEvent(campus: campus, hometown: hometown));
-                        //context.pushRoute(page);
-                      },
+                      onPressed: campus != "" && hometown != " "
+                          ? () {
+                              BlocProvider.of<AuthflowBloc>(context).add(
+                                  StepTwoEvent(
+                                      campus: campus, hometown: hometown));
+                              //context.pushRoute(page);
+                            }
+                          : null,
                       child: Text("next"),
                     ),
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/app.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/bloc/google_Signin/google_signin_bloc.dart';
+import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +16,9 @@ void main() async {
       ),
       BlocProvider<AuthflowBloc>(
         create: (BuildContext context) => AuthflowBloc(),
+      ),
+      BlocProvider<PhoneverifyBloc>(
+        create: (BuildContext context) => PhoneverifyBloc(),
       ),
     ],
     child: App(),

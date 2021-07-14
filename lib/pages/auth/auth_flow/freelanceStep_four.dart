@@ -1,11 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/repository/phoneVerification.dart';
 import 'package:kilo/router/app_router.gr.dart';
-import 'package:kilo/widgets/auth/nextBtn.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -16,6 +11,7 @@ class FreelanceStepFour extends StatelessWidget {
   final TextEditingController phoneNumber = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    print(phoneNumber.text);
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -28,13 +24,14 @@ class FreelanceStepFour extends StatelessWidget {
             Container(
               alignment: AlignmentDirectional.bottomEnd,
               child: ElevatedButton(
-                onPressed: () {
-                  // BlocProvider.of<AuthflowBloc>(context).add(
-                  //     StepTwoEvent(campus: campus, hometown: hometown));
-                  context.pushRoute(FreelanceStepFive());
-                  phone.phoneNumVerification(phoneNum: phoneNumber.text);
-                },
-                child: Text("next"),
+                onPressed: phoneNumber.text != " "
+                    ? () {
+                        context.pushRoute(FreelanceStepFive());
+                        // phone.sendOtpcode(
+                        //     phoneNum: phoneNumber.text, context: context);
+                      }
+                    : null,
+                child: Text("verify"),
               ),
             ),
           ])),
@@ -81,6 +78,7 @@ class _VerificationFieldState extends State<VerificationField> {
               ),
               //maxLength: 60,
               maxLines: 2,
+              keyboardType: TextInputType.number,
             ),
           )
         ],

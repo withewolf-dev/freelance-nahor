@@ -1,9 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 
 class PhoneVerification {
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  Future phoneNumVerification({String? phoneNum, String? code}) async {
+  Future sendOtpcode(
+      {String? phoneNum, String? code, required BuildContext context}) async {
     try {
       await auth.verifyPhoneNumber(
           verificationCompleted: (PhoneAuthCredential credential) {
@@ -17,27 +21,28 @@ class PhoneVerification {
           },
           phoneNumber: "+91${phoneNum!}",
           codeSent: (String verificationId, int? resendToken) async {
-            String smsCode = code!;
+            print("resendtoken $resendToken");
 
-            if (verificationId == smsCode) {
-              print("*********************************************");
-
-              print("number verified");
+            print("verification id $verificationId");
+            if (verificationId != "") {
+              BlocProvider.of<PhoneverifyBloc>(context)
+                  .add(OnVerifyNumber(verficationcode: verificationId));
             }
           });
-//       await auth.verifyPhoneNumber(
-//   phoneNumber: '+44 7123 123 456',
-//   codeSent: (String verificationId, int? resendToken) async {
-//     // Update the UI - wait for the user to enter the SMS code
-//     String smsCode = 'xxxx';
-
-//     // Create a PhoneAuthCredential with the code
-//     PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
-
-//     // Sign the user in (or link) with the credential
-//     await auth.signInWithCredential(credential);
-//   },
-// );
     } catch (e) {}
+  }
+
+  Future verifycode(
+      {required verificationId,
+      required smsCode,
+      required BuildContext context}) async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId, smsCode: smsCode);
+    final value = await auth.signInWithCredential(credential);
+
+    print(credential);
+    if (value.user != null) {
+      BlocProvider.of<PhoneverifyBloc>(context).add(OnNumberVerified());
+    }
   }
 }

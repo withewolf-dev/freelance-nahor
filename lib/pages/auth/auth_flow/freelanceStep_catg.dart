@@ -28,7 +28,7 @@ class _FreelanceStepCatgState extends State<FreelanceStepCatg> {
   int? _tutor;
   int? _music;
 
-  String? category;
+  String category = "";
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +63,7 @@ class _FreelanceStepCatgState extends State<FreelanceStepCatg> {
                     _music = null;
                     category = tutor[index];
                   });
+                  print("catg $category");
                 },
               );
             }),
@@ -89,11 +90,12 @@ class _FreelanceStepCatgState extends State<FreelanceStepCatg> {
           Container(
             alignment: AlignmentDirectional.bottomEnd,
             child: ElevatedButton(
-              onPressed: () {
-                //print(category);
-                BlocProvider.of<AuthflowBloc>(context)
-                    .add(SelectCatgEvent(category: category));
-              },
+              onPressed: category != ""
+                  ? () {
+                      BlocProvider.of<AuthflowBloc>(context)
+                          .add(SelectCatgEvent(category: category));
+                    }
+                  : null,
               child: Text("next"),
             ),
           ),

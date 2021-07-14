@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
+import 'package:kilo/pages/auth/HireSignupPage.dart';
 import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/repository/freelance/create-freelanceUser.dart';
 import 'package:kilo/router/app_router.gr.dart';
@@ -32,7 +34,8 @@ class WelcomePage extends StatelessWidget {
                   ),
                   signupHire(context: context),
                 ],
-              )
+              ),
+              SignIn(),
             ],
           ),
         ),
@@ -44,9 +47,7 @@ class WelcomePage extends StatelessWidget {
       minWidth: double.infinity,
       height: 60,
       onPressed: () {
-        //freelance.addUser();
         context.pushRoute(FreelanceSignUp());
-        //context.read<GoogleSigninBloc>().add(Signinasfreelance());
       },
       shape: RoundedRectangleBorder(
           side: BorderSide(color: Colors.black),
@@ -71,6 +72,7 @@ Widget signupHire({required BuildContext context}) => Container(
         minWidth: double.infinity,
         height: 60,
         onPressed: () {
+          context.pushRoute(HireSignuRoute());
           //context.read<GoogleSigninBloc>().add(LogoutEvent());
         },
         color: Colors.yellow,
@@ -104,3 +106,33 @@ Widget illustration({required context}) => Container(
       decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage('assets/Illustration.png'))),
     );
+
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
+
+  @override
+  _SignInState createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: RichText(
+        text: TextSpan(
+          text: 'already have an account? ',
+          style: DefaultTextStyle.of(context).style,
+          children: <TextSpan>[
+            TextSpan(
+                text: 'sign in',
+                style: TextStyle(color: Colors.blue),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    context.pushRoute(FeedRoute());
+                  }),
+          ],
+        ),
+      ),
+    );
+  }
+}

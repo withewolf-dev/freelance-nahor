@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 import 'package:kilo/repository/phoneVerification.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/nextBtn.dart';
 import 'package:kilo/widgets/auth/otp/otp_fields.dart';
+import 'package:auto_route/auto_route.dart';
 
 class FreelanceStepFive extends StatefulWidget {
   const FreelanceStepFive({Key? key}) : super(key: key);
@@ -15,7 +18,7 @@ class _FreelanceStepFiveState extends State<FreelanceStepFive> {
   PhoneVerification phone = PhoneVerification();
 
   String otp = "";
-
+  String code = "";
   void getOtp(value) {
     setState(() {
       otp = value;
@@ -25,24 +28,35 @@ class _FreelanceStepFiveState extends State<FreelanceStepFive> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: SingleChildScrollView(
-        child: Column(children: [
-          OtpField(getOtp: getOtp),
-          Container(
-            alignment: AlignmentDirectional.bottomEnd,
-            child: ElevatedButton(
-              onPressed: () {
-                // BlocProvider.of<AuthflowBloc>(context).add(
-                //     StepTwoEvent(campus: campus, hometown: hometown));
-                // context.pushRoute(FreelanceStepFive());
-                phone.phoneNumVerification(code: otp);
-              },
-              child: Text("next"),
+      body: BlocListener<PhoneverifyBloc, PhoneverifyState>(
+        listener: (context, state) {
+          // TODO: implement listener
+          if (state is VerificationState) {
+            setState(() {
+              code = state.code;
+            });
+          }
+        },
+        child: SafeArea(
+            child: SingleChildScrollView(
+          child: Column(children: [
+            OtpField(getOtp: getOtp),
+            Container(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: ElevatedButton(
+                onPressed: () {
+                  context.pushRoute(IsAccountValid());
+                  // phone.verifycode(
+                  //     verificationId: code,
+                  //     smsCode: otp,
+                  //     context: context);
+                },
+                child: Text("next"),
+              ),
             ),
-          ),
-        ]),
-      )),
+          ]),
+        )),
+      ),
     );
   }
 }

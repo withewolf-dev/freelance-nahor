@@ -7,6 +7,7 @@ import 'package:kilo/widgets/auth/freelanceStepThree/bio_title.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/payment.dart';
 import 'package:kilo/widgets/auth/nextBtn.dart';
 import 'package:kilo/router/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class FreelanceStepThree extends StatefulWidget {
   const FreelanceStepThree({Key? key}) : super(key: key);
@@ -49,7 +50,8 @@ class _FreelanceStepThreeState extends State<FreelanceStepThree> {
         listener: (context, state) {
           // TODO: implement listener
           if (state is StepThreeDone) {
-            BlocProvider.of<AuthflowBloc>(context).add(RegistrationDone());
+            // BlocProvider.of<AuthflowBloc>(context).add(RegistrationDone());
+            context.pushRoute(FreelanceStepFour());
           }
         },
         child: SafeArea(
@@ -80,15 +82,16 @@ class _FreelanceStepThreeState extends State<FreelanceStepThree> {
                   Container(
                     alignment: AlignmentDirectional.bottomEnd,
                     child: ElevatedButton(
-                      onPressed: () {
-                        // print(bio);
-                        BlocProvider.of<AuthflowBloc>(context).add(
-                            StepThreeEvent(
-                                bio: bio,
-                                biotitle: biotitle,
-                                payment: payment));
-                        //context.pushRoute(page);
-                      },
+                      onPressed: bio != "" && biotitle != "" && payment != ""
+                          ? () {
+                              BlocProvider.of<AuthflowBloc>(context).add(
+                                  StepThreeEvent(
+                                      bio: bio,
+                                      biotitle: biotitle,
+                                      payment: payment));
+                              //context.pushRoute(page);
+                            }
+                          : null,
                       child: Text("next"),
                     ),
                   ),
