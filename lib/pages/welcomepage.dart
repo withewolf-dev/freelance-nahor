@@ -1,13 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/authflow/authflow_bloc.dart';
-import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
-import 'package:kilo/pages/auth/HireSignupPage.dart';
 import 'package:kilo/repository/authentication.dart';
-import 'package:kilo/repository/freelance/create-freelanceUser.dart';
-import 'package:kilo/router/app_router.gr.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:kilo/widgets/welcome/Illustration.dart';
 import 'package:kilo/widgets/welcome/header.dart';
 import 'package:kilo/widgets/welcome/signIn.dart';

@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
+import 'package:kilo/router/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -37,9 +39,9 @@ class _SignInState extends State<SignIn> {
                   style: TextStyle(color: Colors.blue),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      BlocProvider.of<GoogleSigninBloc>(context)
-                          .add(OnGoogleSignIn());
-                      //context.pushRoute(FeedRoute());
+                      // BlocProvider.of<GoogleSigninBloc>(context)
+                      //     .add(OnGoogleSignIn());
+                      context.pushRoute(FeedRoute());
                     }),
             ],
           ),

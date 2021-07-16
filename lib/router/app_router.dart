@@ -15,6 +15,7 @@ import 'package:kilo/pages/auth/freelanceSignuPage.dart';
 import 'package:kilo/pages/feedpage.dart';
 import 'package:kilo/pages/setting.dart';
 import 'package:kilo/pages/welcomepage.dart';
+import 'package:kilo/widgets/welcome/searchScreen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -34,6 +35,7 @@ import 'package:kilo/pages/welcomepage.dart';
     AutoRoute(page: IsAccountValid),
     AutoRoute(page: HireStepOne),
     AutoRoute(page: HireOtpVerifiction),
+    AutoRoute(page: SearchScreen),
   ],
 )
 class $AppRouter {}

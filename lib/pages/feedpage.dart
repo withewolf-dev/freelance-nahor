@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/feedpage/profil.card.dart';
+import 'package:kilo/widgets/feedpage/searchBox.dart' as Search;
 
 class FeedPage extends StatelessWidget {
   @override
@@ -41,7 +42,7 @@ class FeedPage extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    SearchBox(),
+                    SearchButton(),
                     SizedBox(
                       height: 10,
                     ),
@@ -79,35 +80,6 @@ class FeedPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SearchBox extends StatefulWidget {
-  const SearchBox({Key? key}) : super(key: key);
-
-  @override
-  _SearchBoxState createState() => _SearchBoxState();
-}
-
-class _SearchBoxState extends State<SearchBox> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(244, 243, 243, 1),
-          borderRadius: BorderRadius.circular(15)),
-      child: TextField(
-        decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.black87,
-            ),
-            hintText: "Search you're looking for",
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
       ),
     );
   }
@@ -204,6 +176,38 @@ class _CustomAppBarState extends State<CustomAppBar> {
           Icons.arrow_back,
           color: Colors.black,
         ),
+      ),
+    );
+  }
+}
+
+class SearchButton extends StatefulWidget {
+  const SearchButton({Key? key}) : super(key: key);
+
+  @override
+  _SearchButtonState createState() => _SearchButtonState();
+}
+
+class _SearchButtonState extends State<SearchButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+          color: Color.fromRGBO(244, 243, 243, 1),
+          borderRadius: BorderRadius.circular(15)),
+      child: TextField(
+        onTap: () {
+          context.pushRoute(SearchScreen());
+        },
+        decoration: InputDecoration(
+            border: InputBorder.none,
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.black87,
+            ),
+            hintText: "Search you're looking for",
+            hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
       ),
     );
   }

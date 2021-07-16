@@ -22,6 +22,7 @@ import '../pages/feedpage.dart' as _i11;
 import '../pages/ProfileSheet.dart' as _i13;
 import '../pages/setting.dart' as _i12;
 import '../pages/welcomepage.dart' as _i3;
+import '../widgets/welcome/searchScreen.dart' as _i18;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -110,6 +111,13 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i17.HireOtpVerifiction();
+        }),
+    SearchScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<SearchScreenArgs>(
+              orElse: () => const SearchScreenArgs());
+          return _i18.SearchScreen(key: args.key);
         })
   };
 
@@ -129,7 +137,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(FreelanceStepCatg.name, path: '/freelance-step-catg'),
         _i1.RouteConfig(IsAccountValid.name, path: '/is-account-valid'),
         _i1.RouteConfig(HireStepOne.name, path: '/hire-step-one'),
-        _i1.RouteConfig(HireOtpVerifiction.name, path: '/hire-otp-verifiction')
+        _i1.RouteConfig(HireOtpVerifiction.name, path: '/hire-otp-verifiction'),
+        _i1.RouteConfig(SearchScreen.name, path: '/search-screen')
       ];
 }
 
@@ -256,4 +265,17 @@ class HireOtpVerifiction extends _i1.PageRouteInfo {
   const HireOtpVerifiction() : super(name, path: '/hire-otp-verifiction');
 
   static const String name = 'HireOtpVerifiction';
+}
+
+class SearchScreen extends _i1.PageRouteInfo<SearchScreenArgs> {
+  SearchScreen({_i2.Key? key})
+      : super(name, path: '/search-screen', args: SearchScreenArgs(key: key));
+
+  static const String name = 'SearchScreen';
+}
+
+class SearchScreenArgs {
+  const SearchScreenArgs({this.key});
+
+  final _i2.Key? key;
 }
