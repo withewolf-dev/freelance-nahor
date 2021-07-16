@@ -36,7 +36,8 @@ class FreelanceSignUp extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: Introduction(body: body, header: header),
+          child: Introduction(
+              body: body, header: header, route: FreelanceStepOne()),
         ),
       ),
     );

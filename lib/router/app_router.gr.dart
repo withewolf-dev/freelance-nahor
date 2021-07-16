@@ -7,14 +7,15 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../pages/auth/auth_flow/freelanceStep_catg.dart' as _i14;
-import '../pages/auth/auth_flow/freelanceStep_five.dart' as _i9;
-import '../pages/auth/auth_flow/freelanceStep_four.dart' as _i8;
-import '../pages/auth/auth_flow/freelanceStep_one.dart' as _i5;
-import '../pages/auth/auth_flow/freelanceStep_three.dart' as _i7;
-import '../pages/auth/auth_flow/freelanceStep_two.dart' as _i6;
-import '../pages/auth/auth_flow/isAccountvalid.dart' as _i15;
-import '../pages/auth/auth_flow/testing.dart' as _i16;
+import '../pages/auth/auth_flow/freelance/freelanceStep_catg.dart' as _i14;
+import '../pages/auth/auth_flow/freelance/freelanceStep_five.dart' as _i9;
+import '../pages/auth/auth_flow/freelance/freelanceStep_four.dart' as _i8;
+import '../pages/auth/auth_flow/freelance/freelanceStep_one.dart' as _i5;
+import '../pages/auth/auth_flow/freelance/freelanceStep_three.dart' as _i7;
+import '../pages/auth/auth_flow/freelance/freelanceStep_two.dart' as _i6;
+import '../pages/auth/auth_flow/freelance/isAccountvalid.dart' as _i15;
+import '../pages/auth/auth_flow/hire/hireOtpVerification.dart' as _i17;
+import '../pages/auth/auth_flow/hire/hirestepOne.dart' as _i16;
 import '../pages/auth/freelanceSignuPage.dart' as _i4;
 import '../pages/auth/HireSignupPage.dart' as _i10;
 import '../pages/feedpage.dart' as _i11;
@@ -100,10 +101,15 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i15.IsAccountValid();
         }),
-    Testing.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    HireStepOne.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i16.Testing();
+          return const _i16.HireStepOne();
+        }),
+    HireOtpVerifiction.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i17.HireOtpVerifiction();
         })
   };
 
@@ -122,7 +128,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(ProfileSheet.name, path: '/profile-sheet'),
         _i1.RouteConfig(FreelanceStepCatg.name, path: '/freelance-step-catg'),
         _i1.RouteConfig(IsAccountValid.name, path: '/is-account-valid'),
-        _i1.RouteConfig(Testing.name, path: '/Testing')
+        _i1.RouteConfig(HireStepOne.name, path: '/hire-step-one'),
+        _i1.RouteConfig(HireOtpVerifiction.name, path: '/hire-otp-verifiction')
       ];
 }
 
@@ -239,8 +246,14 @@ class IsAccountValid extends _i1.PageRouteInfo {
   static const String name = 'IsAccountValid';
 }
 
-class Testing extends _i1.PageRouteInfo {
-  const Testing() : super(name, path: '/Testing');
+class HireStepOne extends _i1.PageRouteInfo {
+  const HireStepOne() : super(name, path: '/hire-step-one');
 
-  static const String name = 'Testing';
+  static const String name = 'HireStepOne';
+}
+
+class HireOtpVerifiction extends _i1.PageRouteInfo {
+  const HireOtpVerifiction() : super(name, path: '/hire-otp-verifiction');
+
+  static const String name = 'HireOtpVerifiction';
 }

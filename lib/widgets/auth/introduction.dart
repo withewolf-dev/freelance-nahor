@@ -5,7 +5,9 @@ import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 
 class Introduction extends StatefulWidget {
-  const Introduction({Key? key, required this.body, required this.header})
+  final PageRouteInfo route;
+  Introduction(
+      {Key? key, required this.body, required this.header, required this.route})
       : super(key: key);
 
   final String header;
@@ -70,7 +72,7 @@ class _IntroductionState extends State<Introduction> {
                     ? () {
                         // BlocProvider.of<GoogleSignUpBloc>(context)
                         //     .add(Signupfreelance());
-                        context.pushRoute(FreelanceStepOne());
+                        context.pushRoute(widget.route);
                       }
                     : null,
                 child: const Text('Sign up with google'),

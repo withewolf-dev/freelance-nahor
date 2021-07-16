@@ -65,7 +65,7 @@ class _VerificationFieldState extends State<VerificationField> {
           Text("+91",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
           Container(
-            width: 300,
+            width: 280,
             child: TextField(
               controller: widget.phoneNumber,
               decoration: InputDecoration(

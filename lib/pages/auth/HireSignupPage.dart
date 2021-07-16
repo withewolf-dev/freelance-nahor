@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/introduction.dart';
 import 'package:auto_route/auto_route.dart';
 
@@ -26,7 +27,7 @@ class HireSignuPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Introduction(body: body, header: header),
+        child: Introduction(body: body, header: header, route: HireStepOne()),
       ),
     );
   }

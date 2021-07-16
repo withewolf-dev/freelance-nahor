@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/chooseDept.dart';
-import 'package:kilo/widgets/auth/nextBtn.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:kilo/widgets/avatarHeader.dart';
 
 class FreelanceStepOne extends StatefulWidget {
   FreelanceStepOne({Key? key}) : super(key: key);
@@ -62,7 +62,11 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Header(),
+                  AvatarHeader(
+                    name: "Gitartha Kashyap",
+                    image:
+                        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+                  ),
                   ChooseDept(
                       list: list,
                       typeAheadController: typeAheadController,
@@ -85,52 +89,12 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
                       child: Text("next"),
                     ),
                   ),
-                  // nextButton(
-                  //     context: context,
-                  //     page: FreelanceStepTwo(),
-                  //     authevent: StepOneEvent(
-                  //         dept: typeAheadController.text, session: session)),
                 ],
               ),
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text(
-          "Welcome",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        CircleAvatar(
-          maxRadius: 40.0,
-          backgroundImage: NetworkImage(
-            "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
-          ),
-        ),
-        SizedBox(
-          height: 15.0,
-        ),
-        Text(
-          "Gitartha Kashyap",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-        ),
-        SizedBox(
-          height: 25.0,
-        ),
-      ],
     );
   }
 }
