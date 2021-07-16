@@ -1,11 +1,18 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
+import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
 import 'package:kilo/pages/auth/HireSignupPage.dart';
 import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/repository/freelance/create-freelanceUser.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:kilo/widgets/welcome/Illustration.dart';
+import 'package:kilo/widgets/welcome/header.dart';
+import 'package:kilo/widgets/welcome/signIn.dart';
+import 'package:kilo/widgets/welcome/signupFreelance.dart';
+import 'package:kilo/widgets/welcome/signupHire.dart';
 
 class WelcomePage extends StatelessWidget {
   WelcomePage({Key? key}) : super(key: key);
@@ -24,113 +31,20 @@ class WelcomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              header(),
-              illustration(context: context),
+              WelcomeHeader(),
+              Illustration(),
               Column(
                 children: <Widget>[
-                  signupFreelance(context: context),
+                  SignupFreelance(),
                   SizedBox(
                     height: 20,
                   ),
-                  signupHire(context: context),
+                  SignupHire()
                 ],
               ),
               SignIn(),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget signupFreelance({required BuildContext context}) => MaterialButton(
-      minWidth: double.infinity,
-      height: 60,
-      onPressed: () {
-        context.pushRoute(FreelanceSignUp());
-      },
-      shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.black),
-          borderRadius: BorderRadius.circular(50)),
-      child: Text(
-        "signup to freelancer",
-        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-      ));
-}
-
-Widget signupHire({required BuildContext context}) => Container(
-      padding: EdgeInsets.only(top: 3, left: 3),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          border: Border(
-            bottom: BorderSide(color: Colors.black),
-            top: BorderSide(color: Colors.black),
-            left: BorderSide(color: Colors.black),
-            right: BorderSide(color: Colors.black),
-          )),
-      child: MaterialButton(
-        minWidth: double.infinity,
-        height: 60,
-        onPressed: () {
-          context.pushRoute(HireSignuRoute());
-          //context.read<GoogleSigninBloc>().add(LogoutEvent());
-        },
-        color: Colors.yellow,
-        elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-        child: Text(
-          "signup to hire here",
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-        ),
-      ),
-    );
-
-Widget header() => Column(
-      children: <Widget>[
-        Text(
-          "Welcomes",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Text(
-          "Automatic identity verification which enables you to verify your identity",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Colors.grey[700], fontSize: 15),
-        ),
-      ],
-    );
-Widget illustration({required context}) => Container(
-      height: MediaQuery.of(context).size.height / 3,
-      decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/Illustration.png'))),
-    );
-
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
-
-  @override
-  _SignInState createState() => _SignInState();
-}
-
-class _SignInState extends State<SignIn> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: RichText(
-        text: TextSpan(
-          text: 'already have an account? ',
-          style: DefaultTextStyle.of(context).style,
-          children: <TextSpan>[
-            TextSpan(
-                text: 'sign in',
-                style: TextStyle(color: Colors.blue),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    context.pushRoute(FeedRoute());
-                  }),
-          ],
         ),
       ),
     );
