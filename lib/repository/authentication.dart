@@ -6,7 +6,7 @@ class Authentication {
 
   GoogleSignInAccount? _user;
 
-  GoogleSignInAccount get user => _user!;
+  GoogleSignInAccount? get user => _user;
 
   Future googleSignup() async {
     try {

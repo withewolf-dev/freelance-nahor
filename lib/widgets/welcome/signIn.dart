@@ -26,6 +26,7 @@ class _SignInState extends State<SignIn> {
         }
         if (state is GoogleSignIn) {
           ScaffoldMessenger.of(context).showSnackBar(snackBar1);
+          context.pushRoute(FeedRoute());
         }
       },
       child: Container(
@@ -39,9 +40,9 @@ class _SignInState extends State<SignIn> {
                   style: TextStyle(color: Colors.blue),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                      // BlocProvider.of<GoogleSigninBloc>(context)
-                      //     .add(OnGoogleSignIn());
-                      context.pushRoute(FeedRoute());
+                      BlocProvider.of<GoogleSigninBloc>(context)
+                          .add(OnGoogleSignIn());
+                      // context.pushRoute(FeedRoute());
                     }),
             ],
           ),

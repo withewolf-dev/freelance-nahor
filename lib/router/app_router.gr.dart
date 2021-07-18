@@ -7,20 +7,20 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../pages/auth/auth_flow/freelance/freelanceStep_catg.dart' as _i14;
-import '../pages/auth/auth_flow/freelance/freelanceStep_five.dart' as _i9;
-import '../pages/auth/auth_flow/freelance/freelanceStep_four.dart' as _i8;
-import '../pages/auth/auth_flow/freelance/freelanceStep_one.dart' as _i5;
-import '../pages/auth/auth_flow/freelance/freelanceStep_three.dart' as _i7;
-import '../pages/auth/auth_flow/freelance/freelanceStep_two.dart' as _i6;
-import '../pages/auth/auth_flow/freelance/isAccountvalid.dart' as _i15;
-import '../pages/auth/auth_flow/hire/hireOtpVerification.dart' as _i17;
-import '../pages/auth/auth_flow/hire/hirestepOne.dart' as _i16;
+import '../pages/auth/auth_flow/freelance/freelanceStep_catg.dart' as _i11;
+import '../pages/auth/auth_flow/freelance/freelanceStep_five.dart' as _i10;
+import '../pages/auth/auth_flow/freelance/freelanceStep_four.dart' as _i9;
+import '../pages/auth/auth_flow/freelance/freelanceStep_one.dart' as _i6;
+import '../pages/auth/auth_flow/freelance/freelanceStep_three.dart' as _i8;
+import '../pages/auth/auth_flow/freelance/freelanceStep_two.dart' as _i7;
+import '../pages/auth/auth_flow/freelance/isAccountvalid.dart' as _i12;
+import '../pages/auth/auth_flow/hire/hireOtpVerification.dart' as _i14;
+import '../pages/auth/auth_flow/hire/hirestepOne.dart' as _i13;
 import '../pages/auth/freelanceSignuPage.dart' as _i4;
-import '../pages/auth/HireSignupPage.dart' as _i10;
-import '../pages/feedpage.dart' as _i11;
-import '../pages/ProfileSheet.dart' as _i13;
-import '../pages/setting.dart' as _i12;
+import '../pages/auth/HireSignupPage.dart' as _i5;
+import '../pages/feedpage.dart' as _i15;
+import '../pages/ProfileSheet.dart' as _i17;
+import '../pages/setting.dart' as _i16;
 import '../pages/welcomepage.dart' as _i3;
 import '../widgets/welcome/searchScreen.dart' as _i18;
 
@@ -30,6 +30,16 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
+    SignupRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i1.EmptyRouterPage();
+        }),
+    MainRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i1.EmptyRouterPage();
+        }),
     WelcomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
@@ -42,75 +52,75 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.FreelanceSignUp();
         }),
+    HireSignuRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i5.HireSignuPage();
+        }),
     FreelanceStepOne.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<FreelanceStepOneArgs>(
               orElse: () => const FreelanceStepOneArgs());
-          return _i5.FreelanceStepOne(key: args.key);
+          return _i6.FreelanceStepOne(key: args.key);
         }),
     FreelanceStepTwo.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i6.FreelanceStepTwo();
+          return const _i7.FreelanceStepTwo();
         }),
     FreelanceStepThree.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.FreelanceStepThree();
+          return const _i8.FreelanceStepThree();
         }),
     FreelanceStepFour.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<FreelanceStepFourArgs>(
               orElse: () => const FreelanceStepFourArgs());
-          return _i8.FreelanceStepFour(key: args.key);
+          return _i9.FreelanceStepFour(key: args.key);
         }),
     FreelanceStepFive.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i9.FreelanceStepFive();
+          return const _i10.FreelanceStepFive();
         }),
-    HireSignuRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    FreelanceStepCatg.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i10.HireSignuPage();
+          return const _i11.FreelanceStepCatg();
+        }),
+    IsAccountValid.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i12.IsAccountValid();
+        }),
+    HireStepOne.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i13.HireStepOne();
+        }),
+    HireOtpVerifiction.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i14.HireOtpVerifiction();
         }),
     FeedRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i11.FeedPage();
+          return _i15.FeedPage();
         }),
     Setting.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i12.Setting();
+          return const _i16.Setting();
         }),
     ProfileSheet.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ProfileSheetArgs>();
-          return _i13.ProfileSheet(key: args.key, context: args.context);
-        }),
-    FreelanceStepCatg.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i14.FreelanceStepCatg();
-        }),
-    IsAccountValid.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i15.IsAccountValid();
-        }),
-    HireStepOne.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i16.HireStepOne();
-        }),
-    HireOtpVerifiction.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i17.HireOtpVerifiction();
+          return _i17.ProfileSheet(key: args.key, context: args.context);
         }),
     SearchScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -123,28 +133,47 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(WelcomeRoute.name, path: '/'),
-        _i1.RouteConfig(FreelanceSignUp.name, path: '/freelance-sign-up'),
-        _i1.RouteConfig(FreelanceStepOne.name, path: '/freelance-step-one'),
-        _i1.RouteConfig(FreelanceStepTwo.name, path: '/freelance-step-two'),
-        _i1.RouteConfig(FreelanceStepThree.name, path: '/freelance-step-three'),
-        _i1.RouteConfig(FreelanceStepFour.name, path: '/freelance-step-four'),
-        _i1.RouteConfig(FreelanceStepFive.name, path: '/freelance-step-five'),
-        _i1.RouteConfig(HireSignuRoute.name, path: '/hire-signu-page'),
-        _i1.RouteConfig(FeedRoute.name, path: '/feed-page'),
-        _i1.RouteConfig(Setting.name, path: '/Setting'),
-        _i1.RouteConfig(ProfileSheet.name, path: '/profile-sheet'),
-        _i1.RouteConfig(FreelanceStepCatg.name, path: '/freelance-step-catg'),
-        _i1.RouteConfig(IsAccountValid.name, path: '/is-account-valid'),
-        _i1.RouteConfig(HireStepOne.name, path: '/hire-step-one'),
-        _i1.RouteConfig(HireOtpVerifiction.name, path: '/hire-otp-verifiction'),
-        _i1.RouteConfig(SearchScreen.name, path: '/search-screen')
+        _i1.RouteConfig(SignupRoute.name, path: '/signupRoute', children: [
+          _i1.RouteConfig(WelcomeRoute.name, path: 'welcome-page'),
+          _i1.RouteConfig(FreelanceSignUp.name, path: 'freelance-sign-up'),
+          _i1.RouteConfig(HireSignuRoute.name, path: 'hire-signu-page'),
+          _i1.RouteConfig(FreelanceStepOne.name, path: 'freelance-step-one'),
+          _i1.RouteConfig(FreelanceStepTwo.name, path: 'freelance-step-two'),
+          _i1.RouteConfig(FreelanceStepThree.name,
+              path: 'freelance-step-three'),
+          _i1.RouteConfig(FreelanceStepFour.name, path: 'freelance-step-four'),
+          _i1.RouteConfig(FreelanceStepFive.name, path: 'freelance-step-five'),
+          _i1.RouteConfig(FreelanceStepCatg.name, path: 'freelance-step-catg'),
+          _i1.RouteConfig(IsAccountValid.name, path: 'is-account-valid'),
+          _i1.RouteConfig(HireStepOne.name, path: 'hire-step-one'),
+          _i1.RouteConfig(HireOtpVerifiction.name, path: 'hire-otp-verifiction')
+        ]),
+        _i1.RouteConfig(MainRouter.name, path: '/', children: [
+          _i1.RouteConfig(FeedRoute.name, path: 'feed-page'),
+          _i1.RouteConfig(Setting.name, path: 'Setting'),
+          _i1.RouteConfig(ProfileSheet.name, path: 'profile-sheet'),
+          _i1.RouteConfig(SearchScreen.name, path: 'search-screen')
+        ])
       ];
+}
+
+class SignupRoute extends _i1.PageRouteInfo {
+  const SignupRoute({List<_i1.PageRouteInfo>? children})
+      : super(name, path: '/signupRoute', initialChildren: children);
+
+  static const String name = 'SignupRoute';
+}
+
+class MainRouter extends _i1.PageRouteInfo {
+  const MainRouter({List<_i1.PageRouteInfo>? children})
+      : super(name, path: '/', initialChildren: children);
+
+  static const String name = 'MainRouter';
 }
 
 class WelcomeRoute extends _i1.PageRouteInfo<WelcomeRouteArgs> {
   WelcomeRoute({_i2.Key? key})
-      : super(name, path: '/', args: WelcomeRouteArgs(key: key));
+      : super(name, path: 'welcome-page', args: WelcomeRouteArgs(key: key));
 
   static const String name = 'WelcomeRoute';
 }
@@ -156,15 +185,21 @@ class WelcomeRouteArgs {
 }
 
 class FreelanceSignUp extends _i1.PageRouteInfo {
-  const FreelanceSignUp() : super(name, path: '/freelance-sign-up');
+  const FreelanceSignUp() : super(name, path: 'freelance-sign-up');
 
   static const String name = 'FreelanceSignUp';
+}
+
+class HireSignuRoute extends _i1.PageRouteInfo {
+  const HireSignuRoute() : super(name, path: 'hire-signu-page');
+
+  static const String name = 'HireSignuRoute';
 }
 
 class FreelanceStepOne extends _i1.PageRouteInfo<FreelanceStepOneArgs> {
   FreelanceStepOne({_i2.Key? key})
       : super(name,
-            path: '/freelance-step-one', args: FreelanceStepOneArgs(key: key));
+            path: 'freelance-step-one', args: FreelanceStepOneArgs(key: key));
 
   static const String name = 'FreelanceStepOne';
 }
@@ -176,13 +211,13 @@ class FreelanceStepOneArgs {
 }
 
 class FreelanceStepTwo extends _i1.PageRouteInfo {
-  const FreelanceStepTwo() : super(name, path: '/freelance-step-two');
+  const FreelanceStepTwo() : super(name, path: 'freelance-step-two');
 
   static const String name = 'FreelanceStepTwo';
 }
 
 class FreelanceStepThree extends _i1.PageRouteInfo {
-  const FreelanceStepThree() : super(name, path: '/freelance-step-three');
+  const FreelanceStepThree() : super(name, path: 'freelance-step-three');
 
   static const String name = 'FreelanceStepThree';
 }
@@ -190,8 +225,7 @@ class FreelanceStepThree extends _i1.PageRouteInfo {
 class FreelanceStepFour extends _i1.PageRouteInfo<FreelanceStepFourArgs> {
   FreelanceStepFour({_i2.Key? key})
       : super(name,
-            path: '/freelance-step-four',
-            args: FreelanceStepFourArgs(key: key));
+            path: 'freelance-step-four', args: FreelanceStepFourArgs(key: key));
 
   static const String name = 'FreelanceStepFour';
 }
@@ -203,25 +237,43 @@ class FreelanceStepFourArgs {
 }
 
 class FreelanceStepFive extends _i1.PageRouteInfo {
-  const FreelanceStepFive() : super(name, path: '/freelance-step-five');
+  const FreelanceStepFive() : super(name, path: 'freelance-step-five');
 
   static const String name = 'FreelanceStepFive';
 }
 
-class HireSignuRoute extends _i1.PageRouteInfo {
-  const HireSignuRoute() : super(name, path: '/hire-signu-page');
+class FreelanceStepCatg extends _i1.PageRouteInfo {
+  const FreelanceStepCatg() : super(name, path: 'freelance-step-catg');
 
-  static const String name = 'HireSignuRoute';
+  static const String name = 'FreelanceStepCatg';
+}
+
+class IsAccountValid extends _i1.PageRouteInfo {
+  const IsAccountValid() : super(name, path: 'is-account-valid');
+
+  static const String name = 'IsAccountValid';
+}
+
+class HireStepOne extends _i1.PageRouteInfo {
+  const HireStepOne() : super(name, path: 'hire-step-one');
+
+  static const String name = 'HireStepOne';
+}
+
+class HireOtpVerifiction extends _i1.PageRouteInfo {
+  const HireOtpVerifiction() : super(name, path: 'hire-otp-verifiction');
+
+  static const String name = 'HireOtpVerifiction';
 }
 
 class FeedRoute extends _i1.PageRouteInfo {
-  const FeedRoute() : super(name, path: '/feed-page');
+  const FeedRoute() : super(name, path: 'feed-page');
 
   static const String name = 'FeedRoute';
 }
 
 class Setting extends _i1.PageRouteInfo {
-  const Setting() : super(name, path: '/Setting');
+  const Setting() : super(name, path: 'Setting');
 
   static const String name = 'Setting';
 }
@@ -229,7 +281,7 @@ class Setting extends _i1.PageRouteInfo {
 class ProfileSheet extends _i1.PageRouteInfo<ProfileSheetArgs> {
   ProfileSheet({_i2.Key? key, required _i2.BuildContext context})
       : super(name,
-            path: '/profile-sheet',
+            path: 'profile-sheet',
             args: ProfileSheetArgs(key: key, context: context));
 
   static const String name = 'ProfileSheet';
@@ -243,33 +295,9 @@ class ProfileSheetArgs {
   final _i2.BuildContext context;
 }
 
-class FreelanceStepCatg extends _i1.PageRouteInfo {
-  const FreelanceStepCatg() : super(name, path: '/freelance-step-catg');
-
-  static const String name = 'FreelanceStepCatg';
-}
-
-class IsAccountValid extends _i1.PageRouteInfo {
-  const IsAccountValid() : super(name, path: '/is-account-valid');
-
-  static const String name = 'IsAccountValid';
-}
-
-class HireStepOne extends _i1.PageRouteInfo {
-  const HireStepOne() : super(name, path: '/hire-step-one');
-
-  static const String name = 'HireStepOne';
-}
-
-class HireOtpVerifiction extends _i1.PageRouteInfo {
-  const HireOtpVerifiction() : super(name, path: '/hire-otp-verifiction');
-
-  static const String name = 'HireOtpVerifiction';
-}
-
 class SearchScreen extends _i1.PageRouteInfo<SearchScreenArgs> {
   SearchScreen({_i2.Key? key})
-      : super(name, path: '/search-screen', args: SearchScreenArgs(key: key));
+      : super(name, path: 'search-screen', args: SearchScreenArgs(key: key));
 
   static const String name = 'SearchScreen';
 }
