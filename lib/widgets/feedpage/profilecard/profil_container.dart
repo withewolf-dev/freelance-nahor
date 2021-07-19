@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:kilo/pages/ProfileSheet.dart' as Sheet;
-import 'package:kilo/widgets/feedpage/profilecard/profile_container.dart';
+import 'package:kilo/widgets/feedpage/profilecard/profile_card.dart';
 
-class ProfileCard extends StatefulWidget {
+class ProfileContainer extends StatefulWidget {
   final String? name;
   final String? bio;
-  const ProfileCard({Key? key, this.bio, this.name}) : super(key: key);
+  const ProfileContainer({Key? key, this.bio, this.name}) : super(key: key);
 
   @override
-  _ProfileCardState createState() => _ProfileCardState();
+  _ProfileContainerState createState() => _ProfileContainerState();
 }
 
-class _ProfileCardState extends State<ProfileCard> {
+class _ProfileContainerState extends State<ProfileContainer> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,7 +33,7 @@ class _ProfileCardState extends State<ProfileCard> {
           //   bio: widget.bio,
           //   name: widget.name,
           // ),
-          child: ProfileContainer(),
+          child: ProfileCard(),
         ),
         SizedBox(
           height: 20,

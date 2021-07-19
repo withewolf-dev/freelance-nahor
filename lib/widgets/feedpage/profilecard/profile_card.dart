@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ProfileContainer extends StatelessWidget {
+class ProfileCard extends StatelessWidget {
   final String? name;
   final String? bio;
-  const ProfileContainer({Key? key, this.name, this.bio}) : super(key: key);
+  const ProfileCard({Key? key, this.name, this.bio}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
