@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/feedpage/category.dart' as catg;
+import 'package:kilo/widgets/feedpage/profilecard/profil_card.dart';
 import 'package:kilo/widgets/feedpage/profilecard/profile_container.dart';
 import 'package:kilo/widgets/feedpage/profilecard/profiles_list.dart';
 import 'package:kilo/widgets/feedpage/searchBox.dart' as Search;
@@ -72,7 +73,7 @@ class FeedPage extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Expanded(child: ProfilesList())
+                    ProfileCard()
                   ],
                 ),
               ),

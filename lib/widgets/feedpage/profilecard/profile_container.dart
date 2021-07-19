@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ProfileContainer extends StatelessWidget {
-  final String name;
-  final String bio;
-  const ProfileContainer({Key? key, required this.name, required this.bio})
-      : super(key: key);
+  final String? name;
+  final String? bio;
+  const ProfileContainer({Key? key, this.name, this.bio}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class ProfileContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  "santanu baruah",
                   style: TextStyle(
                     fontSize: 17,
                     color: Colors.white,
@@ -54,7 +53,7 @@ class ProfileContainer extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  bio,
+                  "I will make you a cool website ok great for you",
                   style: TextStyle(
                     color: Color(0xffaeaeae),
                     fontWeight: FontWeight.w600,
