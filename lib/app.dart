@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
-import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/router/app_router.gr.dart';
 
 class App extends StatefulWidget {
@@ -12,7 +11,6 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final appRouter = AppRouter();
-  final _authentication = Authentication();
 
   bool user = false;
 
@@ -31,8 +29,8 @@ class _AppState extends State<App> {
         debugShowCheckedModeBanner: false,
         title: 'AutoRoute Bascis',
         routerDelegate: appRouter.delegate(initialRoutes: [
-          if (_authentication.user != null) MainRouter(),
-          if (_authentication.user == null) SignupRoute(),
+          if (FirebaseAuth.instance.currentUser != null) FeedRoute(),
+          if (FirebaseAuth.instance.currentUser == null) WelcomeRoute(),
         ]),
         routeInformationParser:
             appRouter.defaultRouteParser(includePrefixMatches: true),

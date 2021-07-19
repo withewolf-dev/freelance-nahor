@@ -30,16 +30,6 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
-    SignupRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i1.EmptyRouterPage();
-        }),
-    MainRouter.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i1.EmptyRouterPage();
-        }),
     WelcomeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
@@ -133,47 +123,28 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(SignupRoute.name, path: '/signupRoute', children: [
-          _i1.RouteConfig(WelcomeRoute.name, path: 'welcome-page'),
-          _i1.RouteConfig(FreelanceSignUp.name, path: 'freelance-sign-up'),
-          _i1.RouteConfig(HireSignuRoute.name, path: 'hire-signu-page'),
-          _i1.RouteConfig(FreelanceStepOne.name, path: 'freelance-step-one'),
-          _i1.RouteConfig(FreelanceStepTwo.name, path: 'freelance-step-two'),
-          _i1.RouteConfig(FreelanceStepThree.name,
-              path: 'freelance-step-three'),
-          _i1.RouteConfig(FreelanceStepFour.name, path: 'freelance-step-four'),
-          _i1.RouteConfig(FreelanceStepFive.name, path: 'freelance-step-five'),
-          _i1.RouteConfig(FreelanceStepCatg.name, path: 'freelance-step-catg'),
-          _i1.RouteConfig(IsAccountValid.name, path: 'is-account-valid'),
-          _i1.RouteConfig(HireStepOne.name, path: 'hire-step-one'),
-          _i1.RouteConfig(HireOtpVerifiction.name, path: 'hire-otp-verifiction')
-        ]),
-        _i1.RouteConfig(MainRouter.name, path: '/', children: [
-          _i1.RouteConfig(FeedRoute.name, path: 'feed-page'),
-          _i1.RouteConfig(Setting.name, path: 'Setting'),
-          _i1.RouteConfig(ProfileSheet.name, path: 'profile-sheet'),
-          _i1.RouteConfig(SearchScreen.name, path: 'search-screen')
-        ])
+        _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
+        _i1.RouteConfig(FreelanceSignUp.name, path: '/freelance-sign-up'),
+        _i1.RouteConfig(HireSignuRoute.name, path: '/hire-signu-page'),
+        _i1.RouteConfig(FreelanceStepOne.name, path: '/freelance-step-one'),
+        _i1.RouteConfig(FreelanceStepTwo.name, path: '/freelance-step-two'),
+        _i1.RouteConfig(FreelanceStepThree.name, path: '/freelance-step-three'),
+        _i1.RouteConfig(FreelanceStepFour.name, path: '/freelance-step-four'),
+        _i1.RouteConfig(FreelanceStepFive.name, path: '/freelance-step-five'),
+        _i1.RouteConfig(FreelanceStepCatg.name, path: '/freelance-step-catg'),
+        _i1.RouteConfig(IsAccountValid.name, path: '/is-account-valid'),
+        _i1.RouteConfig(HireStepOne.name, path: '/hire-step-one'),
+        _i1.RouteConfig(HireOtpVerifiction.name, path: '/hire-otp-verifiction'),
+        _i1.RouteConfig(FeedRoute.name, path: '/feed-page'),
+        _i1.RouteConfig(Setting.name, path: '/Setting'),
+        _i1.RouteConfig(ProfileSheet.name, path: '/profile-sheet'),
+        _i1.RouteConfig(SearchScreen.name, path: '/search-screen')
       ];
-}
-
-class SignupRoute extends _i1.PageRouteInfo {
-  const SignupRoute({List<_i1.PageRouteInfo>? children})
-      : super(name, path: '/signupRoute', initialChildren: children);
-
-  static const String name = 'SignupRoute';
-}
-
-class MainRouter extends _i1.PageRouteInfo {
-  const MainRouter({List<_i1.PageRouteInfo>? children})
-      : super(name, path: '/', initialChildren: children);
-
-  static const String name = 'MainRouter';
 }
 
 class WelcomeRoute extends _i1.PageRouteInfo<WelcomeRouteArgs> {
   WelcomeRoute({_i2.Key? key})
-      : super(name, path: 'welcome-page', args: WelcomeRouteArgs(key: key));
+      : super(name, path: '/welcome-page', args: WelcomeRouteArgs(key: key));
 
   static const String name = 'WelcomeRoute';
 }
@@ -185,13 +156,13 @@ class WelcomeRouteArgs {
 }
 
 class FreelanceSignUp extends _i1.PageRouteInfo {
-  const FreelanceSignUp() : super(name, path: 'freelance-sign-up');
+  const FreelanceSignUp() : super(name, path: '/freelance-sign-up');
 
   static const String name = 'FreelanceSignUp';
 }
 
 class HireSignuRoute extends _i1.PageRouteInfo {
-  const HireSignuRoute() : super(name, path: 'hire-signu-page');
+  const HireSignuRoute() : super(name, path: '/hire-signu-page');
 
   static const String name = 'HireSignuRoute';
 }
@@ -199,7 +170,7 @@ class HireSignuRoute extends _i1.PageRouteInfo {
 class FreelanceStepOne extends _i1.PageRouteInfo<FreelanceStepOneArgs> {
   FreelanceStepOne({_i2.Key? key})
       : super(name,
-            path: 'freelance-step-one', args: FreelanceStepOneArgs(key: key));
+            path: '/freelance-step-one', args: FreelanceStepOneArgs(key: key));
 
   static const String name = 'FreelanceStepOne';
 }
@@ -211,13 +182,13 @@ class FreelanceStepOneArgs {
 }
 
 class FreelanceStepTwo extends _i1.PageRouteInfo {
-  const FreelanceStepTwo() : super(name, path: 'freelance-step-two');
+  const FreelanceStepTwo() : super(name, path: '/freelance-step-two');
 
   static const String name = 'FreelanceStepTwo';
 }
 
 class FreelanceStepThree extends _i1.PageRouteInfo {
-  const FreelanceStepThree() : super(name, path: 'freelance-step-three');
+  const FreelanceStepThree() : super(name, path: '/freelance-step-three');
 
   static const String name = 'FreelanceStepThree';
 }
@@ -225,7 +196,8 @@ class FreelanceStepThree extends _i1.PageRouteInfo {
 class FreelanceStepFour extends _i1.PageRouteInfo<FreelanceStepFourArgs> {
   FreelanceStepFour({_i2.Key? key})
       : super(name,
-            path: 'freelance-step-four', args: FreelanceStepFourArgs(key: key));
+            path: '/freelance-step-four',
+            args: FreelanceStepFourArgs(key: key));
 
   static const String name = 'FreelanceStepFour';
 }
@@ -237,43 +209,43 @@ class FreelanceStepFourArgs {
 }
 
 class FreelanceStepFive extends _i1.PageRouteInfo {
-  const FreelanceStepFive() : super(name, path: 'freelance-step-five');
+  const FreelanceStepFive() : super(name, path: '/freelance-step-five');
 
   static const String name = 'FreelanceStepFive';
 }
 
 class FreelanceStepCatg extends _i1.PageRouteInfo {
-  const FreelanceStepCatg() : super(name, path: 'freelance-step-catg');
+  const FreelanceStepCatg() : super(name, path: '/freelance-step-catg');
 
   static const String name = 'FreelanceStepCatg';
 }
 
 class IsAccountValid extends _i1.PageRouteInfo {
-  const IsAccountValid() : super(name, path: 'is-account-valid');
+  const IsAccountValid() : super(name, path: '/is-account-valid');
 
   static const String name = 'IsAccountValid';
 }
 
 class HireStepOne extends _i1.PageRouteInfo {
-  const HireStepOne() : super(name, path: 'hire-step-one');
+  const HireStepOne() : super(name, path: '/hire-step-one');
 
   static const String name = 'HireStepOne';
 }
 
 class HireOtpVerifiction extends _i1.PageRouteInfo {
-  const HireOtpVerifiction() : super(name, path: 'hire-otp-verifiction');
+  const HireOtpVerifiction() : super(name, path: '/hire-otp-verifiction');
 
   static const String name = 'HireOtpVerifiction';
 }
 
 class FeedRoute extends _i1.PageRouteInfo {
-  const FeedRoute() : super(name, path: 'feed-page');
+  const FeedRoute() : super(name, path: '/feed-page');
 
   static const String name = 'FeedRoute';
 }
 
 class Setting extends _i1.PageRouteInfo {
-  const Setting() : super(name, path: 'Setting');
+  const Setting() : super(name, path: '/Setting');
 
   static const String name = 'Setting';
 }
@@ -281,7 +253,7 @@ class Setting extends _i1.PageRouteInfo {
 class ProfileSheet extends _i1.PageRouteInfo<ProfileSheetArgs> {
   ProfileSheet({_i2.Key? key, required _i2.BuildContext context})
       : super(name,
-            path: 'profile-sheet',
+            path: '/profile-sheet',
             args: ProfileSheetArgs(key: key, context: context));
 
   static const String name = 'ProfileSheet';
@@ -297,7 +269,7 @@ class ProfileSheetArgs {
 
 class SearchScreen extends _i1.PageRouteInfo<SearchScreenArgs> {
   SearchScreen({_i2.Key? key})
-      : super(name, path: 'search-screen', args: SearchScreenArgs(key: key));
+      : super(name, path: '/search-screen', args: SearchScreenArgs(key: key));
 
   static const String name = 'SearchScreen';
 }
