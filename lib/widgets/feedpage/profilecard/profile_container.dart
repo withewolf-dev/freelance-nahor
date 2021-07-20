@@ -28,12 +28,10 @@ class _ProfileContainerState extends State<ProfileContainer> {
                 context: context,
                 builder: (BuildContext context) => Sheet.ProfileSheet(
                       context: context,
+                      name: widget.name,
+                      bio: widget.bio,
                     ));
           },
-          // child: ProfileContainer(
-          //   bio: widget.bio,
-          //   name: widget.name,
-          // ),
           child: ProfileCard(
             bio: widget.bio,
             name: widget.name,

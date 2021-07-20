@@ -110,7 +110,11 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ProfileSheetArgs>();
-          return _i17.ProfileSheet(key: args.key, context: args.context);
+          return _i17.ProfileSheet(
+              key: args.key,
+              context: args.context,
+              name: args.name,
+              bio: args.bio);
         }),
     SearchScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -251,20 +255,30 @@ class Setting extends _i1.PageRouteInfo {
 }
 
 class ProfileSheet extends _i1.PageRouteInfo<ProfileSheetArgs> {
-  ProfileSheet({_i2.Key? key, required _i2.BuildContext context})
+  ProfileSheet(
+      {_i2.Key? key,
+      required _i2.BuildContext context,
+      required String name,
+      required String bio})
       : super(name,
             path: '/profile-sheet',
-            args: ProfileSheetArgs(key: key, context: context));
+            args: ProfileSheetArgs(
+                key: key, context: context, name: name, bio: bio));
 
   static const String name = 'ProfileSheet';
 }
 
 class ProfileSheetArgs {
-  const ProfileSheetArgs({this.key, required this.context});
+  const ProfileSheetArgs(
+      {this.key, required this.context, required this.name, required this.bio});
 
   final _i2.Key? key;
 
   final _i2.BuildContext context;
+
+  final String name;
+
+  final String bio;
 }
 
 class SearchScreen extends _i1.PageRouteInfo<SearchScreenArgs> {

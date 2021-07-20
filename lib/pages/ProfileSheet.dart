@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:kilo/widgets/profilesheet/profilesheet_bio.dart';
+import 'package:kilo/widgets/profilesheet/profilesheet_header.dart';
 
 class ProfileSheet extends StatelessWidget {
-  const ProfileSheet({Key? key, required this.context}) : super(key: key);
+  final String name;
+  final String bio;
+  const ProfileSheet(
+      {Key? key, required this.context, required this.name, required this.bio})
+      : super(key: key);
 
   final BuildContext context;
   @override
@@ -21,8 +27,10 @@ class ProfileSheet extends StatelessWidget {
             children: <Widget>[
               cancelButton(),
               divider(),
-              header(),
-              bio(),
+              ProfileSheetHeader(
+                name: name,
+              ),
+              ProfileSheetBio(bio: bio),
               Slider(),
             ],
           ),
@@ -53,58 +61,11 @@ class ProfileSheet extends StatelessWidget {
       );
 }
 
-Widget header() => Card(
-      elevation: 0,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            leading: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://images.unsplash.com/photo-1607288946505-df9c0a0f3545?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"),
-              radius: 30.0,
-            ),
-            title: Text('Gitartha Kashyap'),
-            subtitle: Text('Top rated'),
-          ),
-        ],
-      ),
-    );
-
 Widget divider() => Divider(
       height: 10,
       thickness: 1,
       indent: 0,
       endIndent: 0,
-    );
-
-Widget bio() => Card(
-      elevation: 0,
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: 380,
-            child: Text(
-              "I will make web apps and mobile apps for you",
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Container(
-            width: 380,
-            child: Text(
-              "I am a professional copywriter and top-rated seller on Fiverr.My service is perfect for press releases, bios, descriptions, and more. I've been privileged to work with people and businesses of all backgrounds. From artists and start-ups to business owners, realtors and entrepreneurs, anything goes! My goal is to provide impactful, reader-friendly, and compelling content for your needs.",
-              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
-            ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          //CustomTabar(),
-        ],
-      ),
     );
 
 final List<String> imgList = [
