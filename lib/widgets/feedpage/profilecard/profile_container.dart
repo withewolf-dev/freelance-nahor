@@ -3,9 +3,10 @@ import 'package:kilo/pages/ProfileSheet.dart' as Sheet;
 import 'package:kilo/widgets/feedpage/profilecard/profile_card.dart';
 
 class ProfileContainer extends StatefulWidget {
-  final String? name;
-  final String? bio;
-  const ProfileContainer({Key? key, this.bio, this.name}) : super(key: key);
+  final String name;
+  final String bio;
+  const ProfileContainer({Key? key, required this.bio, required this.name})
+      : super(key: key);
 
   @override
   _ProfileContainerState createState() => _ProfileContainerState();
@@ -33,7 +34,10 @@ class _ProfileContainerState extends State<ProfileContainer> {
           //   bio: widget.bio,
           //   name: widget.name,
           // ),
-          child: ProfileCard(),
+          child: ProfileCard(
+            bio: widget.bio,
+            name: widget.name,
+          ),
         ),
         SizedBox(
           height: 20,
