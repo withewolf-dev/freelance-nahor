@@ -3,13 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:kilo/widgets/feedpage/profilecard/profile_container.dart';
 
 class ProfilesList extends StatefulWidget {
+  final String ctg;
+  ProfilesList({Key? key, required this.ctg}) : super(key: key);
+
   @override
   _ProfilesListState createState() => _ProfilesListState();
 }
 
 class _ProfilesListState extends State<ProfilesList> {
-  final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('freelance').snapshots();
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+      .collection('freelance')
+      .where('category', isEqualTo: 'education')
+      .snapshots();
 
   @override
   Widget build(BuildContext context) {

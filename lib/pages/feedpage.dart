@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:kilo/widgets/feedpage/category.dart' as catg;
@@ -37,7 +39,14 @@ class FeedPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: ProfilesList(),
+              child: BlocListener<CategoryBloc, CategoryblocState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                },
+                child: ProfilesList(
+                  ctg: 'educa',
+                ),
+              ),
             )
           ],
         ),

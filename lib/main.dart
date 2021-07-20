@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/app.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
+import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
 import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
@@ -23,6 +24,9 @@ void main() async {
       ),
       BlocProvider<GoogleSigninBloc>(
         create: (BuildContext context) => GoogleSigninBloc(),
+      ),
+      BlocProvider<CategoryBloc>(
+        create: (BuildContext context) => CategoryBloc(),
       ),
     ],
     child: App(),
