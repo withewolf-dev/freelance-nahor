@@ -15,46 +15,10 @@ class FeedPage extends StatelessWidget {
       backgroundColor: Color.fromRGBO(244, 243, 243, 1),
       appBar: CustomAppBar(),
       body: SafeArea(
+          child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(30))),
-              padding: EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'Find Your Inspiration at',
-                    style: TextStyle(color: Colors.black87, fontSize: 25),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    'Example',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SearchButton(),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+            FeedHeader(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
@@ -74,9 +38,13 @@ class FeedPage extends StatelessWidget {
                 ],
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: ProfilesList(),
+            )
           ],
         ),
-      ),
+      )),
     );
   }
 }
@@ -145,6 +113,45 @@ class _SearchButtonState extends State<SearchButton> {
             ),
             hintText: "Search you're looking for",
             hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
+      ),
+    );
+  }
+}
+
+class FeedHeader extends StatelessWidget {
+  const FeedHeader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))),
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'Find Your Inspiration at',
+            style: TextStyle(color: Colors.black87, fontSize: 25),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            'Example',
+            style: TextStyle(
+                color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          SearchButton(),
+          SizedBox(
+            height: 10,
+          ),
+        ],
       ),
     );
   }
