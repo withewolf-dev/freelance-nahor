@@ -1,19 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SwitchButtonRow extends StatelessWidget {
+class SwitchButtonRow extends StatefulWidget {
   final String title;
 
   const SwitchButtonRow({Key? key, required this.title}) : super(key: key);
 
-  final bool isActive = false;
+  @override
+  _SwitchButtonRowState createState() => _SwitchButtonRowState();
+}
+
+class _SwitchButtonRowState extends State<SwitchButtonRow> {
+  bool isActive = false;
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          title,
+          widget.title,
           style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -23,7 +29,12 @@ class SwitchButtonRow extends StatelessWidget {
             scale: 0.7,
             child: CupertinoSwitch(
               value: isActive,
-              onChanged: (bool val) {},
+              onChanged: (bool val) {
+                setState(() {
+                  isActive = val;
+                });
+                print(val);
+              },
             ))
       ],
     );
