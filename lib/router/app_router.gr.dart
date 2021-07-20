@@ -20,7 +20,13 @@ import '../pages/auth/freelanceSignuPage.dart' as _i4;
 import '../pages/auth/HireSignupPage.dart' as _i5;
 import '../pages/feedpage.dart' as _i15;
 import '../pages/ProfileSheet.dart' as _i17;
-import '../pages/setting.dart' as _i16;
+import '../pages/settings/changebio.dart' as _i19;
+import '../pages/settings/changecatg.dart' as _i24;
+import '../pages/settings/changefees.dart' as _i20;
+import '../pages/settings/changePhonenum.dart' as _i21;
+import '../pages/settings/changetitle.dart' as _i22;
+import '../pages/settings/setting.dart' as _i16;
+import '../pages/settings/uploadwork.dart' as _i23;
 import '../pages/welcomepage.dart' as _i3;
 import '../widgets/welcome/searchScreen.dart' as _i18;
 
@@ -122,6 +128,36 @@ class AppRouter extends _i1.RootStackRouter {
           final args = data.argsAs<SearchScreenArgs>(
               orElse: () => const SearchScreenArgs());
           return _i18.SearchScreen(key: args.key);
+        }),
+    ChangeBioRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i19.ChangeBioPage();
+        }),
+    ChangeFeesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i20.ChangeFeesPage();
+        }),
+    ChangePhonenumRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i21.ChangePhonenumPage();
+        }),
+    ChangeTitleRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i22.ChangeTitlePage();
+        }),
+    UploadWorkRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i23.UploadWorkPage();
+        }),
+    ChangeCatgRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i24.ChangeCatgPage();
         })
   };
 
@@ -142,7 +178,14 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(FeedRoute.name, path: '/feed-page'),
         _i1.RouteConfig(Setting.name, path: '/Setting'),
         _i1.RouteConfig(ProfileSheet.name, path: '/profile-sheet'),
-        _i1.RouteConfig(SearchScreen.name, path: '/search-screen')
+        _i1.RouteConfig(SearchScreen.name, path: '/search-screen'),
+        _i1.RouteConfig(ChangeBioRoute.name, path: '/change-bio-page'),
+        _i1.RouteConfig(ChangeFeesRoute.name, path: '/change-fees-page'),
+        _i1.RouteConfig(ChangePhonenumRoute.name,
+            path: '/change-phonenum-page'),
+        _i1.RouteConfig(ChangeTitleRoute.name, path: '/change-title-page'),
+        _i1.RouteConfig(UploadWorkRoute.name, path: '/upload-work-page'),
+        _i1.RouteConfig(ChangeCatgRoute.name, path: '/change-catg-page')
       ];
 }
 
@@ -258,7 +301,7 @@ class ProfileSheet extends _i1.PageRouteInfo<ProfileSheetArgs> {
   ProfileSheet(
       {_i2.Key? key,
       required _i2.BuildContext context,
-      required String name,
+      required String name0,
       required String bio})
       : super(name,
             path: '/profile-sheet',
@@ -292,4 +335,40 @@ class SearchScreenArgs {
   const SearchScreenArgs({this.key});
 
   final _i2.Key? key;
+}
+
+class ChangeBioRoute extends _i1.PageRouteInfo {
+  const ChangeBioRoute() : super(name, path: '/change-bio-page');
+
+  static const String name = 'ChangeBioRoute';
+}
+
+class ChangeFeesRoute extends _i1.PageRouteInfo {
+  const ChangeFeesRoute() : super(name, path: '/change-fees-page');
+
+  static const String name = 'ChangeFeesRoute';
+}
+
+class ChangePhonenumRoute extends _i1.PageRouteInfo {
+  const ChangePhonenumRoute() : super(name, path: '/change-phonenum-page');
+
+  static const String name = 'ChangePhonenumRoute';
+}
+
+class ChangeTitleRoute extends _i1.PageRouteInfo {
+  const ChangeTitleRoute() : super(name, path: '/change-title-page');
+
+  static const String name = 'ChangeTitleRoute';
+}
+
+class UploadWorkRoute extends _i1.PageRouteInfo {
+  const UploadWorkRoute() : super(name, path: '/upload-work-page');
+
+  static const String name = 'UploadWorkRoute';
+}
+
+class ChangeCatgRoute extends _i1.PageRouteInfo {
+  const ChangeCatgRoute() : super(name, path: '/change-catg-page');
+
+  static const String name = 'ChangeCatgRoute';
 }

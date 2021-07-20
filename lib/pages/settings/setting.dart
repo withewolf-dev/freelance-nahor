@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/settings/buildAccountOptionRow.dart';
 import 'package:kilo/widgets/settings/switchbuttonRow.dart';
@@ -57,12 +56,18 @@ class Setting extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            AccountOptionRow(title: "change title"),
-            AccountOptionRow(title: "change bio"),
-            AccountOptionRow(title: "change fees"),
-            AccountOptionRow(title: "change category"),
-            AccountOptionRow(title: "upload work"),
-            AccountOptionRow(title: "change phone number"),
+            AccountOptionRow(title: "change title", page: ChangeTitleRoute()),
+            AccountOptionRow(title: "change bio", page: ChangeBioRoute()),
+            AccountOptionRow(title: "change fees", page: ChangeFeesRoute()),
+            AccountOptionRow(
+              title: "change category",
+              page: ChangeCatgRoute(),
+            ),
+            AccountOptionRow(title: "upload work", page: UploadWorkRoute()),
+            AccountOptionRow(
+              title: "change phone number",
+              page: ChangePhonenumRoute(),
+            ),
             SizedBox(
               height: 40,
             ),

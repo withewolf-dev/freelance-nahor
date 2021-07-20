@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kilo/widgets/feedpage/profilecard/profile_container.dart';
-import 'package:kilo/widgets/feedpage/profilecard/profile_card.dart';
 
 class ProfilesList extends StatefulWidget {
   @override

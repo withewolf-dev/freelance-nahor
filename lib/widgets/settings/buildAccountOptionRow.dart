@@ -4,13 +4,15 @@ import 'package:kilo/router/app_router.gr.dart';
 
 class AccountOptionRow extends StatelessWidget {
   final String title;
-  const AccountOptionRow({Key? key, required this.title}) : super(key: key);
+  final PageRouteInfo page;
+  const AccountOptionRow({Key? key, required this.title, required this.page})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushRoute(FeedRoute());
+        context.pushRoute(page);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
