@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:kilo/router/app_router.gr.dart';
+import 'package:kilo/widgets/settings/buildAccountOptionRow.dart';
+import 'package:kilo/widgets/settings/switchbuttonRow.dart';
 
 class Setting extends StatelessWidget {
   const Setting({Key? key}) : super(key: key);
@@ -53,11 +57,12 @@ class Setting extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, "change password"),
-            buildAccountOptionRow(context, "Content settings"),
-            buildAccountOptionRow(context, "Social"),
-            buildAccountOptionRow(context, "Language"),
-            buildAccountOptionRow(context, "Privacy and security"),
+            AccountOptionRow(title: "change title"),
+            AccountOptionRow(title: "change bio"),
+            AccountOptionRow(title: "change fees"),
+            AccountOptionRow(title: "change category"),
+            AccountOptionRow(title: "upload work"),
+            AccountOptionRow(title: "change phone number"),
             SizedBox(
               height: 40,
             ),
@@ -83,9 +88,7 @@ class Setting extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            buildNotificationOptionRow("New for you", true),
-            buildNotificationOptionRow("Account activity", true),
-            buildNotificationOptionRow("Opportunity", false),
+            SwitchButtonRow(title: "Account active"),
             SizedBox(
               height: 50,
             ),
@@ -96,78 +99,18 @@ class Setting extends StatelessWidget {
                 },
                 child: const Text('Sign out'),
               ),
+            ),
+            Center(
+              child: OutlinedButton(
+                onPressed: () {
+                  print('Received click');
+                },
+                child: const Text('Delete account'),
+              ),
             )
           ],
         ),
       ),
     );
   }
-}
-
-Row buildNotificationOptionRow(String title, bool isActive) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text(
-        title,
-        style: TextStyle(
-            fontSize: 18, fontWeight: FontWeight.w500, color: Colors.grey[600]),
-      ),
-      Transform.scale(
-          scale: 0.7,
-          child: CupertinoSwitch(
-            value: isActive,
-            onChanged: (bool val) {},
-          ))
-    ],
-  );
-}
-
-GestureDetector buildAccountOptionRow(BuildContext context, String title) {
-  return GestureDetector(
-    onTap: () {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text(title),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Option 1"),
-                  Text("Option 2"),
-                  Text("Option 3"),
-                ],
-              ),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text("Close")),
-              ],
-            );
-          });
-    },
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey[600],
-            ),
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.grey,
-          ),
-        ],
-      ),
-    ),
-  );
 }
