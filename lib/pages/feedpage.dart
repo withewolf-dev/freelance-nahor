@@ -39,14 +39,9 @@ class FeedPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: BlocListener<CategoryBloc, CategoryblocState>(
-                listener: (context, state) {
-                  // TODO: implement listener
-                },
-                child: ProfilesList(
-                  ctg: 'educa',
-                ),
-              ),
+              child: // TODO: implement listener
+
+                  ProfilesList(),
             )
           ],
         ),
