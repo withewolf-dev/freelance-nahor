@@ -4,8 +4,13 @@ class TextfieldCustom extends StatefulWidget {
   final TextEditingController mycontroller;
   final String label;
   final int? maxleng;
+  final int? maxline;
   const TextfieldCustom(
-      {Key? key, required this.mycontroller, required this.label, this.maxleng})
+      {Key? key,
+      required this.mycontroller,
+      required this.label,
+      this.maxleng,
+      this.maxline})
       : super(key: key);
 
   @override
@@ -33,7 +38,7 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
               ),
             ),
             maxLength: widget.maxleng != null ? widget.maxleng : null,
-            maxLines: 2,
+            maxLines: widget.maxline != null ? widget.maxline : null,
             //keyboardType: TextInputType.number,
           ),
         )

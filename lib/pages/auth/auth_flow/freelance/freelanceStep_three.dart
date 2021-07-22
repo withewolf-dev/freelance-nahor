@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
-import 'package:kilo/repository/freelance/create-freelanceUser.dart';
+import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/bio.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/bio_title.dart';
 import 'package:kilo/widgets/auth/freelanceStepThree/payment.dart';

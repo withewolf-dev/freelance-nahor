@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:http/http.dart';
-import 'package:kilo/repository/freelance/create-freelanceUser.dart';
+import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:meta/meta.dart';
 
 part 'authflow_event.dart';

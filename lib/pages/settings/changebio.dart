@@ -17,10 +17,21 @@ class ChangeBioPage extends StatelessWidget {
     return Scaffold(
         appBar: UniversalAppBar(),
         body: SafeArea(
-            child: ListView(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextfieldCustom(mycontroller: bioController, label: bio),
-            TextfieldCustom(mycontroller: bioTitleController, label: bioTitle),
+            TextfieldCustom(
+              mycontroller: bioController,
+              label: bio,
+              maxleng: 60,
+            ),
+            TextfieldCustom(
+              mycontroller: bioTitleController,
+              label: bioTitle,
+              maxleng: 200,
+              maxline: 8,
+            ),
+            ElevatedButton(onPressed: () {}, child: Text("update"))
           ],
         )));
   }
