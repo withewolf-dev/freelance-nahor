@@ -1,4 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:io';
+import 'dart:async';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:image_picker/image_picker.dart';
 
 CollectionReference freelanceUser =
     FirebaseFirestore.instance.collection('freelance');
@@ -59,4 +63,27 @@ Future<void> accountActive(bool isActive, String docId) {
       })
       .then((value) => print("User Updated"))
       .catchError((error) => print("Failed to update user: $error"));
+}
+
+class Storage {
+  String? _url;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> uploadFile() async {
+    final imageFile = await _picker.pickImage(source: ImageSource.gallery);
+    File file = File(imageFile!.path);
+
+    try {
+      final image = firebase_storage.FirebaseStorage.instance
+          .ref('uploads/file-to-upload2.png');
+
+      await image.putFile(file);
+      final geturl = await image.getDownloadURL();
+
+      print("this is the url $_url");
+    } on FirebaseException catch (e) {
+      // e.g, e.code == 'canceled'
+      print(e.message);
+    }
+  }
 }

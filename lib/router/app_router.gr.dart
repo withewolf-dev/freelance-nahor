@@ -153,8 +153,10 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     UploadWorkRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i23.UploadWorkPage();
+        builder: (data) {
+          final args = data.argsAs<UploadWorkRouteArgs>(
+              orElse: () => const UploadWorkRouteArgs());
+          return _i23.UploadWorkPage(key: args.key);
         }),
     ChangeCatgRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -371,10 +373,18 @@ class ChangeTitleRoute extends _i1.PageRouteInfo {
   static const String name = 'ChangeTitleRoute';
 }
 
-class UploadWorkRoute extends _i1.PageRouteInfo {
-  const UploadWorkRoute() : super(name, path: '/upload-work-page');
+class UploadWorkRoute extends _i1.PageRouteInfo<UploadWorkRouteArgs> {
+  UploadWorkRoute({_i2.Key? key})
+      : super(name,
+            path: '/upload-work-page', args: UploadWorkRouteArgs(key: key));
 
   static const String name = 'UploadWorkRoute';
+}
+
+class UploadWorkRouteArgs {
+  const UploadWorkRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class ChangeCatgRoute extends _i1.PageRouteInfo {
