@@ -11,7 +11,7 @@ class SwitchButtonRow extends StatefulWidget {
 }
 
 class _SwitchButtonRowState extends State<SwitchButtonRow> {
-  bool isActive = false;
+  bool isActive = true;
 
   @override
   Widget build(BuildContext context) {

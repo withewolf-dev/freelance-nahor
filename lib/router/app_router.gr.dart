@@ -131,8 +131,10 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     ChangeBioRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i19.ChangeBioPage();
+        builder: (data) {
+          final args = data.argsAs<ChangeBioRouteArgs>(
+              orElse: () => const ChangeBioRouteArgs());
+          return _i19.ChangeBioPage(key: args.key);
         }),
     ChangeFeesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -337,10 +339,18 @@ class SearchScreenArgs {
   final _i2.Key? key;
 }
 
-class ChangeBioRoute extends _i1.PageRouteInfo {
-  const ChangeBioRoute() : super(name, path: '/change-bio-page');
+class ChangeBioRoute extends _i1.PageRouteInfo<ChangeBioRouteArgs> {
+  ChangeBioRoute({_i2.Key? key})
+      : super(name,
+            path: '/change-bio-page', args: ChangeBioRouteArgs(key: key));
 
   static const String name = 'ChangeBioRoute';
+}
+
+class ChangeBioRouteArgs {
+  const ChangeBioRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class ChangeFeesRoute extends _i1.PageRouteInfo {

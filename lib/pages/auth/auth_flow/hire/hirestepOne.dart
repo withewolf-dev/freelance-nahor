@@ -3,6 +3,7 @@ import 'package:kilo/pages/auth/auth_flow/freelance/freelanceStep_four.dart';
 import 'package:kilo/widgets/avatarHeader.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:kilo/router/app_router.gr.dart';
+import 'package:kilo/widgets/verificationfield.dart';
 
 class HireStepOne extends StatefulWidget {
   const HireStepOne({Key? key}) : super(key: key);
