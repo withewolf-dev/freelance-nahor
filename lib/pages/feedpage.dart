@@ -141,7 +141,7 @@ class FeedHeader extends StatelessWidget {
             height: 5,
           ),
           Text(
-            'Example',
+            'Discover',
             style: TextStyle(
                 color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold),
           ),

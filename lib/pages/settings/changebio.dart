@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kilo/widgets/universal_appbar.dart';
 
 class ChangeBioPage extends StatelessWidget {
   const ChangeBioPage({Key? key}) : super(key: key);
@@ -6,6 +7,7 @@ class ChangeBioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: UniversalAppBar(),
       body: Center(
         child: Text(
           "change bio",
