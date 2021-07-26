@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
 
 CollectionReference freelanceUser =
     FirebaseFirestore.instance.collection('freelance');
@@ -66,24 +68,17 @@ Future<void> accountActive(bool isActive, String docId) {
 }
 
 class Storage {
-  String? _url;
+  String? url;
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> uploadFile() async {
+  Future<firebase_storage.UploadTask> uploadFile() async {
     final imageFile = await _picker.pickImage(source: ImageSource.gallery);
     File file = File(imageFile!.path);
 
-    try {
-      final image = firebase_storage.FirebaseStorage.instance
-          .ref('uploads/file-to-upload2.png');
+    firebase_storage.UploadTask task = firebase_storage.FirebaseStorage.instance
+        .ref(imageFile.name)
+        .putFile(file);
 
-      await image.putFile(file);
-      final geturl = await image.getDownloadURL();
-
-      print("this is the url $_url");
-    } on FirebaseException catch (e) {
-      // e.g, e.code == 'canceled'
-      print(e.message);
-    }
+    return task;
   }
 }

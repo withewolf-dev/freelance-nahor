@@ -9,15 +9,16 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 190,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Color(0xff171b22),
+        color: Colors.white,
       ),
       child: Row(
         children: [
           Expanded(
             child: Container(
+              height: 120,
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -49,7 +50,7 @@ class ProfileCard extends StatelessWidget {
                   name,
                   style: TextStyle(
                     fontSize: 17,
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
