@@ -38,6 +38,7 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
       setState(() {
         progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       });
+      print(progress);
     }, onError: (e) {
       print(task.snapshot);
 
@@ -69,11 +70,18 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
             print(state.progress);
             LinearProgressIndicator(value: 30);
           }
+
+          if (state is UploadWorkSuccess) {
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+          }
         },
         child: SafeArea(
           child: Center(
             child: Column(
               children: [
+                LinearProgressIndicator(
+                  value: progress != null ? progress : null,
+                ),
                 Text(
                   "upload work  url ",
                   textDirection: TextDirection.ltr,
@@ -86,8 +94,8 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Add your onPressed code here!
-          BlocProvider.of<UploadworkBloc>(context).add(Getphoto());
-          //uploadFile();
+          //BlocProvider.of<UploadworkBloc>(context).add(Getphoto());
+          uploadFile();
         },
         child: const Icon(Icons.upload_file_sharp),
         backgroundColor: Colors.green,

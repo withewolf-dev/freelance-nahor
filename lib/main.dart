@@ -7,6 +7,7 @@ import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
 import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
+import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
 import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
 
 void main() async {
@@ -30,7 +31,8 @@ void main() async {
         create: (BuildContext context) => CategoryBloc(),
       ),
       BlocProvider<UploadworkBloc>(
-          create: (BuildContext context) => UploadworkBloc())
+          create: (BuildContext context) => UploadworkBloc()),
+      BlocProvider<SearchBloc>(create: (BuildContext context) => SearchBloc())
     ],
     child: App(),
   ));

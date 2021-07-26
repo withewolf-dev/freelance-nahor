@@ -21,7 +21,7 @@ import 'package:kilo/pages/settings/changetitle.dart';
 import 'package:kilo/pages/settings/setting.dart';
 import 'package:kilo/pages/settings/uploadwork.dart';
 import 'package:kilo/pages/welcomepage.dart';
-import 'package:kilo/widgets/welcome/searchScreen.dart';
+import 'package:kilo/widgets/searchscreen/searchScreen.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',

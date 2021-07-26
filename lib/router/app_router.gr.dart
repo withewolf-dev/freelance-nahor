@@ -28,7 +28,7 @@ import '../pages/settings/changetitle.dart' as _i22;
 import '../pages/settings/setting.dart' as _i16;
 import '../pages/settings/uploadwork.dart' as _i23;
 import '../pages/welcomepage.dart' as _i3;
-import '../widgets/welcome/searchScreen.dart' as _i18;
+import '../widgets/searchscreen/searchScreen.dart' as _i18;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])

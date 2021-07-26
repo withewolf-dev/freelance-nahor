@@ -18,6 +18,7 @@ class UploadworkBloc extends Bloc<UploadworkEvent, UploadworkState> {
   ) async* {
     if (event is Getphoto) {
       yield UploadProgress(progress: 0);
+      yield UploadWorkSuccess();
 
       firebase_storage.UploadTask task = await storage.uploadFile();
       print("works till here #############333300");
@@ -39,7 +40,7 @@ class UploadworkBloc extends Bloc<UploadworkEvent, UploadworkState> {
 
       try {
         await task;
-        yield UploadWorkSuccess();
+        // yield UploadWorkSuccess();
       } on firebase_storage.FirebaseException catch (e) {
         if (e.code == 'permission-denied') {
           yield UploadWorkError(error: 'Please give permission.');
