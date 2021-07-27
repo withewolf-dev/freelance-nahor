@@ -1,7 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:kilo/widgets/feedpage/category.dart' as catg;
@@ -98,29 +96,26 @@ class _SearchButtonState extends State<SearchButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(244, 243, 243, 1),
-          borderRadius: BorderRadius.circular(15)),
-      // child: TextField(
-      //   onTap: () {
-      //     context.pushRoute(SearchScreen());
-      //   },
-      //   decoration: InputDecoration(
-      //       border: InputBorder.none,
-      //       prefixIcon: Icon(
-      //         Icons.search,
-      //         color: Colors.black87,
-      //       ),
-      //       hintText: "Search you're looking for",
-      //       hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
-      // ),
-      child: ElevatedButton(
-          onPressed: () {
+        padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+            color: Color.fromRGBO(244, 243, 243, 1),
+            borderRadius: BorderRadius.circular(15)),
+        child: InkWell(
+          onTap: () {
             context.pushRoute(SearchScreen());
           },
-          child: Text("search button ")),
-    );
+          child: TextField(
+            enabled: false,
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.black87,
+                ),
+                hintText: "Search you're looking for",
+                hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
+          ),
+        ));
   }
 }
 
