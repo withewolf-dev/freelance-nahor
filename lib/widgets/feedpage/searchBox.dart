@@ -43,20 +43,24 @@ class _SearchBoxState extends State<SearchBox> {
         }
       },
       child: Container(
-        padding: EdgeInsets.all(5),
-        decoration: BoxDecoration(
-            color: Color.fromRGBO(244, 243, 243, 1),
-            borderRadius: BorderRadius.circular(15)),
-        child: TextField(
-          decoration: InputDecoration(
-              border: InputBorder.none,
-              prefixIcon: Icon(
-                Icons.search,
-                color: Colors.black87,
-              ),
-              hintText: "Search you're looking for h",
-              hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
-          controller: myController,
+        padding: EdgeInsets.only(top: 4),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Color.fromRGBO(244, 243, 243, 1),
+              borderRadius: BorderRadius.circular(10)),
+          child: TextField(
+            decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(10),
+                border: InputBorder.none,
+                suffixIcon: Icon(
+                  Icons.search,
+                  color: Colors.black87,
+                  size: 20,
+                ),
+                hintText: "Search you're looking for",
+                hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
+            controller: myController,
+          ),
         ),
       ),
     );
