@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
+import 'package:kilo/widgets/feedpage/profilecard/profile_container.dart';
 
 class SearchResult extends StatefulWidget {
   const SearchResult({Key? key}) : super(key: key);
@@ -11,9 +12,10 @@ class SearchResult extends StatefulWidget {
 }
 
 class _SearchResultState extends State<SearchResult> {
-  String? searchTerm;
+  String? searchTerm = " ";
   @override
   Widget build(BuildContext context) {
+    print("searchTerm $searchTerm");
     return BlocListener<SearchBloc, SearchblocState>(
       listener: (context, state) {
         if (state is SearchTerm) {
@@ -39,10 +41,7 @@ class _SearchResultState extends State<SearchResult> {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
                 print("data['name'] ${data['name']}");
-                return new ListTile(
-                  title: new Text(data['name']),
-                  //subtitle: new Text(data['company']),
-                );
+                return ProfileContainer(bio: data['bio'], name: data['name']);
               }).toList(),
             );
           }

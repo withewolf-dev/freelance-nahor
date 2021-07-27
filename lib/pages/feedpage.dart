@@ -102,19 +102,24 @@ class _SearchButtonState extends State<SearchButton> {
       decoration: BoxDecoration(
           color: Color.fromRGBO(244, 243, 243, 1),
           borderRadius: BorderRadius.circular(15)),
-      child: TextField(
-        onTap: () {
-          context.pushRoute(SearchScreen());
-        },
-        decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.black87,
-            ),
-            hintText: "Search you're looking for",
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
-      ),
+      // child: TextField(
+      //   onTap: () {
+      //     context.pushRoute(SearchScreen());
+      //   },
+      //   decoration: InputDecoration(
+      //       border: InputBorder.none,
+      //       prefixIcon: Icon(
+      //         Icons.search,
+      //         color: Colors.black87,
+      //       ),
+      //       hintText: "Search you're looking for",
+      //       hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
+      // ),
+      child: ElevatedButton(
+          onPressed: () {
+            context.pushRoute(SearchScreen());
+          },
+          child: Text("search button ")),
     );
   }
 }

@@ -54,7 +54,7 @@ class _SearchBoxState extends State<SearchBox> {
                 Icons.search,
                 color: Colors.black87,
               ),
-              hintText: "Search you're looking for",
+              hintText: "Search you're looking for h",
               hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
           controller: myController,
         ),
