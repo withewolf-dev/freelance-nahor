@@ -10,7 +10,7 @@ import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
 import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MultiBlocProvider(
