@@ -138,8 +138,10 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     ChangeFeesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i20.ChangeFeesPage();
+        builder: (data) {
+          final args = data.argsAs<ChangeFeesRouteArgs>(
+              orElse: () => const ChangeFeesRouteArgs());
+          return _i20.ChangeFeesPage(key: args.key);
         }),
     ChangePhonenumRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -355,10 +357,18 @@ class ChangeBioRouteArgs {
   final _i2.Key? key;
 }
 
-class ChangeFeesRoute extends _i1.PageRouteInfo {
-  const ChangeFeesRoute() : super(name, path: '/change-fees-page');
+class ChangeFeesRoute extends _i1.PageRouteInfo<ChangeFeesRouteArgs> {
+  ChangeFeesRoute({_i2.Key? key})
+      : super(name,
+            path: '/change-fees-page', args: ChangeFeesRouteArgs(key: key));
 
   static const String name = 'ChangeFeesRoute';
+}
+
+class ChangeFeesRouteArgs {
+  const ChangeFeesRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class ChangePhonenumRoute extends _i1.PageRouteInfo {

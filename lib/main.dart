@@ -35,24 +35,7 @@ Future<void> main() async {
       BlocProvider<SearchBloc>(create: (BuildContext context) => SearchBloc())
     ],
     child: App(),
-  ));
-}
-
-// class MyApp extends StatefulWidget {
-//   // Create the initialization Future outside of `build`:
-//   @override
-//   _MyAppState createState() => _MyAppState();
-// }
-
-// class _MyAppState extends State<MyApp> {
-//   /// The future is part of the state of our widget. We should not call `initializeApp`
-//   /// directly inside [build].
-//   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return FutureBuilder(
-//       // Initialize FlutterFire:
+  )); // Initialize FlutterFire:
 //       future: _initialization,
 //       builder: (context, snapshot) {
 //         // Check for errors
@@ -103,3 +86,21 @@ Future<void> main() async {
 //     );
 //   }
 // }
+
+}
+
+// class MyApp extends StatefulWidget {
+//   // Create the initialization Future outside of `build`:
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   /// The future is part of the state of our widget. We should not call `initializeApp`
+//   /// directly inside [build].
+//   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return FutureBuilder(
+//      

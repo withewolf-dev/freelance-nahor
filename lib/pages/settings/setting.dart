@@ -56,7 +56,6 @@ class Setting extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            AccountOptionRow(title: "change title", page: ChangeTitleRoute()),
             AccountOptionRow(title: "change bio", page: ChangeBioRoute()),
             AccountOptionRow(title: "change fees", page: ChangeFeesRoute()),
             AccountOptionRow(
