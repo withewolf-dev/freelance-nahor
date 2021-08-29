@@ -4,6 +4,9 @@ import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/chooseDept.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:kilo/widgets/calender-session-end.dart';
+import 'package:kilo/widgets/calender-session-start.dart';
+import 'package:kilo/widgets/universal_appbar.dart';
 
 class FreelanceStepOne extends StatefulWidget {
   FreelanceStepOne({Key? key}) : super(key: key);
@@ -22,28 +25,26 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
   ];
 
   final TextEditingController typeAheadController = TextEditingController();
+  final TextEditingController sessionStartController = TextEditingController();
+  final TextEditingController sessionEndController = TextEditingController();
 
   bool isbool = false;
-  String session = "";
-  bool isSessionEmpty = true;
+
   void nextBtn() {
     setState(() {
       isbool = true;
     });
   }
 
-  void getSession(year) {
-    setState(() {
-      session = year;
-      isSessionEmpty = false;
-    });
-    print("****************************");
-    print(session);
-  }
-
   @override
   Widget build(BuildContext context) {
+    print(sessionStartController.text);
+    print(sessionEndController.text);
+
+    print(typeAheadController.text);
+
     return Scaffold(
+      appBar: UniversalAppBar(),
       body: BlocListener<AuthflowBloc, AuthflowState>(
         listener: (context, state) {
           // TODO: implement listener
@@ -52,103 +53,67 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
           }
         },
         child: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height,
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  ChooseDept(
-                      list: list,
-                      typeAheadController: typeAheadController,
-                      isbool: isbool,
-                      nextbtn: nextBtn),
-                  CalSessionStart(),
-                  Container(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: ElevatedButton(
-                      onPressed:
-                          session != "" && typeAheadController.text != " "
-                              ? () {
-                                  BlocProvider.of<AuthflowBloc>(context).add(
-                                      StepOneEvent(
-                                          dept: typeAheadController.text,
-                                          session: session));
-                                  //context.pushRoute(page);
-                                }
-                              : null,
-                      child: Text("next"),
+          child: Container(
+            child: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                child: Column(
+                  children: <Widget>[
+                    ChooseDept(
+                        list: list,
+                        typeAheadController: typeAheadController,
+                        isbool: isbool,
+                        nextbtn: nextBtn),
+                    CalSessionStart(
+                      dateinput: sessionStartController,
                     ),
-                  ),
-                ],
+                    CalSessionEnd(
+                      dateinput: sessionEndController,
+                    ),
+                    SizedBox(
+                      height: 300,
+                    ),
+
+                    Container(
+                      alignment: AlignmentDirectional.bottomEnd,
+                      child: ElevatedButton(
+                        onPressed: typeAheadController.text != ""
+                            ? () {
+                                context.pushRoute(FreelanceStepFive());
+                                // phone.sendOtpcode(
+                                //     phoneNum: phoneNumber.text, context: context);
+                              }
+                            : null,
+                        child: Text("verify"),
+                      ),
+                    ),
+                    // Container(
+                    //   color: Colors.black,
+                    //   child: TextButton(
+                    //     style: TextButton.styleFrom(
+                    //       padding: const EdgeInsets.all(12.0),
+                    //       primary: Colors.white,
+                    //       textStyle: const TextStyle(fontSize: 20),
+                    //     ),
+                    //     onPressed: typeAheadController.text != " " &&
+                    //             sessionEndController.text != " " &&
+                    //             sessionStartController.text != " "
+                    //         ? () {
+                    //             // BlocProvider.of<GoogleSignUpBloc>(context)
+                    //             //     .add(Signupfreelance());
+                    //             // context.pushRoute(widget);
+                    //           }
+                    //         : null,
+                    //     child: const Text('Sign up with google'),
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
       ),
     );
-  }
-}
-
-class CalSessionStart extends StatefulWidget {
-  const CalSessionStart({Key? key}) : super(key: key);
-
-  @override
-  _CalSessionStartState createState() => _CalSessionStartState();
-}
-
-class _CalSessionStartState extends State<CalSessionStart> {
-  TextEditingController dateinput = TextEditingController();
-
-  @override
-  void initState() {
-    dateinput.text = ""; //set the initial value of text field
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(15),
-        height: 150,
-        child: Center(
-            child: TextField(
-          controller: dateinput, //editing controller of this TextField
-          decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              icon: Icon(Icons.calendar_today), //icon of text field
-              labelText: "Enter Date" //label text of field
-              ),
-          readOnly: true, //set it true, so that user will not able to edit text
-          onTap: () async {
-            DateTime? pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(
-                    2000), //DateTime.now() - not to allow to choose before today.
-                lastDate: DateTime(2101));
-
-            if (pickedDate != null) {
-              print(
-                  pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-              String formattedDate =
-                  '${pickedDate.day.toString()}-${pickedDate.month.toString()}-${pickedDate.year.toString()}';
-
-              print(
-                  formattedDate); //formatted date output using intl package =>  2021-03-16
-              //you can implement different kind of Date Format here according to your requirement
-
-              setState(() {
-                dateinput.text =
-                    formattedDate; //set output date to TextField value.
-              });
-            } else {
-              print("Date is not selected");
-            }
-          },
-        )));
   }
 }

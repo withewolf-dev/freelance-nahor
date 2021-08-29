@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 import 'package:kilo/repository/phoneVerification.dart';
 import 'package:kilo/router/app_router.gr.dart';
-import 'package:kilo/widgets/auth/nextBtn.dart';
 import 'package:kilo/widgets/auth/otp/otp_fields.dart';
 import 'package:auto_route/auto_route.dart';
 
