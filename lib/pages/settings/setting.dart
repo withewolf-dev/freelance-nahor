@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/settings/buildAccountOptionRow.dart';
 import 'package:kilo/widgets/settings/switchbuttonRow.dart';
+import 'package:kilo/router/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class Setting extends StatelessWidget {
-  const Setting({Key? key}) : super(key: key);
+  Setting({Key? key}) : super(key: key);
 
+  final Authentication auth = Authentication();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,15 +103,16 @@ class Setting extends StatelessWidget {
             Center(
               child: OutlinedButton(
                 onPressed: () {
-                  print('Received click');
+                  auth.logout();
+                  context.replaceRoute(WelcomeRoute());
                 },
-                child: const Text('Sign out'),
+                child: const Text('sign out'),
               ),
             ),
             Center(
               child: OutlinedButton(
                 onPressed: () {
-                  print('Received click');
+                  print("delete");
                 },
                 child: const Text('Delete account'),
               ),

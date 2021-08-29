@@ -25,36 +25,40 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
 
   Future<int?> uploadFile() async {
     final imageFile = await _picker.pickImage(source: ImageSource.gallery);
-    File file = File(imageFile!.path);
 
-    firebase_storage.UploadTask task = firebase_storage.FirebaseStorage.instance
-        .ref(imageFile.name)
-        .putFile(file);
+    if (imageFile != null) {
+      File file = File(imageFile.path);
 
-    task.snapshotEvents.listen((firebase_storage.TaskSnapshot snapshot) {
-      print('Task state: ${snapshot.state}');
-      print(
-          'Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
-      setState(() {
-        progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      firebase_storage.UploadTask task = firebase_storage
+          .FirebaseStorage.instance
+          .ref(imageFile.name)
+          .putFile(file);
+
+      task.snapshotEvents.listen((firebase_storage.TaskSnapshot snapshot) {
+        print('Task state: ${snapshot.state}');
+        print(
+            'Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
+        setState(() {
+          progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        });
+        print(progress);
+      }, onError: (e) {
+        print(task.snapshot);
+
+        if (e.code == 'permission-denied') {
+          print('User does not have permission to upload to this reference.');
+        }
       });
-      print(progress);
-    }, onError: (e) {
-      print(task.snapshot);
 
-      if (e.code == 'permission-denied') {
-        print('User does not have permission to upload to this reference.');
+      try {
+        await task;
+        print('Upload complete.');
+      } on firebase_storage.FirebaseException catch (e) {
+        if (e.code == 'permission-denied') {
+          print('User does not have permission to upload to this reference.');
+        }
+        // ...
       }
-    });
-
-    try {
-      await task;
-      print('Upload complete.');
-    } on firebase_storage.FirebaseException catch (e) {
-      if (e.code == 'permission-denied') {
-        print('User does not have permission to upload to this reference.');
-      }
-      // ...
     }
   }
 

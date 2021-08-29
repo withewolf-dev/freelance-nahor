@@ -8,7 +8,7 @@ import 'package:kilo/widgets/verificationfield.dart';
 class FreelanceStepFour extends StatelessWidget {
   FreelanceStepFour({Key? key}) : super(key: key);
 
-  PhoneVerification phone = PhoneVerification();
+  final PhoneVerification phone = PhoneVerification();
   final TextEditingController phoneNumber = TextEditingController();
   @override
   Widget build(BuildContext context) {

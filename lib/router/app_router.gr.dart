@@ -110,7 +110,7 @@ class AppRouter extends _i1.RootStackRouter {
     Setting.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i16.Setting();
+          return _i16.Setting();
         }),
     ProfileSheet.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -146,7 +146,7 @@ class AppRouter extends _i1.RootStackRouter {
     ChangePhonenumRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i21.ChangePhonenumPage();
+          return _i21.ChangePhonenumPage();
         }),
     ChangeTitleRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,

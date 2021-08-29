@@ -23,7 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^7.0.0
+  flutter_bloc: ^7.1.0
   bloc: ^7.0.0
   auto_route: ^2.2.0  
   http: ^0.13.3

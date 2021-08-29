@@ -28,9 +28,10 @@ class _ChooseDeptState extends State<ChooseDept> {
           textFieldConfiguration: TextFieldConfiguration(
               controller: widget.typeAheadController,
               decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   labelText: 'choose Department',
                   labelStyle:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20))),
+                      TextStyle(fontWeight: FontWeight.w100, fontSize: 14))),
           suggestionsCallback: (pattern) => widget.list.where(
               (item) => item.toLowerCase().contains(pattern.toLowerCase())),
           itemBuilder: (context, suggestion) {

@@ -18,34 +18,22 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GoogleSigninBloc, GoogleSigninState>(
-      listener: (context, state) {
-        // TODO: implement listener
-        if (state is NoUserAccount) {
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        }
-        if (state is GoogleSignIn) {
-          ScaffoldMessenger.of(context).showSnackBar(snackBar1);
-          context.replaceRoute(FeedRoute());
-        }
-      },
-      child: Container(
-        child: RichText(
-          text: TextSpan(
-            text: 'already have an account? ',
-            style: DefaultTextStyle.of(context).style,
-            children: <TextSpan>[
-              TextSpan(
-                  text: 'sign in',
-                  style: TextStyle(color: Colors.blue),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      // BlocProvider.of<GoogleSigninBloc>(context)
-                      //     .add(OnGoogleSignIn());
-                      context.pushRoute(FeedRoute());
-                    }),
-            ],
-          ),
+    return Container(
+      child: RichText(
+        text: TextSpan(
+          text: 'already have an account? ',
+          style: DefaultTextStyle.of(context).style,
+          children: <TextSpan>[
+            TextSpan(
+                text: 'sign in',
+                style: TextStyle(color: Colors.blue),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    BlocProvider.of<GoogleSigninBloc>(context)
+                        .add(OnGoogleSignIn());
+                    // context.pushRoute(FeedRoute());
+                  }),
+          ],
         ),
       ),
     );

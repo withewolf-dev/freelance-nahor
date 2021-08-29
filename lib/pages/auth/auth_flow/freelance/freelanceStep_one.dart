@@ -4,7 +4,6 @@ import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/chooseDept.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:kilo/widgets/avatarHeader.dart';
 
 class FreelanceStepOne extends StatefulWidget {
   FreelanceStepOne({Key? key}) : super(key: key);
@@ -62,17 +61,12 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  AvatarHeader(
-                    name: "Gitartha Kashyap",
-                    image:
-                        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
-                  ),
                   ChooseDept(
                       list: list,
                       typeAheadController: typeAheadController,
                       isbool: isbool,
                       nextbtn: nextBtn),
-                  Session(getSession: getSession),
+                  CalSessionStart(),
                   Container(
                     alignment: AlignmentDirectional.bottomEnd,
                     child: ElevatedButton(
@@ -99,62 +93,62 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
   }
 }
 
-class Session extends StatefulWidget {
-  final Function getSession;
-  const Session({Key? key, required this.getSession}) : super(key: key);
+class CalSessionStart extends StatefulWidget {
+  const CalSessionStart({Key? key}) : super(key: key);
 
   @override
-  _SessionState createState() => _SessionState();
+  _CalSessionStartState createState() => _CalSessionStartState();
 }
 
-class _SessionState extends State<Session> {
-  final myController = TextEditingController();
+class _CalSessionStartState extends State<CalSessionStart> {
+  TextEditingController dateinput = TextEditingController();
 
   @override
   void initState() {
+    dateinput.text = ""; //set the initial value of text field
     super.initState();
-
-    // Start listening to changes.
-    myController.addListener(_printLatestValue);
-  }
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
-    myController.dispose();
-    super.dispose();
-  }
-
-  void _printLatestValue() {
-    print('Second text field: ${myController.text}');
-    widget.getSession(myController.text);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Session ending year",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-          TextField(
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.green.shade100,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide.none,
+        padding: EdgeInsets.all(15),
+        height: 150,
+        child: Center(
+            child: TextField(
+          controller: dateinput, //editing controller of this TextField
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              icon: Icon(Icons.calendar_today), //icon of text field
+              labelText: "Enter Date" //label text of field
               ),
-            ),
-            maxLength: 3,
-            maxLines: 1,
-            keyboardType: TextInputType.number,
-            controller: myController,
-          ),
-        ],
-      ),
-    );
+          readOnly: true, //set it true, so that user will not able to edit text
+          onTap: () async {
+            DateTime? pickedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(
+                    2000), //DateTime.now() - not to allow to choose before today.
+                lastDate: DateTime(2101));
+
+            if (pickedDate != null) {
+              print(
+                  pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+              String formattedDate =
+                  '${pickedDate.day.toString()}-${pickedDate.month.toString()}-${pickedDate.year.toString()}';
+
+              print(
+                  formattedDate); //formatted date output using intl package =>  2021-03-16
+              //you can implement different kind of Date Format here according to your requirement
+
+              setState(() {
+                dateinput.text =
+                    formattedDate; //set output date to TextField value.
+              });
+            } else {
+              print("Date is not selected");
+            }
+          },
+        )));
   }
 }
