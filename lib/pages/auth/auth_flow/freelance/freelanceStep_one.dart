@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
+import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
+import 'package:kilo/widgets/auth/campus.dart';
 import 'package:kilo/widgets/auth/chooseDept.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:kilo/widgets/calender-session-end.dart';
@@ -27,6 +29,7 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
   final TextEditingController typeAheadController = TextEditingController();
   final TextEditingController sessionStartController = TextEditingController();
   final TextEditingController sessionEndController = TextEditingController();
+  final TextEditingController campusController = TextEditingController();
 
   bool isbool = false;
 
@@ -48,9 +51,7 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
       body: BlocListener<AuthflowBloc, AuthflowState>(
         listener: (context, state) {
           // TODO: implement listener
-          if (state is StepOneDone) {
-            context.pushRoute(FreelanceStepTwo());
-          }
+          if (state is StepOneDone) {}
         },
         child: SafeArea(
           child: Container(
@@ -70,43 +71,29 @@ class _FreelanceStepOneState extends State<FreelanceStepOne> {
                     CalSessionEnd(
                       dateinput: sessionEndController,
                     ),
+                    Campus(typeAheadController: campusController),
                     SizedBox(
                       height: 300,
                     ),
-
                     Container(
-                      alignment: AlignmentDirectional.bottomEnd,
-                      child: ElevatedButton(
-                        onPressed: typeAheadController.text != ""
+                      color: Colors.black,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.all(12.0),
+                          primary: Colors.white,
+                          textStyle: const TextStyle(fontSize: 20),
+                        ),
+                        onPressed: typeAheadController.text != " " &&
+                                sessionEndController.text != " " &&
+                                sessionStartController.text != " "
                             ? () {
-                                context.pushRoute(FreelanceStepFive());
-                                // phone.sendOtpcode(
-                                //     phoneNum: phoneNumber.text, context: context);
+                                BlocProvider.of<GoogleSignUpBloc>(context)
+                                    .add(Signupfreelance());
                               }
                             : null,
-                        child: Text("verify"),
+                        child: const Text('Sign up with google'),
                       ),
                     ),
-                    // Container(
-                    //   color: Colors.black,
-                    //   child: TextButton(
-                    //     style: TextButton.styleFrom(
-                    //       padding: const EdgeInsets.all(12.0),
-                    //       primary: Colors.white,
-                    //       textStyle: const TextStyle(fontSize: 20),
-                    //     ),
-                    //     onPressed: typeAheadController.text != " " &&
-                    //             sessionEndController.text != " " &&
-                    //             sessionStartController.text != " "
-                    //         ? () {
-                    //             // BlocProvider.of<GoogleSignUpBloc>(context)
-                    //             //     .add(Signupfreelance());
-                    //             // context.pushRoute(widget);
-                    //           }
-                    //         : null,
-                    //     child: const Text('Sign up with google'),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

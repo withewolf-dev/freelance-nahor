@@ -44,7 +44,7 @@ class _HireOtpVerifictionState extends State<HireOtpVerifiction> {
               alignment: AlignmentDirectional.bottomEnd,
               child: ElevatedButton(
                 onPressed: () {
-                  context.pushRoute(IsAccountValid());
+                  // context.pushRoute(IsAccountValid());
                   // phone.verifycode(
                   //     verificationId: code,
                   //     smsCode: otp,
