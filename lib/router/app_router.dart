@@ -1,7 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:kilo/pages/ProfileSheet.dart';
-import 'package:kilo/pages/auth/HireSignupPage.dart';
 import 'package:kilo/pages/auth/auth_flow/freelance/freelanceStep_one.dart';
 import 'package:kilo/pages/auth/auth_flow/hire/hireOtpVerification.dart';
 import 'package:kilo/pages/auth/auth_flow/hire/hirestepOne.dart';
@@ -22,7 +21,6 @@ import 'package:kilo/widgets/searchscreen/searchScreen.dart';
   routes: <AutoRoute>[
     AutoRoute(page: WelcomePage),
     AutoRoute(page: FreelanceSignUp),
-    AutoRoute(page: HireSignuPage),
     AutoRoute(page: FreelanceStepOne),
     AutoRoute(page: HireStepOne),
     AutoRoute(page: HireOtpVerifiction),

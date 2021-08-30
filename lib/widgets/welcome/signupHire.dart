@@ -20,10 +20,7 @@ class SignupHire extends StatelessWidget {
       child: MaterialButton(
         minWidth: double.infinity,
         height: 60,
-        onPressed: () {
-          context.pushRoute(HireSignuRoute());
-          //context.read<GoogleSigninBloc>().add(LogoutEvent());
-        },
+        onPressed: () {},
         color: Colors.yellow,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),

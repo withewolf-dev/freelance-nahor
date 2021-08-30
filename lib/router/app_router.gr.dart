@@ -7,22 +7,21 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../pages/auth/auth_flow/freelance/freelanceStep_one.dart' as _i6;
-import '../pages/auth/auth_flow/hire/hireOtpVerification.dart' as _i8;
-import '../pages/auth/auth_flow/hire/hirestepOne.dart' as _i7;
+import '../pages/auth/auth_flow/freelance/freelanceStep_one.dart' as _i5;
+import '../pages/auth/auth_flow/hire/hireOtpVerification.dart' as _i7;
+import '../pages/auth/auth_flow/hire/hirestepOne.dart' as _i6;
 import '../pages/auth/freelanceSignuPage.dart' as _i4;
-import '../pages/auth/HireSignupPage.dart' as _i5;
-import '../pages/feedpage.dart' as _i9;
-import '../pages/ProfileSheet.dart' as _i11;
-import '../pages/settings/changebio.dart' as _i13;
-import '../pages/settings/changecatg.dart' as _i18;
-import '../pages/settings/changefees.dart' as _i14;
-import '../pages/settings/changePhonenum.dart' as _i15;
-import '../pages/settings/changetitle.dart' as _i16;
-import '../pages/settings/setting.dart' as _i10;
-import '../pages/settings/uploadwork.dart' as _i17;
+import '../pages/feedpage.dart' as _i8;
+import '../pages/ProfileSheet.dart' as _i10;
+import '../pages/settings/changebio.dart' as _i12;
+import '../pages/settings/changecatg.dart' as _i17;
+import '../pages/settings/changefees.dart' as _i13;
+import '../pages/settings/changePhonenum.dart' as _i14;
+import '../pages/settings/changetitle.dart' as _i15;
+import '../pages/settings/setting.dart' as _i9;
+import '../pages/settings/uploadwork.dart' as _i16;
 import '../pages/welcomepage.dart' as _i3;
-import '../widgets/searchscreen/searchScreen.dart' as _i12;
+import '../widgets/searchscreen/searchScreen.dart' as _i11;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -42,45 +41,40 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.FreelanceSignUp();
         }),
-    HireSignuRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return const _i5.HireSignuPage();
-        }),
     FreelanceStepOne.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<FreelanceStepOneArgs>(
               orElse: () => const FreelanceStepOneArgs());
-          return _i6.FreelanceStepOne(key: args.key);
+          return _i5.FreelanceStepOne(key: args.key);
         }),
     HireStepOne.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i7.HireStepOne();
+          return const _i6.HireStepOne();
         }),
     HireOtpVerifiction.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i8.HireOtpVerifiction();
+          return const _i7.HireOtpVerifiction();
         }),
     FeedRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return _i9.FeedPage();
+          return _i8.FeedPage();
         }),
     Setting.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args =
               data.argsAs<SettingArgs>(orElse: () => const SettingArgs());
-          return _i10.Setting(key: args.key);
+          return _i9.Setting(key: args.key);
         }),
     ProfileSheet.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ProfileSheetArgs>();
-          return _i11.ProfileSheet(
+          return _i10.ProfileSheet(
               key: args.key,
               context: args.context,
               name: args.name,
@@ -91,45 +85,45 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (data) {
           final args = data.argsAs<SearchScreenArgs>(
               orElse: () => const SearchScreenArgs());
-          return _i12.SearchScreen(key: args.key);
+          return _i11.SearchScreen(key: args.key);
         }),
     ChangeBioRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ChangeBioRouteArgs>(
               orElse: () => const ChangeBioRouteArgs());
-          return _i13.ChangeBioPage(key: args.key);
+          return _i12.ChangeBioPage(key: args.key);
         }),
     ChangeFeesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ChangeFeesRouteArgs>(
               orElse: () => const ChangeFeesRouteArgs());
-          return _i14.ChangeFeesPage(key: args.key);
+          return _i13.ChangeFeesPage(key: args.key);
         }),
     ChangePhonenumRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ChangePhonenumRouteArgs>(
               orElse: () => const ChangePhonenumRouteArgs());
-          return _i15.ChangePhonenumPage(key: args.key);
+          return _i14.ChangePhonenumPage(key: args.key);
         }),
     ChangeTitleRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i16.ChangeTitlePage();
+          return const _i15.ChangeTitlePage();
         }),
     UploadWorkRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<UploadWorkRouteArgs>(
               orElse: () => const UploadWorkRouteArgs());
-          return _i17.UploadWorkPage(key: args.key);
+          return _i16.UploadWorkPage(key: args.key);
         }),
     ChangeCatgRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i18.ChangeCatgPage();
+          return const _i17.ChangeCatgPage();
         })
   };
 
@@ -137,7 +131,6 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(FreelanceSignUp.name, path: '/freelance-sign-up'),
-        _i1.RouteConfig(HireSignuRoute.name, path: '/hire-signu-page'),
         _i1.RouteConfig(FreelanceStepOne.name, path: '/freelance-step-one'),
         _i1.RouteConfig(HireStepOne.name, path: '/hire-step-one'),
         _i1.RouteConfig(HireOtpVerifiction.name, path: '/hire-otp-verifiction'),
@@ -172,12 +165,6 @@ class FreelanceSignUp extends _i1.PageRouteInfo {
   const FreelanceSignUp() : super(name, path: '/freelance-sign-up');
 
   static const String name = 'FreelanceSignUp';
-}
-
-class HireSignuRoute extends _i1.PageRouteInfo {
-  const HireSignuRoute() : super(name, path: '/hire-signu-page');
-
-  static const String name = 'HireSignuRoute';
 }
 
 class FreelanceStepOne extends _i1.PageRouteInfo<FreelanceStepOneArgs> {
