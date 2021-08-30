@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
-import 'package:kilo/widgets/auth/introduction.dart';
+import 'package:kilo/widgets/auth/introduction-freelance.dart';
 import 'package:auto_route/auto_route.dart';
 
 class FreelanceSignUp extends StatelessWidget {
@@ -36,8 +36,11 @@ class FreelanceSignUp extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: Introduction(
-              body: body, header: header, route: FreelanceStepOne()),
+          child: IntroductionFreelance(
+            body: body,
+            header: header,
+            route: FreelanceStepOne(),
+          ),
         ),
       ),
     );

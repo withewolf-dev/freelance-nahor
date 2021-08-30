@@ -10,7 +10,10 @@ class UniversalAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text("Registration"),
+      title: Text(
+        "Registration For Verification",
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),
+      ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
       leading: IconButton(

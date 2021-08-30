@@ -4,20 +4,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 
-class Introduction extends StatefulWidget {
-  final PageRouteInfo route;
-  Introduction(
-      {Key? key, required this.body, required this.header, required this.route})
+class IntroductionHire extends StatefulWidget {
+  IntroductionHire({Key? key, required this.body, required this.header})
       : super(key: key);
 
   final String header;
   final String body;
 
   @override
-  _IntroductionState createState() => _IntroductionState();
+  _IntroductionHireState createState() => _IntroductionHireState();
 }
 
-class _IntroductionState extends State<Introduction> {
+class _IntroductionHireState extends State<IntroductionHire> {
   bool _isSelected = false;
 
   @override
@@ -70,9 +68,8 @@ class _IntroductionState extends State<Introduction> {
                 ),
                 onPressed: _isSelected
                     ? () {
-                        // BlocProvider.of<GoogleSignUpBloc>(context)
-                        //     .add(Signupfreelance());
-                        context.pushRoute(widget.route);
+                        BlocProvider.of<GoogleSignUpBloc>(context)
+                            .add(Signupfreelance());
                       }
                     : null,
                 child: const Text('Sign up with google'),

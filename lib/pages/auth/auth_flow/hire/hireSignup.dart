@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kilo/router/app_router.gr.dart';
-import 'package:kilo/widgets/auth/introduction.dart';
+import 'package:kilo/widgets/auth/introduction-hire.dart';
+import 'package:kilo/widgets/auth/introduction-freelance.dart';
 import 'package:auto_route/auto_route.dart';
 
 class HireSignuPage extends StatelessWidget {
@@ -27,10 +28,9 @@ class HireSignuPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Introduction(
+        child: IntroductionHire(
           body: body,
           header: header,
-          route: FreelanceStepOne(),
         ),
       ),
     );
