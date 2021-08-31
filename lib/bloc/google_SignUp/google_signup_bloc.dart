@@ -29,7 +29,7 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
       }
     }
 
-    if (event is Signupfreelance) {
+    if (event is SignupHire) {
       yield SignupLoading(loadingState: true);
       try {
         UserCredential user = await _authentication.googleSignup();

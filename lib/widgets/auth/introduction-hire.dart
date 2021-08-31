@@ -69,10 +69,10 @@ class _IntroductionHireState extends State<IntroductionHire> {
                 onPressed: _isSelected
                     ? () {
                         BlocProvider.of<GoogleSignUpBloc>(context)
-                            .add(Signupfreelance(type: "hire"));
+                            .add(SignupHire(type: "hire"));
                       }
                     : null,
-                child: const Text('Sign up with google'),
+                child: const Text('Sign up with googlee'),
               ),
             ),
           ])
