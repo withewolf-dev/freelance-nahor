@@ -14,6 +14,8 @@ class GoogleSignedUp extends GoogleSignupState {
   GoogleSignedUp({required this.user});
 }
 
+class UserExist extends GoogleSignupState {}
+
 class LogoutState extends GoogleSignupState {}
 
 class SignupLoading extends GoogleSignupState {

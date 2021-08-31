@@ -43,7 +43,7 @@ class AuthflowBloc extends Bloc<AuthflowEvent, AuthflowState> {
     }
 
     if (event is RegistrationDone) {
-      addUser(user.bio, user.hometown, user.bioTitle);
+      // addUser(user.bio, user.hometown, user.bioTitle);
     }
   }
 }

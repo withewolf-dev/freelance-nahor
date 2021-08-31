@@ -14,19 +14,6 @@ CollectionReference users = FirebaseFirestore.instance.collection('users');
 CollectionReference userRole =
     FirebaseFirestore.instance.collection("userRole");
 
-Future<void> addUser(bio, hometown, title) {
-  return freelanceUser
-      .add({
-        'bio': bio,
-        'hometown': hometown,
-        'title': title,
-        // 'uuid': uuid,
-        // 'fee_duration': feesduration
-      })
-      .then((value) => print("User Added"))
-      .catchError((error) => print("Failed to add user: $error"));
-}
-
 Future addUserType(userType, uid) {
   return userRole
       .add({'userType': userType, 'uid': uid})

@@ -19,7 +19,19 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
       yield SignupLoading(loadingState: true);
       try {
         UserCredential user = await _authentication.googleSignup();
-        await addUserType(event.type, user.user!.uid);
+        final userExist = await _authentication.userExist(user.user?.uid);
+
+        // final userExist = false;
+        if (userExist == false) {
+          await addUserType(event.type, user.user!.uid);
+        }
+        if (userExist == true) {
+          // await addUserType(event.type, user.user!.uid);
+
+          _authentication.logout();
+          //user.user?.delete();
+        }
+
         yield SignupLoading(loadingState: false);
 
         yield GoogleSignedUp(user: user);
@@ -33,7 +45,16 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
       yield SignupLoading(loadingState: true);
       try {
         UserCredential user = await _authentication.googleSignup();
-        addUserType(event.type, user.user!.uid);
+        final userExist = _authentication.userExist(user.user?.uid);
+
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@00");
+        print(userExist);
+        // if (userExist == false) {
+        //   await addUserType(event.type, user.user!.uid);
+        // }
+        // if (userExist == true) {
+        //   _authentication.logout();
+        // }
         yield SignupLoading(loadingState: false);
 
         yield GoogleSignedUp(user: user);

@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Authentication {
+  CollectionReference usersInfo =
+      FirebaseFirestore.instance.collection('usersInfo');
+
   final googleSignin = GoogleSignIn();
 
   GoogleSignInAccount? _user;
@@ -19,7 +24,9 @@ class Authentication {
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
-      return await FirebaseAuth.instance.signInWithCredential(credential);
+      final signedUpUser =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      return signedUpUser;
     } on FirebaseAuthException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);
@@ -55,6 +62,12 @@ class Authentication {
       print('Failed with error code: ${e.code}');
       print(e.message);
     }
+  }
+
+  userExist(uid) async {
+    final snapshot = await usersInfo.where("uid" == uid).get();
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222 ${snapshot.docs.isNotEmpty}");
+    return snapshot.docs.isNotEmpty;
   }
 
   logout() async {
