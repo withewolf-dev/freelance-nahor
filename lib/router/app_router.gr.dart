@@ -7,9 +7,9 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../pages/auth/auth_flow/freelance/freelanceStep_one.dart' as _i5;
+import '../pages/auth/auth_flow/freelance/registration.dart' as _i5;
 import '../pages/auth/auth_flow/hire/hireSignup.dart' as _i6;
-import '../pages/auth/reg-for-verf.dart' as _i4;
+import '../pages/auth/FreelanceSignup.dart' as _i4;
 import '../pages/feedpage.dart' as _i7;
 import '../pages/ProfileSheet.dart' as _i9;
 import '../pages/settings/changebio.dart' as _i11;
