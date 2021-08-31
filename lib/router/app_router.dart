@@ -3,8 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:kilo/pages/ProfileSheet.dart';
 import 'package:kilo/pages/auth/auth_flow/freelance/freelanceStep_one.dart';
 import 'package:kilo/pages/auth/auth_flow/hire/hireSignup.dart';
-
-import 'package:kilo/pages/auth/freelanceSignuPage.dart';
+import 'package:kilo/pages/auth/reg-for-verf.dart';
 import 'package:kilo/pages/feedpage.dart';
 import 'package:kilo/pages/settings/changePhonenum.dart';
 import 'package:kilo/pages/settings/changebio.dart';
@@ -21,7 +20,7 @@ import 'package:kilo/widgets/searchscreen/searchScreen.dart';
   routes: <AutoRoute>[
     AutoRoute(page: WelcomePage),
     AutoRoute(page: FreelanceSignUp),
-    AutoRoute(page: FreelanceStepOne),
+    AutoRoute(page: RegistrationForVerification),
     AutoRoute(page: HireSignuPage),
     AutoRoute(page: FeedPage),
     AutoRoute(page: Setting),

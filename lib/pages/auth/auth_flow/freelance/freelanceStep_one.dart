@@ -10,14 +10,16 @@ import 'package:kilo/widgets/calender-session-end.dart';
 import 'package:kilo/widgets/calender-session-start.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
 
-class FreelanceStepOne extends StatefulWidget {
-  FreelanceStepOne({Key? key}) : super(key: key);
+class RegistrationForVerification extends StatefulWidget {
+  RegistrationForVerification({Key? key}) : super(key: key);
 
   @override
-  _FreelanceStepOneState createState() => _FreelanceStepOneState();
+  _RegistrationForVerificationState createState() =>
+      _RegistrationForVerificationState();
 }
 
-class _FreelanceStepOneState extends State<FreelanceStepOne> {
+class _RegistrationForVerificationState
+    extends State<RegistrationForVerification> {
   final List<String> list = [
     "computer",
     "law",

@@ -16,7 +16,7 @@ class FreelanceSignUp extends StatelessWidget {
       listener: (context, state) {
         // TODO: implement listener
         if (state is GoogleSignedUp) {
-          context.pushRoute(FreelanceStepOne());
+          context.pushRoute(RegistrationForVerification());
         }
       },
       child: Scaffold(
@@ -39,7 +39,7 @@ class FreelanceSignUp extends StatelessWidget {
           child: IntroductionFreelance(
             body: body,
             header: header,
-            route: FreelanceStepOne(),
+            route: RegistrationForVerification(),
           ),
         ),
       ),
