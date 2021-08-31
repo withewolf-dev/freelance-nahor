@@ -90,7 +90,7 @@ class _RegistrationForVerificationState
                                 sessionStartController.text != " "
                             ? () {
                                 BlocProvider.of<GoogleSignUpBloc>(context)
-                                    .add(Signupfreelance());
+                                    .add(Signupfreelance(type: "freelance"));
                               }
                             : null,
                         child: const Text('Sign up with google'),

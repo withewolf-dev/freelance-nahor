@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:kilo/repository/authentication.dart';
+import 'package:kilo/repository/freelance/freelancefirestore.dart';
 part 'google_signup_event.dart';
 part 'google_signup_state.dart';
 
@@ -18,6 +19,21 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
       yield SignupLoading(loadingState: true);
       try {
         UserCredential user = await _authentication.googleSignup();
+        await addUserType(event.type, user.user!.uid);
+        yield SignupLoading(loadingState: false);
+
+        yield GoogleSignedUp(user: user);
+      } catch (e) {
+        yield GoogleSignupFail(e: e.toString());
+        yield SignupLoading(loadingState: false);
+      }
+    }
+
+    if (event is Signupfreelance) {
+      yield SignupLoading(loadingState: true);
+      try {
+        UserCredential user = await _authentication.googleSignup();
+        addUserType(event.type, user.user!.uid);
         yield SignupLoading(loadingState: false);
 
         yield GoogleSignedUp(user: user);

@@ -9,6 +9,16 @@ class SignupUserType extends GoogleSignupEvent {
   SignupUserType({required this.type});
 }
 
-class Signupfreelance extends GoogleSignupEvent {}
+class Signupfreelance extends GoogleSignupEvent {
+  final String type;
+
+  Signupfreelance({required this.type});
+}
+
+class SignupHire extends GoogleSignupEvent {
+  final String type;
+
+  SignupHire({required this.type});
+}
 
 class LogoutEvent extends GoogleSignupEvent {}
