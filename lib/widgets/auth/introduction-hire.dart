@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
+import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/router/app_router.gr.dart';
 
 class IntroductionHire extends StatefulWidget {
@@ -17,6 +18,8 @@ class IntroductionHire extends StatefulWidget {
 
 class _IntroductionHireState extends State<IntroductionHire> {
   bool _isSelected = false;
+
+  final _auth = Authentication();
 
   @override
   Widget build(BuildContext context) {

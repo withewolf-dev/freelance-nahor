@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Authentication {
-  CollectionReference usersInfo =
-      FirebaseFirestore.instance.collection('usersInfo');
+  CollectionReference userRole =
+      FirebaseFirestore.instance.collection('userRole');
 
   final googleSignin = GoogleSignIn();
 
@@ -65,9 +65,15 @@ class Authentication {
   }
 
   userExist(uid) async {
-    final snapshot = await usersInfo.where("uid" == uid).get();
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222 ${snapshot.docs.isNotEmpty}");
-    return snapshot.docs.isNotEmpty;
+    try {
+      final snapshot = await userRole
+          .where("uid", isEqualTo: "4RaRQ9LqnGUgh4dQK6IRcOSb5U2")
+          .get();
+      print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222 ${snapshot.docs.isNotEmpty}");
+      return snapshot.docs.isNotEmpty;
+    } on FirebaseException catch (e) {
+      print(e);
+    }
   }
 
   logout() async {
