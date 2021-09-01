@@ -66,9 +66,7 @@ class Authentication {
 
   userExist(uid) async {
     try {
-      final snapshot = await userRole
-          .where("uid", isEqualTo: "4RaRQ9LqnGUgh4dQK6IRcOSb5U2")
-          .get();
+      final snapshot = await userRole.where("uid", isEqualTo: uid).get();
       print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222 ${snapshot.docs.isNotEmpty}");
       return snapshot.docs.isNotEmpty;
     } on FirebaseException catch (e) {

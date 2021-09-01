@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/introduction-hire.dart';
-import 'package:kilo/widgets/auth/introduction-freelance.dart';
 import 'package:auto_route/auto_route.dart';
 
 class HireSignuPage extends StatelessWidget {
@@ -28,9 +29,19 @@ class HireSignuPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: IntroductionHire(
-          body: body,
-          header: header,
+        child: BlocListener<GoogleSignUpBloc, GoogleSignupState>(
+          listener: (context, state) {
+            // TODO: implement listener
+            if (state is SignupLoading) {
+              print("loading");
+              LinearProgressIndicator();
+              context.popRoute();
+            }
+          },
+          child: IntroductionHire(
+            body: body,
+            header: header,
+          ),
         ),
       ),
     );
