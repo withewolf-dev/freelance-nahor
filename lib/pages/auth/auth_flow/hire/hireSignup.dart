@@ -29,19 +29,19 @@ class HireSignuPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: BlocListener<GoogleSignUpBloc, GoogleSignupState>(
-          listener: (context, state) {
+        child: BlocBuilder<GoogleSignUpBloc, GoogleSignupState>(
+          builder: (context, state) {
             // TODO: implement listener
             if (state is SignupLoading) {
-              print("loading");
-              LinearProgressIndicator();
-              context.popRoute();
+              if (state.loadingState == true) {
+                return LinearProgressIndicator();
+              }
             }
+            return IntroductionHire(
+              body: body,
+              header: header,
+            );
           },
-          child: IntroductionHire(
-            body: body,
-            header: header,
-          ),
         ),
       ),
     );

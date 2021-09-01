@@ -42,26 +42,26 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
     }
 
     if (event is SignupHire) {
-      yield SignupLoading();
-      // try {
-      //   UserCredential user = await _authentication.googleSignup();
-      //   bool noExistingUser = await _authentication.userExist(user.user?.uid);
+      yield SignupLoading(loadingState: true);
+      try {
+        UserCredential user = await _authentication.googleSignup();
+        bool noExistingUser = await _authentication.userExist(user.user?.uid);
 
-      //   if (noExistingUser == true) {
-      //     _authentication.logout();
-      //     yield SignupLoading(loadingState: false);
-      //   }
-      //   if (noExistingUser == false) {
-      //     await addUserType(event.type, user.user!.uid);
-      //     yield SignupLoading(loadingState: false);
-      //     yield PushToFeed();
-      //   }
+        if (noExistingUser == true) {
+          await _authentication.logout();
+          yield SignupLoading(loadingState: false);
+        }
+        if (noExistingUser == false) {
+          await addUserType(event.type, user.user!.uid);
+          yield SignupLoading(loadingState: false);
+          yield PushToFeed();
+        }
 
-      //   yield GoogleSignedUp(user: user);
-      // } catch (e) {
-      //   yield GoogleSignupFail(e: e.toString());
-      //   yield SignupLoading(loadingState: false);
-      // }
+        yield GoogleSignedUp(user: user);
+      } catch (e) {
+        yield GoogleSignupFail(e: e.toString());
+        yield SignupLoading(loadingState: false);
+      }
     }
 
     if (event is LogoutEvent) {

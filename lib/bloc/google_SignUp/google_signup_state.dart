@@ -23,6 +23,6 @@ class NoUserSnack extends GoogleSignupState {}
 class LogoutState extends GoogleSignupState {}
 
 class SignupLoading extends GoogleSignupState {
-  final bool? loadingState;
-  SignupLoading({this.loadingState});
+  final bool loadingState;
+  SignupLoading({required this.loadingState});
 }

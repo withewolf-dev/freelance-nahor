@@ -49,68 +49,61 @@ class _RegistrationForVerificationState
 
     return Scaffold(
       appBar: UniversalAppBar(),
-      body: BlocListener<GoogleSignUpBloc, GoogleSignupState>(
-        listener: (context, state) {
-          // TODO: implement listener
+      body: BlocBuilder<GoogleSignUpBloc, GoogleSignupState>(
+        builder: (context, state) {
           if (state is SignupLoading) {
             if (state.loadingState == true) {
-              LinearProgressIndicator(
-                color: Colors.red,
-              );
+              return LinearProgressIndicator();
             }
           }
-
-          if (state is PushToFeed) {
-            context.replaceRoute(FeedRoute());
-          }
-        },
-        child: SafeArea(
-          child: Container(
-            child: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                child: Column(
-                  children: <Widget>[
-                    ChooseDept(
-                        list: list,
-                        typeAheadController: typeAheadController,
-                        isbool: isbool,
-                        nextbtn: nextBtn),
-                    CalSessionStart(
-                      dateinput: sessionStartController,
-                    ),
-                    CalSessionEnd(
-                      dateinput: sessionEndController,
-                    ),
-                    Campus(typeAheadController: campusController),
-                    SizedBox(
-                      height: 300,
-                    ),
-                    Container(
-                      color: Colors.black,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.all(12.0),
-                          primary: Colors.white,
-                          textStyle: const TextStyle(fontSize: 20),
-                        ),
-                        onPressed: typeAheadController.text != " " &&
-                                sessionEndController.text != " " &&
-                                sessionStartController.text != " "
-                            ? () {
-                                BlocProvider.of<GoogleSignUpBloc>(context)
-                                    .add(Signupfreelance(type: "freelance"));
-                              }
-                            : null,
-                        child: const Text('Sign up with google'),
+          return SafeArea(
+            child: Container(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                  child: Column(
+                    children: <Widget>[
+                      ChooseDept(
+                          list: list,
+                          typeAheadController: typeAheadController,
+                          isbool: isbool,
+                          nextbtn: nextBtn),
+                      CalSessionStart(
+                        dateinput: sessionStartController,
                       ),
-                    ),
-                  ],
+                      CalSessionEnd(
+                        dateinput: sessionEndController,
+                      ),
+                      Campus(typeAheadController: campusController),
+                      SizedBox(
+                        height: 300,
+                      ),
+                      Container(
+                        color: Colors.black,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsets.all(12.0),
+                            primary: Colors.white,
+                            textStyle: const TextStyle(fontSize: 20),
+                          ),
+                          onPressed: typeAheadController.text != " " &&
+                                  sessionEndController.text != " " &&
+                                  sessionStartController.text != " "
+                              ? () {
+                                  BlocProvider.of<GoogleSignUpBloc>(context)
+                                      .add(Signupfreelance(type: "freelance"));
+                                }
+                              : null,
+                          child: const Text('Sign up with google'),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
