@@ -29,8 +29,10 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
         }
         if (noExistingUser == false) {
           await addUserType(event.type, user.user!.uid);
-          yield SignupLoading(loadingState: false);
           yield PushToFeed();
+          await Future.delayed(Duration(seconds: 1));
+
+          yield SignupLoading(loadingState: false);
         }
       } catch (e) {
         yield GoogleSignupFail(e: e.toString());
@@ -51,8 +53,10 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
         }
         if (noExistingUser == false) {
           await addUserType(event.type, user.user!.uid);
-          yield SignupLoading(loadingState: false);
           yield PushToFeed();
+          await Future.delayed(Duration(seconds: 1));
+
+          yield SignupLoading(loadingState: false);
         }
 
         yield GoogleSignedUp(user: user);

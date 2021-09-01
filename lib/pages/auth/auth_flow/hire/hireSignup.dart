@@ -37,6 +37,10 @@ class HireSignuPage extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text("Account Already exist with the email ID")));
           }
+
+          if (state is PushToFeed) {
+            context.replaceRoute(FeedRoute());
+          }
         },
         child: SafeArea(
           child: BlocBuilder<GoogleSignUpBloc, GoogleSignupState>(
