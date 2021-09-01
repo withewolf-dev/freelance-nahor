@@ -23,17 +23,14 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
         bool noExistingUser = await _authentication.userExist(user.user?.uid);
 
         if (noExistingUser == true) {
+          await _authentication.logout();
           yield SignupLoading(loadingState: false);
-          _authentication.logout();
-
-          //yield GoogleSignedUp(user: user);
+          yield AccountExist();
         }
         if (noExistingUser == false) {
           await addUserType(event.type, user.user!.uid);
-
           yield SignupLoading(loadingState: false);
-
-          // yield GoogleSignedUp(user: user);
+          yield PushToFeed();
         }
       } catch (e) {
         yield GoogleSignupFail(e: e.toString());
@@ -50,6 +47,7 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
         if (noExistingUser == true) {
           await _authentication.logout();
           yield SignupLoading(loadingState: false);
+          yield AccountExist();
         }
         if (noExistingUser == false) {
           await addUserType(event.type, user.user!.uid);

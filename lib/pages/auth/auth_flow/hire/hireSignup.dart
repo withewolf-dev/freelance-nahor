@@ -10,6 +10,7 @@ class HireSignuPage extends StatelessWidget {
 
   final String body = "understand the terms and conditon and guidance ";
   final String header = "Hire";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,20 +29,30 @@ class HireSignuPage extends StatelessWidget {
           ),
         ),
       ),
-      body: SafeArea(
-        child: BlocBuilder<GoogleSignUpBloc, GoogleSignupState>(
-          builder: (context, state) {
-            // TODO: implement listener
-            if (state is SignupLoading) {
-              if (state.loadingState == true) {
-                return LinearProgressIndicator();
+      body: BlocListener<GoogleSignUpBloc, GoogleSignupState>(
+        listener: (context, state) {
+          // TODO: implement listener
+
+          if (state is AccountExist) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Account Already exist with the email ID")));
+          }
+        },
+        child: SafeArea(
+          child: BlocBuilder<GoogleSignUpBloc, GoogleSignupState>(
+            builder: (context, state) {
+              // TODO: implement listener
+              if (state is SignupLoading) {
+                if (state.loadingState == true) {
+                  return LinearProgressIndicator();
+                }
               }
-            }
-            return IntroductionHire(
-              body: body,
-              header: header,
-            );
-          },
+              return IntroductionHire(
+                body: body,
+                header: header,
+              );
+            },
+          ),
         ),
       ),
     );

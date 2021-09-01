@@ -18,7 +18,7 @@ class UserExist extends GoogleSignupState {}
 
 class PushToFeed extends GoogleSignupState {}
 
-class NoUserSnack extends GoogleSignupState {}
+class AccountExist extends GoogleSignupState {}
 
 class LogoutState extends GoogleSignupState {}
 
