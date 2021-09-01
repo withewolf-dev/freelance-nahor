@@ -20,17 +20,13 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
       yield SignupLoading(loadingState: true);
       try {
         UserCredential user = await _authentication.googleSignup();
-        final userExist = await _authentication.userExist(user.user?.uid);
+        bool noExistingUser = await _authentication.userExist(user.user?.uid);
 
-        // final userExist = false;
-        if (userExist == false) {
+        if (noExistingUser == true) {
           await addUserType(event.type, user.user!.uid);
         }
-        if (userExist == true) {
-          // await addUserType(event.type, user.user!.uid);
-
+        if (noExistingUser == false) {
           _authentication.logout();
-          //user.user?.delete();
         }
 
         yield SignupLoading(loadingState: false);
