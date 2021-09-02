@@ -30,15 +30,15 @@ class WelcomePage extends StatelessWidget {
         }
       },
       child: Scaffold(
-        body: BlocBuilder<GoogleSigninBloc, GoogleSigninState>(
-          builder: (context, state) {
-            if (state is GoogleSigninLoading) {
-              if (state.loading == true) {
-                LinearProgressIndicator();
+        body: SafeArea(
+          child: BlocBuilder<GoogleSigninBloc, GoogleSigninState>(
+            builder: (context, state) {
+              if (state is GoogleSigninLoading) {
+                if (state.loading == true) {
+                  return LinearProgressIndicator();
+                }
               }
-            }
-            return SafeArea(
-              child: Container(
+              return Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
@@ -60,9 +60,9 @@ class WelcomePage extends StatelessWidget {
                     SignIn(),
                   ],
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
