@@ -12,6 +12,10 @@ class Authentication {
 
   GoogleSignInAccount? get user => _user;
 
+  String? _type;
+
+  String? get type => _type;
+
   Future googleSignup() async {
     try {
       final googleUser = await googleSignin.signIn();
@@ -66,8 +70,26 @@ class Authentication {
   userExist(uid) async {
     try {
       final snapshot = await userRole.where("uid", isEqualTo: uid).get();
-      print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222 ${snapshot.docs.isNotEmpty}");
+      print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ${snapshot.docs.isNotEmpty}");
       return snapshot.docs.isNotEmpty;
+    } on FirebaseException catch (e) {
+      print(e);
+    }
+  }
+
+  getUserRole(uid) async {
+    try {
+      print("working");
+      final snapshot = await userRole
+          .where("uid", isEqualTo: "9ge1m2XnYhWUdzZJewUKfbuebWq1")
+          .get();
+
+      snapshot.docs.forEach((element) {
+        print(element.data());
+        Map<String, dynamic> data = element.data() as Map<String, dynamic>;
+        print(data["userType"]);
+        _type = data["userType"];
+      });
     } on FirebaseException catch (e) {
       print(e);
     }

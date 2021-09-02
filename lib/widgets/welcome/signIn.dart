@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
+import 'package:kilo/repository/authentication.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final _auth = Authentication();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,8 +26,9 @@ class _SignInState extends State<SignIn> {
                 style: TextStyle(color: Colors.blue),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    BlocProvider.of<GoogleSigninBloc>(context)
-                        .add(OnGoogleSignIn());
+                    // BlocProvider.of<GoogleSigninBloc>(context)
+                    //     .add(OnGoogleSignIn());
+                    _auth.getUserRole("uid");
                   }),
           ],
         ),
