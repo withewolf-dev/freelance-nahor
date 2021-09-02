@@ -14,10 +14,8 @@ class WelcomePage extends StatelessWidget {
   WelcomePage({Key? key}) : super(key: key);
 
   final auth = Authentication();
-  //final freelance = FreelanceUser();
 
-  final snackBar = SnackBar(content: Text("Soory!, account doesn't exist"));
-  final snackBar1 = SnackBar(content: Text(" account exist"));
+  final snackBar = SnackBar(content: Text("Account doesn't exist"));
 
   @override
   Widget build(BuildContext context) {
@@ -27,36 +25,44 @@ class WelcomePage extends StatelessWidget {
         if (state is NoUserAccount) {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
-        if (state is GoogleSignIn) {
-          ScaffoldMessenger.of(context).showSnackBar(snackBar1);
+        if (state is PushToFeed) {
           context.replaceRoute(FeedRoute());
         }
       },
       child: Scaffold(
-        body: SafeArea(
-          child: Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height,
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                WelcomeHeader(),
-                Illustration(),
-                Column(
+        body: BlocBuilder<GoogleSigninBloc, GoogleSigninState>(
+          builder: (context, state) {
+            if (state is GoogleSigninLoading) {
+              if (state.loading == true) {
+                LinearProgressIndicator();
+              }
+            }
+            return SafeArea(
+              child: Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    SignupFreelance(),
-                    SizedBox(
-                      height: 20,
+                    WelcomeHeader(),
+                    Illustration(),
+                    Column(
+                      children: <Widget>[
+                        SignupFreelance(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        SignupHire()
+                      ],
                     ),
-                    SignupHire()
+                    SignIn(),
                   ],
                 ),
-                SignIn(),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

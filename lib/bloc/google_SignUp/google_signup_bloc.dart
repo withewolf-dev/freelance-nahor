@@ -44,14 +44,14 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
       yield SignupLoading(loadingState: true);
       try {
         UserCredential user = await _authentication.googleSignup();
-        bool noExistingUser = await _authentication.userExist(user.user?.uid);
+        bool userExist = await _authentication.userExist(user.user?.uid);
 
-        if (noExistingUser == true) {
+        if (userExist == true) {
           await _authentication.logout();
           yield SignupLoading(loadingState: false);
           yield AccountExist();
         }
-        if (noExistingUser == false) {
+        if (userExist == false) {
           await addUserType(event.type, user.user!.uid);
           yield PushToFeed();
           await Future.delayed(Duration(seconds: 1));

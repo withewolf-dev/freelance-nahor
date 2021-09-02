@@ -19,12 +19,24 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
   ) async* {
     // TODO: implement mapEventToState
     if (event is OnGoogleSignIn) {
-      yield GoogleSigninLoading();
+      yield GoogleSigninLoading(loading: true);
       try {
-        UserCredential? user = await _authentication.googleSignIn();
-        if (user != null) {
-          yield GoogleSignIn(user: user);
-        } else {
+        UserCredential user = await _authentication.googleSignup();
+
+        bool userExist = await _authentication.userExist(user.user?.uid);
+
+        if (userExist == true) {
+          yield PushToFeed();
+          await Future.delayed(Duration(seconds: 1));
+          yield GoogleSigninLoading(loading: false);
+        }
+        if (userExist == false) {
+          await _authentication.logout();
+
+          await Future.delayed(Duration(seconds: 1));
+
+          yield GoogleSigninLoading(loading: false);
+
           yield NoUserAccount();
         }
       } catch (e) {
