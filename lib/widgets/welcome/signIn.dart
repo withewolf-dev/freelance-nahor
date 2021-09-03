@@ -15,24 +15,27 @@ class _SignInState extends State<SignIn> {
   final _auth = Authentication();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: RichText(
-        text: TextSpan(
-          text: 'already have an account? ',
-          style: DefaultTextStyle.of(context).style,
-          children: <TextSpan>[
-            TextSpan(
-                text: 'sign in',
-                style: TextStyle(color: Colors.blue),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    // BlocProvider.of<GoogleSigninBloc>(context)
-                    //     .add(OnGoogleSignIn());
-                    _auth.getUserRole("uid");
-                  }),
-          ],
+    return Column(
+      children: [
+        Container(
+          child: RichText(
+            text: TextSpan(
+              text: 'already have an account? ',
+              style: DefaultTextStyle.of(context).style,
+              children: <TextSpan>[
+                TextSpan(
+                    text: 'sign in',
+                    style: TextStyle(color: Colors.blue),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        BlocProvider.of<GoogleSigninBloc>(context)
+                            .add(OnGoogleSignIn());
+                      }),
+              ],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

@@ -102,8 +102,10 @@ class Setting extends StatelessWidget {
             ),
             Center(
               child: OutlinedButton(
-                onPressed: () {
-                  auth.logout();
+                onPressed: () async {
+                  await auth.logout();
+                  await Future.delayed(Duration(seconds: 1));
+
                   context.replaceRoute(WelcomeRoute());
                 },
                 child: const Text('sign out'),

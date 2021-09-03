@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
-import 'package:kilo/widgets/feedpage/category_card.dart';
 
 class Category extends StatefulWidget {
   const Category({Key? key}) : super(key: key);
@@ -13,27 +12,57 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 60,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
-          CategoryCard(
-            image: 'assets/images/one.jpg',
-            event: MusicCatgEvnt(),
+          ProductName(
+            name: "educational",
           ),
-          CategoryCard(
-            image: 'assets/images/two.jpg',
-            event: EduCatgEvnt(),
+          ProductName(
+            name: "artist",
           ),
-          CategoryCard(
-            image: 'assets/images/three.jpg',
-            event: ArtCatgEvnt(),
+          ProductName(
+            name: "fluet",
           ),
-          CategoryCard(
-            image: 'assets/images/four.jpg',
-            event: WebdevCatgEvnt(),
+          ProductName(
+            name: "Editor",
+          ),
+          ProductName(
+            name: "artist",
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ProductName extends StatelessWidget {
+  final String name;
+  const ProductName({Key? key, required this.name}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.white,
+          shadowColor: Colors.red,
+          elevation: 0,
+          side: BorderSide(color: Colors.orange, width: 2),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10))),
+        ),
+        onPressed: () {},
+        child: Text(
+          name,
+          style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.w700,
+            fontSize: 15,
+          ),
+        ),
       ),
     );
   }

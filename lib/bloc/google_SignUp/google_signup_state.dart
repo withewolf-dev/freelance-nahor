@@ -22,6 +22,12 @@ class AccountExist extends GoogleSignupState {}
 
 class LogoutState extends GoogleSignupState {}
 
+class UserType extends GoogleSignupState {
+  final String type;
+
+  UserType({required this.type});
+}
+
 class SignupLoading extends GoogleSignupState {
   final bool loadingState;
   SignupLoading({required this.loadingState});

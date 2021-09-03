@@ -53,6 +53,7 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
         }
         if (userExist == false) {
           await addUserType(event.type, user.user!.uid);
+          yield UserType(type: "hire");
           yield PushToFeed();
           await Future.delayed(Duration(seconds: 1));
 

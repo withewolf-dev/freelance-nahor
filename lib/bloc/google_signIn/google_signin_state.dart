@@ -19,4 +19,10 @@ class GoogleSigninLoading extends GoogleSigninState {
   GoogleSigninLoading({required this.loading});
 }
 
+class UserType extends GoogleSigninState {
+  final String type;
+
+  UserType({required this.type});
+}
+
 class NoUserAccount extends GoogleSigninState {}
