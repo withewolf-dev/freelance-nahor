@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
 
 class Category extends StatefulWidget {
@@ -12,57 +13,61 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          ProductName(
-            name: "educational",
-          ),
-          ProductName(
-            name: "artist",
-          ),
-          ProductName(
-            name: "fluet",
-          ),
-          ProductName(
-            name: "Editor",
-          ),
-          ProductName(
-            name: "artist",
-          ),
-        ],
-      ),
+      child: CategoryName(),
     );
   }
 }
 
-class ProductName extends StatelessWidget {
-  final String name;
-  const ProductName({Key? key, required this.name}) : super(key: key);
+class CategoryName extends StatefulWidget {
+  const CategoryName({
+    Key? key,
+  }) : super(key: key);
 
   @override
+  _CategoryNameState createState() => _CategoryNameState();
+}
+
+class _CategoryNameState extends State<CategoryName> {
+  int selectedIndex = 1;
+  static List categoriesList = ["educational", "artist", "editor"];
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: OutlinedButton(
-        style: OutlinedButton.styleFrom(
-          backgroundColor: Colors.white,
-          shadowColor: Colors.red,
-          elevation: 0,
-          side: BorderSide(color: Colors.orange, width: 2),
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-        ),
-        onPressed: () {},
-        child: Text(
-          name,
-          style: TextStyle(
-            color: Colors.black87,
-            fontWeight: FontWeight.w700,
-            fontSize: 15,
-          ),
-        ),
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categoriesList.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.white,
+                shadowColor: Colors.red,
+                elevation: 0,
+                side: selectedIndex == index
+                    ? BorderSide(color: Colors.orange, width: 2)
+                    : null,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+              ),
+              onPressed: () {
+                setState(() {
+                  selectedIndex = index;
+                });
+              },
+              child: Text(
+                categoriesList[index],
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

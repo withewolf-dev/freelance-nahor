@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class UniversalAppBar extends StatelessWidget implements PreferredSizeWidget {
-  UniversalAppBar({Key? key})
+  final String? title;
+  UniversalAppBar({Key? key, this.title})
       : preferredSize = Size.fromHeight(kToolbarHeight),
         super(key: key);
   @override
@@ -10,10 +11,13 @@ class UniversalAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        "Registration For Verification",
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),
-      ),
+      title: title != null
+          ? Text(
+              title!,
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black54),
+            )
+          : null,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
       leading: IconButton(

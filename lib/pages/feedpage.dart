@@ -79,24 +79,22 @@ class _CustomAppBarState extends State<CustomAppBar> {
               Icons.notifications,
               color: Colors.black,
             )),
-        if (_auth.type == "freelance")
-          IconButton(
-              onPressed: () {
-                context.pushRoute(Setting());
-              },
-              icon: Icon(
-                Icons.settings,
-                color: Colors.black,
-              )),
-        if (_auth.type == "hire")
-          IconButton(
-              onPressed: () {
-                context.pushRoute(Setting());
-              },
-              icon: Icon(
-                Icons.logout,
-                color: Colors.black,
-              )),
+        IconButton(
+            onPressed: () {
+              context.pushRoute(Setting());
+            },
+            icon: Icon(
+              Icons.settings,
+              color: Colors.black,
+            )),
+        IconButton(
+            onPressed: () {
+              context.pushRoute(Setting());
+            },
+            icon: Icon(
+              Icons.logout,
+              color: Colors.black,
+            )),
       ],
     );
   }

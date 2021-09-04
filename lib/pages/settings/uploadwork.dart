@@ -2,9 +2,6 @@ import 'dart:io';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
-import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -35,16 +32,10 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
           .putFile(file);
 
       task.snapshotEvents.listen((firebase_storage.TaskSnapshot snapshot) {
-        print('Task state: ${snapshot.state}');
-        print(
-            'Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
         setState(() {
           progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         });
-        print(progress);
       }, onError: (e) {
-        print(task.snapshot);
-
         if (e.code == 'permission-denied') {
           print('User does not have permission to upload to this reference.');
         }
@@ -52,7 +43,9 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
 
       try {
         await task;
-        print('Upload complete.');
+        setState(() {
+          progress = null;
+        });
       } on firebase_storage.FirebaseException catch (e) {
         if (e.code == 'permission-denied') {
           print('User does not have permission to upload to this reference.');
@@ -66,41 +59,25 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UniversalAppBar(),
-      body: BlocListener<UploadworkBloc, UploadworkState>(
-        listener: (context, state) {
-          // TODO: implement listener
-          if (state is UploadProgress) {
-            print("ASasdasfed");
-            print(state.progress);
-            LinearProgressIndicator(value: 30);
-          }
-
-          if (state is UploadWorkSuccess) {
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-          }
-        },
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                LinearProgressIndicator(
-                  value: progress != null ? progress : null,
-                ),
-                Text(
-                  "upload work  url ",
-                  textDirection: TextDirection.ltr,
-                ),
-              ],
-            ),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              if (progress != null) LinearProgressIndicator(),
+              Text(
+                "upload work  url ",
+                textDirection: TextDirection.ltr,
+              ),
+            ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-          //BlocProvider.of<UploadworkBloc>(context).add(Getphoto());
-          uploadFile();
-        },
+        onPressed: progress == null
+            ? () {
+                uploadFile();
+              }
+            : null,
         child: const Icon(Icons.upload_file_sharp),
         backgroundColor: Colors.green,
       ),

@@ -1,11 +1,21 @@
-class Category {
-  int id;
-  String name;
+import 'dart:convert';
+
+class CategoryClass {
+  int? id;
+  String? name;
   String? image;
-  bool isSelected;
-  Category(
-      {required this.id,
-      required this.name,
-      this.isSelected = false,
-      this.image});
+  bool? selected;
+  CategoryClass({
+    this.id,
+    this.name,
+  });
+
+  CategoryClass.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        id = json['id'];
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'id': id,
+      };
 }
