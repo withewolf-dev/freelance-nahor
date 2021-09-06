@@ -29,14 +29,6 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
       firebase_storage.Reference uploadRef =
           firebase_storage.FirebaseStorage.instance.ref(imageFile.name);
 
-      firebase_storage.Reference downloadRef =
-          firebase_storage.FirebaseStorage.instance.ref(imageFile.path);
-
-      print(downloadRef);
-      print("XXXXXXXXXXXXXXXXXXXXXXXXX");
-      print(imageFile.path);
-      print(imageFile.name);
-
       firebase_storage.UploadTask task = uploadRef.putFile(file);
 
       task.snapshotEvents.listen((firebase_storage.TaskSnapshot snapshot) {
@@ -49,10 +41,7 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
         }
       });
 
-      //final downloadurl = await downloadRef.getDownloadURL();
-
       print("object");
-      //print(downloadurl);
 
       try {
         await task;
