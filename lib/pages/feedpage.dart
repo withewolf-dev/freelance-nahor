@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kilo/repository/authentication.dart';
+import 'package:kilo/widgets/custom-appbar.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:kilo/widgets/feedpage/category.dart' as catg;
@@ -45,57 +45,6 @@ class FeedPage extends StatelessWidget {
           ],
         ),
       )),
-    );
-  }
-}
-
-class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  CustomAppBar({
-    Key? key,
-  })  : preferredSize = Size.fromHeight(kToolbarHeight),
-        super(key: key);
-  @override
-  final Size preferredSize; // default is 56.0
-  @override
-  _CustomAppBarState createState() => _CustomAppBarState();
-}
-
-class _CustomAppBarState extends State<CustomAppBar> {
-  final _auth = Authentication();
-
-  @override
-  Widget build(BuildContext context) {
-    print("${_auth.type} feed");
-    return AppBar(
-      backgroundColor: Colors.white,
-      //brightness: Brightness.light,
-      elevation: 0,
-      actions: <Widget>[
-        IconButton(
-            onPressed: () {
-              context.pushRoute(Setting());
-            },
-            icon: Icon(
-              Icons.notifications,
-              color: Colors.black,
-            )),
-        IconButton(
-            onPressed: () {
-              context.pushRoute(Setting());
-            },
-            icon: Icon(
-              Icons.settings,
-              color: Colors.black,
-            )),
-        IconButton(
-            onPressed: () {
-              context.pushRoute(Setting());
-            },
-            icon: Icon(
-              Icons.logout,
-              color: Colors.black,
-            )),
-      ],
     );
   }
 }

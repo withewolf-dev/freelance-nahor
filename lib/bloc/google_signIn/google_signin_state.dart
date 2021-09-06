@@ -11,7 +11,11 @@ class GoogleSignIn extends GoogleSigninState {
   GoogleSignIn({required this.user});
 }
 
-class PushToFeed extends GoogleSigninState {}
+class PushToFeed extends GoogleSigninState {
+  final String userRole;
+
+  PushToFeed({required this.userRole});
+}
 
 class GoogleSigninLoading extends GoogleSigninState {
   final bool loading;
@@ -26,3 +30,8 @@ class UserType extends GoogleSigninState {
 }
 
 class NoUserAccount extends GoogleSigninState {}
+
+class Testing extends GoogleSigninState {
+  final String type;
+  Testing({required this.type});
+}

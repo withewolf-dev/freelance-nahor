@@ -25,7 +25,7 @@ class WelcomePage extends StatelessWidget {
         if (state is NoUserAccount) {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
-        if (state is PushToFeed) {
+        if (state is UserType) {
           context.replaceRoute(FeedRoute());
         }
       },

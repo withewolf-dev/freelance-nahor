@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:http/http.dart';
 import 'package:kilo/repository/authentication.dart';
 import 'package:meta/meta.dart';
 
@@ -27,10 +26,12 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
         bool userExist = await _authentication.userExist(user.user?.uid);
 
         if (userExist == true) {
-          await Future.delayed(Duration(seconds: 2));
+          // await Future.delayed(Duration(seconds: 2));
+          String usertype = await _authentication.userTypecheck(user.user?.uid);
+          print("$usertype userexist");
+          yield UserType(type: usertype);
 
-          await _authentication.getUserRole(user.user?.uid);
-          yield PushToFeed();
+          yield PushToFeed(userRole: "freelance");
 
           yield GoogleSigninLoading(loading: false);
         }

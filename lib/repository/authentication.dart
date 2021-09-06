@@ -12,12 +12,6 @@ class Authentication {
 
   GoogleSignInAccount? get user => _user;
 
-  String? _type;
-
-  String? get type => _type;
-
-  String? typeDemo;
-
   Future googleSignup() async {
     try {
       final googleUser = await googleSignin.signIn();
@@ -80,28 +74,22 @@ class Authentication {
     }
   }
 
-  getUserRole(uid) async {
+  userTypecheck(uid) async {
+    String? type;
     try {
-      print("working");
       final snapshot = await userRole.where("uid", isEqualTo: uid).get();
 
-      snapshot.docs.forEach((element) {
-        print(element.data());
-        Map<String, dynamic> data = element.data() as Map<String, dynamic>;
-        _type = data["userType"];
-        print("$type this is type ii");
-      });
-
-      print("$type this is type");
+      type = snapshot.docs[0]["userType"];
     } on FirebaseException catch (e) {
       print(e);
     }
+    return type;
   }
 
   logout() async {
     try {
       await googleSignin.disconnect();
-      FirebaseAuth.instance.signOut();
+      await FirebaseAuth.instance.signOut();
       print("logout ho gaya");
     } on FirebaseAuthException catch (e) {
       print('Failed with error code: ${e.code}');

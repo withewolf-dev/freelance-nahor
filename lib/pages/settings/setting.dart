@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
 import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/settings/buildAccountOptionRow.dart';
@@ -111,14 +113,6 @@ class Setting extends StatelessWidget {
                 child: const Text('sign out'),
               ),
             ),
-            Center(
-              child: OutlinedButton(
-                onPressed: () {
-                  print("delete");
-                },
-                child: const Text('Delete account'),
-              ),
-            )
           ],
         ),
       ),
