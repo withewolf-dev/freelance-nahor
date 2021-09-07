@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
 
 CollectionReference freelanceUser =
     FirebaseFirestore.instance.collection('freelance');

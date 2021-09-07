@@ -6,9 +6,9 @@ import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
 import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
+import 'package:kilo/bloc/logout_bloc/logout_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
-import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,8 +30,7 @@ Future<void> main() async {
       BlocProvider<CategoryBloc>(
         create: (BuildContext context) => CategoryBloc(),
       ),
-      BlocProvider<UploadworkBloc>(
-          create: (BuildContext context) => UploadworkBloc()),
+      BlocProvider<LogoutBloc>(create: (BuildContext context) => LogoutBloc()),
       BlocProvider<SearchBloc>(create: (BuildContext context) => SearchBloc())
     ],
     child: App(),
@@ -86,7 +85,6 @@ Future<void> main() async {
 //     );
 //   }
 // }
-
 }
 
 // class MyApp extends StatefulWidget {

@@ -24,10 +24,6 @@ class FeedPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    'category',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                  ),
                   SizedBox(
                     height: 15,
                   ),

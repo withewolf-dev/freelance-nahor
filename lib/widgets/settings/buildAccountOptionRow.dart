@@ -24,7 +24,7 @@ class AccountOptionRow extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey[600],
+                color: Colors.grey[900],
               ),
             ),
             Icon(

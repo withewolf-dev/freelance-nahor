@@ -23,7 +23,7 @@ class _SwitchButtonRowState extends State<SwitchButtonRow> {
           style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
-              color: Colors.grey[600]),
+              color: Colors.grey[900]),
         ),
         Transform.scale(
             scale: 0.7,
