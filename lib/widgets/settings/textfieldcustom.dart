@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class TextfieldCustom extends StatefulWidget {
   final TextEditingController mycontroller;
-  final String label;
+  final String? label;
   final int? maxleng;
   final int? maxline;
   const TextfieldCustom(
       {Key? key,
       required this.mycontroller,
-      required this.label,
+      this.label,
       this.maxleng,
       this.maxline})
       : super(key: key);

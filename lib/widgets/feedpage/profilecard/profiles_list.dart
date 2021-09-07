@@ -46,10 +46,6 @@ class _ProfilesListState extends State<ProfilesList> {
             return Text('Something went wrong');
           }
 
-          // if (snapshot.connectionState == ConnectionState.waiting) {
-          //   return LinearProgressIndicator();
-          // }
-
           if (snapshot.hasData == true) {
             return new ListView(
               shrinkWrap: true,
@@ -62,17 +58,6 @@ class _ProfilesListState extends State<ProfilesList> {
             );
           }
 
-          // if (snapshot.connectionState == ConnectionState.active) {
-          //   return new ListView(
-          //     shrinkWrap: true,
-          //     physics: NeverScrollableScrollPhysics(),
-          //     children: snapshot.data!.docs.map((DocumentSnapshot document) {
-          //       Map<String, dynamic> data =
-          //           document.data() as Map<String, dynamic>;
-          //       return ProfileContainer(bio: data['bio'], name: data['name']);
-          //     }).toList(),
-          //   );
-          // }
           return CircularProgressIndicator();
         },
       ),
