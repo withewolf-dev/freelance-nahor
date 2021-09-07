@@ -21,25 +21,18 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Text(widget.label,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: TextField(
             controller: widget.mycontroller,
             decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.deepPurple.shade100,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide.none,
-              ),
+              focusColor: Colors.purple.shade400,
+              border: OutlineInputBorder(),
+              labelText: widget.label,
             ),
             maxLength: widget.maxleng != null ? widget.maxleng : null,
             maxLines: widget.maxline != null ? widget.maxline : null,
-            //keyboardType: TextInputType.number,
           ),
         )
       ],

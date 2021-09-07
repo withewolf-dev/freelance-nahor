@@ -9,6 +9,7 @@ import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
 import 'package:kilo/bloc/logout_bloc/logout_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
+import 'package:kilo/bloc/update_bloc/updatedoc_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,9 @@ Future<void> main() async {
         create: (BuildContext context) => CategoryBloc(),
       ),
       BlocProvider<LogoutBloc>(create: (BuildContext context) => LogoutBloc()),
-      BlocProvider<SearchBloc>(create: (BuildContext context) => SearchBloc())
+      BlocProvider<SearchBloc>(create: (BuildContext context) => SearchBloc()),
+      BlocProvider<UpdatedocBloc>(
+          create: (BuildContext context) => UpdatedocBloc()),
     ],
     child: App(),
   )); // Initialize FlutterFire:

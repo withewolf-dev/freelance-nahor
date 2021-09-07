@@ -36,33 +36,28 @@ class _SearchBoxState extends State<SearchBox> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SearchBloc, SearchblocState>(
-      listener: (context, state) {
-        // TODO: implement listener
-        if (state is SearchTerm) {
-          print("state.searchTerm ${state.searchTerm}");
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.only(top: 4),
+        listener: (context, state) {
+          // TODO: implement listener
+          if (state is SearchTerm) {
+            print("state.searchTerm ${state.searchTerm}");
+          }
+        },
         child: Container(
+          margin: const EdgeInsets.only(top: 8),
           decoration: BoxDecoration(
               color: Color.fromRGBO(244, 243, 243, 1),
-              borderRadius: BorderRadius.circular(10)),
+              borderRadius: BorderRadius.circular(15)),
           child: TextField(
             decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(10),
                 border: InputBorder.none,
-                suffixIcon: Icon(
+                prefixIcon: Icon(
                   Icons.search,
                   color: Colors.black87,
-                  size: 20,
                 ),
                 hintText: "Search you're looking for",
                 hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
             controller: myController,
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

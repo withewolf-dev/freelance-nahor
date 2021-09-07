@@ -13,11 +13,10 @@ class ChangeFeesPage extends StatelessWidget {
   final String feeslabel = "Fees";
 
   final List<String> list = [
-    "computer",
-    "law",
-    "physics",
-    "chemistry",
-    "coomputer"
+    "days",
+    "hour",
+    "months",
+    "weekly",
   ];
 
   @override
@@ -26,40 +25,51 @@ class ChangeFeesPage extends StatelessWidget {
         appBar: UniversalAppBar(),
         body: SafeArea(
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TypeAheadField(
+                    textFieldConfiguration: TextFieldConfiguration(
+                        controller: typeAheadController,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Fees per',
+                            labelStyle: TextStyle(fontSize: 14))),
+                    suggestionsCallback: (pattern) => list.where((item) =>
+                        item.toLowerCase().contains(pattern.toLowerCase())),
+                    itemBuilder: (context, suggestion) {
+                      print("---------------------");
+                      print(suggestion);
+                      return ListTile(
+                        title: Text(suggestion.toString()),
+                      );
+                    },
+                    onSuggestionSelected: (suggestion) {
+                      typeAheadController.text = suggestion.toString();
+                      print(suggestion);
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextfieldCustom(
+                  mycontroller: labelController,
+                  label: feeslabel,
+                  maxleng: 5,
+                ),
+              ],
+            ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TypeAheadField(
-                textFieldConfiguration: TextFieldConfiguration(
-                    controller: typeAheadController,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        labelText: 'fees per',
-                        labelStyle: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20))),
-                suggestionsCallback: (pattern) => list.where((item) =>
-                    item.toLowerCase().contains(pattern.toLowerCase())),
-                itemBuilder: (context, suggestion) {
-                  print("---------------------");
-                  print(suggestion);
-                  return ListTile(
-                    title: Text(suggestion.toString()),
-                  );
-                },
-                onSuggestionSelected: (suggestion) {
-                  typeAheadController.text = suggestion.toString();
-                  print(suggestion);
-                },
-              ),
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(onPressed: () {}, child: Text("update")),
             ),
-            TextfieldCustom(
-              mycontroller: labelController,
-              label: feeslabel,
-              maxleng: 4,
-            ),
-            ElevatedButton(onPressed: () {}, child: Text("update"))
           ],
         )));
   }

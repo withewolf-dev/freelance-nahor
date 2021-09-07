@@ -10,28 +10,41 @@ class ChangeBioPage extends StatelessWidget {
   final TextEditingController bioController = TextEditingController();
   final TextEditingController bioTitleController = TextEditingController();
 
-  final String bio = "bio";
-  final String bioTitle = " Bio Title";
+  final String bio = "Write your Bio here";
+  final String bioTitle = "Write your Bio Title here";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: UniversalAppBar(),
         body: SafeArea(
             child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextfieldCustom(
-              mycontroller: bioController,
-              label: bio,
-              maxleng: 60,
+            Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 20,
+                ),
+                TextfieldCustom(
+                  mycontroller: bioController,
+                  label: bio,
+                  maxleng: 60,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextfieldCustom(
+                  mycontroller: bioTitleController,
+                  label: bioTitle,
+                  maxleng: 200,
+                  maxline: 8,
+                ),
+              ],
             ),
-            TextfieldCustom(
-              mycontroller: bioTitleController,
-              label: bioTitle,
-              maxleng: 200,
-              maxline: 8,
-            ),
-            ElevatedButton(onPressed: () {}, child: Text("update"))
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton(onPressed: () {}, child: Text("update")),
+            )
           ],
         )));
   }
