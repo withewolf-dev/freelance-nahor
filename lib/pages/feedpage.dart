@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kilo/pages/auth/auth_flow/hire/Untitled-1.dart';
 import 'package:kilo/widgets/custom-appbar.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -84,7 +86,9 @@ class _SearchButtonState extends State<SearchButton> {
 }
 
 class FeedHeader extends StatelessWidget {
-  const FeedHeader({Key? key}) : super(key: key);
+  FeedHeader({Key? key}) : super(key: key);
+
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +101,24 @@ class FeedHeader extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            'Find Your Inspiration at',
-            style: TextStyle(color: Colors.black87, fontSize: 25),
+          Container(
+            width: 220,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundImage: NetworkImage(user!.photoURL!),
+                  radius: 20,
+                ),
+                Text(
+                  user!.displayName!,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
           ),
           SizedBox(
             height: 5,

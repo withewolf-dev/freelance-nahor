@@ -12,9 +12,9 @@ class GoogleSignIn extends GoogleSigninState {
 }
 
 class PushToFeed extends GoogleSigninState {
-  final String userRole;
+  // final String userRole;
 
-  PushToFeed({required this.userRole});
+  // PushToFeed({required this.userRole});
 }
 
 class GoogleSigninLoading extends GoogleSigninState {

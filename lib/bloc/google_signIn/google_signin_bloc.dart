@@ -31,7 +31,7 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
           print("$usertype userexist");
           yield UserType(type: usertype);
 
-          yield PushToFeed(userRole: "freelance");
+          yield PushToFeed();
 
           yield GoogleSigninLoading(loading: false);
         }

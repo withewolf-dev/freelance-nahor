@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
@@ -19,47 +20,62 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      //brightness: Brightness.light,
-      elevation: 0,
-      actions: <Widget>[
-        IconButton(
-            onPressed: () {
-              //_auth.getUserRole("id");
-              context.pushRoute(Setting());
-            },
-            icon: Icon(
-              Icons.notifications,
-              color: Colors.black,
-            )),
-        BlocBuilder<GoogleSigninBloc, GoogleSigninState>(
-          builder: (context, state) {
-            if (state is PushToFeed) {
-              print("${state.userRole} usertype");
-              if (state.userRole == "freelance") {
-                return IconButton(
+    return BlocBuilder<GoogleSigninBloc, GoogleSigninState>(
+      builder: (context, state) {
+        if (state is UserType) {
+          print(state.type);
+          if (state.type == "freelance") {
+            return AppBar(
+              backgroundColor: Colors.white,
+              //brightness: Brightness.light,
+              elevation: 0,
+              actions: <Widget>[
+                IconButton(
+                    onPressed: () {
+                      //_auth.getUserRole("id");
+                      context.pushRoute(Setting());
+                    },
+                    icon: Icon(
+                      Icons.notifications,
+                      color: Colors.black,
+                    )),
+                IconButton(
                     onPressed: () {
                       context.pushRoute(Setting());
                     },
                     icon: Icon(
-                      Icons.logout_outlined,
+                      Icons.settings,
                       color: Colors.black,
-                    ));
-              }
-            }
-
-            return IconButton(
+                    )),
+              ],
+            );
+          }
+        }
+        return AppBar(
+          backgroundColor: Colors.white,
+          //brightness: Brightness.light,
+          elevation: 0,
+          actions: <Widget>[
+            IconButton(
+                onPressed: () {
+                  //_auth.getUserRole("id");
+                  context.pushRoute(Setting());
+                },
+                icon: Icon(
+                  Icons.notifications,
+                  color: Colors.black,
+                )),
+            IconButton(
                 onPressed: () {
                   context.pushRoute(Setting());
                 },
                 icon: Icon(
-                  Icons.cloud_circle,
+                  Icons.settings,
                   color: Colors.black,
-                ));
-          },
-        ),
-      ],
+                )),
+          ],
+        );
+      },
     );
   }
 }
