@@ -11,8 +11,8 @@ class ChangeBioPage extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final TextEditingController bioController = TextEditingController();
-  final TextEditingController bioTitleController = TextEditingController();
+  final bioController = TextEditingController();
+  final bioTitleController = TextEditingController();
 
   final String bio = "Write your Bio here";
   final String bioTitle = "Write your Bio Title here";
@@ -50,54 +50,52 @@ class ChangeBioPage extends StatelessWidget {
                         snapshot.data!.docs.map((DocumentSnapshot document) {
                       Map<String, dynamic> data =
                           document.data() as Map<String, dynamic>;
-                      return Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                TextfieldCustom(
-                                  mycontroller: bioTitleController,
-                                  // label: data["bioTitle"],
-                                  maxleng: 60,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                TextfieldCustom(
-                                  mycontroller: bioController,
-                                  label: data["bio"],
-                                  maxleng: 200,
-                                  maxline: 8,
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: BlocBuilder<BioBloc, BioState>(
-                                builder: (context, state) {
-                                  if (state is Loading) {
-                                    if (state.loading == true) {
-                                      return CircularProgressIndicator();
-                                    }
-                                  }
-                                  return OutlinedButton(
-                                      onPressed: () {
-                                        BlocProvider.of<BioBloc>(context).add(
-                                            UpdateBio(
-                                                bio: bioController.text,
-                                                bioTitle:
-                                                    bioTitleController.text));
-                                      },
-                                      child: Text("update"));
-                                },
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: 20,
                               ),
-                            )
-                          ],
-                        ),
+                              TextfieldCustom(
+                                mycontroller: bioTitleController,
+                                label: data["bioTitle"],
+                                maxleng: 60,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              TextfieldCustom(
+                                mycontroller: bioController,
+                                label: data["bio"],
+                                maxleng: 200,
+                                maxline: 8,
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: BlocBuilder<BioBloc, BioState>(
+                              builder: (context, state) {
+                                if (state is Loading) {
+                                  if (state.loading == true) {
+                                    return CircularProgressIndicator();
+                                  }
+                                }
+                                return OutlinedButton(
+                                    onPressed: () {
+                                      BlocProvider.of<BioBloc>(context).add(
+                                          UpdateBio(
+                                              bio: bioController.text,
+                                              bioTitle:
+                                                  bioTitleController.text));
+                                    },
+                                    child: Text("update"));
+                              },
+                            ),
+                          )
+                        ],
                       );
                     }).toList(),
                   );

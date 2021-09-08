@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TextfieldCustom extends StatefulWidget {
-  final TextEditingController mycontroller;
+  final mycontroller;
   final String? label;
   final int? maxleng;
   final int? maxline;
-  const TextfieldCustom(
+  TextfieldCustom(
       {Key? key,
       required this.mycontroller,
       this.label,
@@ -19,6 +19,13 @@ class TextfieldCustom extends StatefulWidget {
 
 class _TextfieldCustomState extends State<TextfieldCustom> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (widget.label != null) widget.mycontroller.text = widget.label;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -29,7 +36,7 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
             decoration: InputDecoration(
               focusColor: Colors.purple.shade400,
               border: OutlineInputBorder(),
-              labelText: widget.label,
+              // labelText: widget.label,
             ),
             maxLength: widget.maxleng != null ? widget.maxleng : null,
             maxLines: widget.maxline != null ? widget.maxline : null,

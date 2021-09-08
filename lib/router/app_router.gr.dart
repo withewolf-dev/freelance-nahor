@@ -117,7 +117,7 @@ class AppRouter extends _i1.RootStackRouter {
     ChangeCatgRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i16.ChangeCatgPage();
+          return _i16.ChangeCatgPage();
         })
   };
 
