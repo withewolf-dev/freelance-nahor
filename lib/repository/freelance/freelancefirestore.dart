@@ -46,12 +46,12 @@ Future<void> updateFees(int fees, String interval, String docId) {
       .catchError((error) => print("Failed to update user: $error"));
 }
 
-Future<void> updateCategory(String category, String subCategory, String docId) {
-  return users
+Future<void> updateCategory(int selectedIndex, String categoryName) {
+  return freelanceUserInfo
       .doc(docId)
       .update({
-        'category': category,
-        'subcategory': subCategory,
+        'selectedIndex': selectedIndex,
+        'categoryName': categoryName,
       })
       .then((value) => print("User Updated"))
       .catchError((error) => print("Failed to update user: $error"));

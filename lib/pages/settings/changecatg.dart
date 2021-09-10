@@ -1,66 +1,69 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/updatecategory_bloc/updatecategory_bloc.dart';
+import 'package:kilo/widgets/changecatg-widget.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
 
-class ChangeCatgPage extends StatefulWidget {
+class ChangeCatgPage extends StatelessWidget {
   ChangeCatgPage({Key? key}) : super(key: key);
+  static List categoriesList = [
+    "No Category Selected",
+    "educational",
+    "artist",
+    "editor"
+  ];
+  final int selectedIndex = 0;
+  final String categoryName = categoriesList[0];
 
-  static List categoriesList = ["educational", "artist", "editor"];
-
-  @override
-  _ChangeCatgPageState createState() => _ChangeCatgPageState();
-}
-
-class _ChangeCatgPageState extends State<ChangeCatgPage> {
-  final controller = TextEditingController();
-
-  int selectedIndex = 1;
-  static List categoriesList = ["educational", "artist", "editor"];
-
+  final snackBar = SnackBar(content: Text("Category updated"));
+  final id = FirebaseAuth.instance.currentUser!.uid;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: UniversalAppBar(),
-      body: SafeArea(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Wrap(
-              spacing: 15.0, // gap between adjacent chips
-              runSpacing: 4.0, // gap between lines
-              children: categoriesList
-                  .map(
-                    (e) => InkWell(
-                      onTap: () {
-                        setState(() {
-                          selectedIndex = categoriesList.indexOf(e);
-                        });
-                      },
-                      child: Chip(
-                        backgroundColor:
-                            selectedIndex == categoriesList.indexOf(e)
-                                ? Colors.black54
-                                : null,
-                        label: Text(e),
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
+    return BlocListener<UpdatecategoryBloc, UpdatecategoryState>(
+      listener: (context, state) {
+        // TODO: implement listener
+        if (state is CtgSnackBar) {
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      },
+      child: Scaffold(
+        appBar: UniversalAppBar(),
+        body: SafeArea(
+          child: StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection('freelanceUserInfo')
+                .where('uid', isEqualTo: id)
+                .snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong');
+              }
+
+              if (snapshot.hasData == true) {
+                return ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children:
+                      snapshot.data!.docs.map((DocumentSnapshot document) {
+                    Map<String, dynamic> data =
+                        document.data() as Map<String, dynamic>;
+                    print(data["selectedIndex"]);
+                    return ChangeCatgWidget(
+                        selectedIndex: data["selectedIndex"],
+                        categoriesList: categoriesList,
+                        categoryName: categoriesList[data["selectedIndex"]]);
+                  }).toList(),
+                );
+              }
+
+              return Center(child: CircularProgressIndicator());
+            },
           ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
-                  onPressed: () {
-                    print("object");
-                  },
-                  child: Text("Update")),
-            ),
-          )
-        ],
-      )),
+        ),
+      ),
     );
   }
 }

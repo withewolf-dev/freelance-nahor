@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/rendering.dart';
 import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:meta/meta.dart';
 
@@ -26,14 +25,6 @@ class BioBloc extends Bloc<BioEvent, BioState> {
         yield Loading(loading: false);
 
         yield UpdateSnackbar();
-        //if no
-
-        // add
-
-        // if yes
-
-        // update
-
       } catch (e) {
         print(e);
       }
