@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
@@ -44,7 +43,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       context.pushRoute(Setting());
                     },
                     icon: Icon(
-                      Icons.settings,
+                      Icons.cloud_circle,
                       color: Colors.black,
                     )),
               ],
@@ -70,7 +69,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   context.pushRoute(Setting());
                 },
                 icon: Icon(
-                  Icons.settings,
+                  Icons.logout,
                   color: Colors.black,
                 )),
           ],

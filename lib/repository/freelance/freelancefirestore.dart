@@ -35,12 +35,12 @@ Future<void> updateBio(String bio, String bioTitle) {
       .catchError((error) => print("Failed to update user: $error"));
 }
 
-Future<void> updateFees(int fees, String interval, String docId) {
-  return users
+Future<void> updateFees(String fees, String duration) {
+  return freelanceUserInfo
       .doc(docId)
       .update({
         'fees': fees,
-        'interval': interval,
+        'duration': duration,
       })
       .then((value) => print("User Updated"))
       .catchError((error) => print("Failed to update user: $error"));
