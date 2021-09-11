@@ -12,6 +12,7 @@ import '../pages/auth/auth_flow/hire/hireSignup.dart' as _i6;
 import '../pages/auth/FreelanceSignup.dart' as _i4;
 import '../pages/feedpage.dart' as _i7;
 import '../pages/ProfileSheet.dart' as _i9;
+import '../pages/request.dart' as _i17;
 import '../pages/settings/changebio.dart' as _i11;
 import '../pages/settings/changecatg.dart' as _i16;
 import '../pages/settings/changefees.dart' as _i12;
@@ -116,8 +117,15 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     ChangeCatgRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<ChangeCatgRouteArgs>(
+              orElse: () => const ChangeCatgRouteArgs());
+          return _i16.ChangeCatgPage(key: args.key);
+        }),
+    RequestRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
         builder: (_) {
-          return _i16.ChangeCatgPage();
+          return const _i17.RequestPage();
         })
   };
 
@@ -138,7 +146,8 @@ class AppRouter extends _i1.RootStackRouter {
             path: '/change-phonenum-page'),
         _i1.RouteConfig(ChangeTitleRoute.name, path: '/change-title-page'),
         _i1.RouteConfig(UploadWorkRoute.name, path: '/upload-work-page'),
-        _i1.RouteConfig(ChangeCatgRoute.name, path: '/change-catg-page')
+        _i1.RouteConfig(ChangeCatgRoute.name, path: '/change-catg-page'),
+        _i1.RouteConfig(RequestRoute.name, path: '/request-page')
       ];
 }
 
@@ -206,7 +215,7 @@ class ProfileSheet extends _i1.PageRouteInfo<ProfileSheetArgs> {
   ProfileSheet(
       {_i2.Key? key,
       required _i2.BuildContext context,
-      required String name0,
+      required String name,
       required String bio})
       : super(name,
             path: '/profile-sheet',
@@ -305,8 +314,22 @@ class UploadWorkRouteArgs {
   final _i2.Key? key;
 }
 
-class ChangeCatgRoute extends _i1.PageRouteInfo {
-  const ChangeCatgRoute() : super(name, path: '/change-catg-page');
+class ChangeCatgRoute extends _i1.PageRouteInfo<ChangeCatgRouteArgs> {
+  ChangeCatgRoute({_i2.Key? key})
+      : super(name,
+            path: '/change-catg-page', args: ChangeCatgRouteArgs(key: key));
 
   static const String name = 'ChangeCatgRoute';
+}
+
+class ChangeCatgRouteArgs {
+  const ChangeCatgRouteArgs({this.key});
+
+  final _i2.Key? key;
+}
+
+class RequestRoute extends _i1.PageRouteInfo {
+  const RequestRoute() : super(name, path: '/request-page');
+
+  static const String name = 'RequestRoute';
 }

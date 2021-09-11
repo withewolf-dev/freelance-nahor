@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:kilo/widgets/profilesheet/profilesheet_bio.dart';
 import 'package:kilo/widgets/profilesheet/profilesheet_header.dart';
+import 'package:kilo/router/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class ProfileSheet extends StatelessWidget {
   final String name;
@@ -32,6 +34,14 @@ class ProfileSheet extends StatelessWidget {
               ),
               ProfileSheetBio(bio: bio),
               Slider(),
+              SizedBox(
+                height: 150,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    context.pushRoute(RequestRoute());
+                  },
+                  child: Text("Apply")),
             ],
           ),
         ),
