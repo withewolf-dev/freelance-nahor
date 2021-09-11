@@ -11,6 +11,7 @@ import 'package:kilo/bloc/logout_bloc/logout_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
 import 'package:kilo/bloc/updatecategory_bloc/updatecategory_bloc.dart';
+import 'package:kilo/bloc/updatefee_bloc/updatefee_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,8 @@ Future<void> main() async {
       BlocProvider<BioBloc>(create: (BuildContext context) => BioBloc()),
       BlocProvider<UpdatecategoryBloc>(
           create: (BuildContext context) => UpdatecategoryBloc()),
+      BlocProvider<UpdatefeeBloc>(
+          create: (BuildContext context) => UpdatefeeBloc()),
     ],
     child: App(),
   ));

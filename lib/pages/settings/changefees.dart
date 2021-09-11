@@ -1,76 +1,61 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kilo/widgets/settings/textfieldcustom.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/updatefee_bloc/updatefee_bloc.dart';
+import 'package:kilo/widgets/changefees_widget.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class ChangeFeesPage extends StatelessWidget {
   ChangeFeesPage({
     Key? key,
   }) : super(key: key);
 
-  final TextEditingController labelController = TextEditingController();
-  final TextEditingController typeAheadController = TextEditingController();
-  final String feeslabel = "Fees";
-
-  final List<String> list = [
-    "days",
-    "hour",
-    "months",
-    "weekly",
-  ];
+  final id = FirebaseAuth.instance.currentUser!.uid;
+  final snackBar = SnackBar(content: Text("Fees detail updated"));
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: UniversalAppBar(),
-        body: SafeArea(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: TypeAheadField(
-                    textFieldConfiguration: TextFieldConfiguration(
-                        controller: typeAheadController,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Fees per',
-                            labelStyle: TextStyle(fontSize: 14))),
-                    suggestionsCallback: (pattern) => list.where((item) =>
-                        item.toLowerCase().contains(pattern.toLowerCase())),
-                    itemBuilder: (context, suggestion) {
-                      print("---------------------");
-                      print(suggestion);
-                      return ListTile(
-                        title: Text(suggestion.toString()),
+    return BlocListener<UpdatefeeBloc, UpdatefeeState>(
+      listener: (context, state) {
+        if (state is FeesSnackBar) {
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      },
+      child: Scaffold(
+          appBar: UniversalAppBar(),
+          body: SafeArea(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('freelanceUserInfo')
+                  .where('uid', isEqualTo: id)
+                  .snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Something went wrong');
+                }
+
+                if (snapshot.hasData == true) {
+                  return ListView(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data() as Map<String, dynamic>;
+                      return ChangeFeesWidget(
+                        durationLabel: data["duration"],
+                        feesLabel: data["fees"],
                       );
-                    },
-                    onSuggestionSelected: (suggestion) {
-                      typeAheadController.text = suggestion.toString();
-                      print(suggestion);
-                    },
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextfieldCustom(
-                  mycontroller: labelController,
-                  label: feeslabel,
-                  maxleng: 5,
-                ),
-              ],
+                    }).toList(),
+                  );
+                }
+
+                return Center(child: CircularProgressIndicator());
+              },
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(onPressed: () {}, child: Text("update")),
-            ),
-          ],
-        )));
+          )),
+    );
   }
 }

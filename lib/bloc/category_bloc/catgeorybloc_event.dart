@@ -3,10 +3,8 @@ part of 'catgeorybloc_bloc.dart';
 @immutable
 abstract class CategoryblocEvent {}
 
-class MusicCatgEvnt extends CategoryblocEvent {}
+class SelectedCtg extends CategoryblocEvent {
+  final String category;
 
-class EduCatgEvnt extends CategoryblocEvent {}
-
-class ArtCatgEvnt extends CategoryblocEvent {}
-
-class WebdevCatgEvnt extends CategoryblocEvent {}
+  SelectedCtg({required this.category});
+}

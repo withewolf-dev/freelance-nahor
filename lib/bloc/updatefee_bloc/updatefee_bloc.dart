@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:meta/meta.dart';
 
 part 'updatefee_event.dart';
@@ -14,5 +15,17 @@ class UpdatefeeBloc extends Bloc<UpdatefeeEvent, UpdatefeeState> {
     UpdatefeeEvent event,
   ) async* {
     // TODO: implement mapEventToState
+    if (event is UpdateFees) {
+      yield FeesLoading(loading: true);
+      try {
+        await updateFees(event.fees, event.duration);
+
+        yield FeesLoading(loading: false);
+
+        yield FeesSnackBar();
+      } catch (e) {
+        print(e);
+      }
+    }
   }
 }

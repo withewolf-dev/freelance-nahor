@@ -14,15 +14,18 @@ class CategoryBloc extends Bloc<CategoryblocEvent, CategoryblocState> {
     CategoryblocEvent event,
   ) async* {
     // TODO: implement mapEventToState
-    if (event is MusicCatgEvnt) {
-      yield Music();
-    }
-    if (event is ArtCatgEvnt) {
-      yield Art();
-    }
+    if (event is SelectedCtg) {
+      if (event.category == "music") {
+        yield Music();
+      }
 
-    if (event is EduCatgEvnt) {
-      yield Education();
+      if (event.category == "art") {
+        yield Art();
+      }
+
+      if (event.category == "educational") {
+        yield Education();
+      }
     }
   }
 }

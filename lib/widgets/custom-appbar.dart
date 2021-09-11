@@ -22,7 +22,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return BlocBuilder<GoogleSigninBloc, GoogleSigninState>(
       builder: (context, state) {
         if (state is UserType) {
-          print(state.type);
+          print("${state.type} feed");
           if (state.type == "freelance") {
             return AppBar(
               backgroundColor: Colors.white,
@@ -43,7 +43,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       context.pushRoute(Setting());
                     },
                     icon: Icon(
-                      Icons.cloud_circle,
+                      Icons.settings,
                       color: Colors.black,
                     )),
               ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
 
 class Category extends StatefulWidget {
   const Category({Key? key}) : super(key: key);
@@ -9,26 +11,10 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: CategoryName(),
-    );
-  }
-}
+  int selectedIndex = 0;
+  static List categoriesList = ["educational", "art", "music"];
+  String category = categoriesList[0];
 
-class CategoryName extends StatefulWidget {
-  const CategoryName({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  _CategoryNameState createState() => _CategoryNameState();
-}
-
-class _CategoryNameState extends State<CategoryName> {
-  int selectedIndex = 1;
-  static List categoriesList = ["educational", "artist", "editor"];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -54,7 +40,10 @@ class _CategoryNameState extends State<CategoryName> {
               onPressed: () {
                 setState(() {
                   selectedIndex = index;
+                  category = categoriesList[selectedIndex];
                 });
+                BlocProvider.of<CategoryBloc>(context)
+                    .add(SelectedCtg(category: category));
               },
               child: Text(
                 categoriesList[index],
