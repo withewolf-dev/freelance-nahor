@@ -8,8 +8,45 @@ class RequestPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: UniversalAppBar(),
-        body: Center(
-          child: Text("data"),
+        body: SingleChildScrollView(
+          child: Container(
+            height: 800,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      TextField(
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter Phone no.'),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      TextField(
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter city/town name'),
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      TextField(
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Enter Description for your task.'),
+                        maxLength: 150,
+                        maxLines: 7,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ));
   }
 }
