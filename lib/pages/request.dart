@@ -43,6 +43,13 @@ class RequestPage extends StatelessWidget {
                       )
                     ],
                   ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Send Request"),
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.black)),
+                  )
                 ],
               ),
             ),
