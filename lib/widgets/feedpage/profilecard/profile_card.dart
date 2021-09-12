@@ -9,7 +9,7 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 190,
+      height: 160,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
@@ -17,23 +17,28 @@ class ProfileCard extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              height: 120,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 2.0,
-                    spreadRadius: 1.0,
-                    color: Color(0xff30221f),
-                  ),
-                ],
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80",
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: AspectRatio(
+                aspectRatio: 4 / 4,
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        // blurRadius: 2.0,
+                        // spreadRadius: 1.0,
+                        color: Color(0xff30221f),
+                      ),
+                    ],
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                        "https://images.unsplash.com/photo-1611695434369-a8f5d76ceb7b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80",
+                      ),
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
-                borderRadius: BorderRadius.circular(20.0),
               ),
             ),
           ),
@@ -49,15 +54,15 @@ class ProfileCard extends StatelessWidget {
                 Text(
                   name,
                   style: TextStyle(
-                    fontSize: 17,
+                    fontSize: 20,
                     color: Colors.black,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 Text(
                   bio,
                   style: TextStyle(
-                    color: Color(0xffaeaeae),
+                    color: Colors.black54,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -67,27 +72,42 @@ class ProfileCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "\$\t",
+                          '\u{20B9}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(0xffd17842),
                           ),
                         ),
                         Text(
-                          "4.20 per day",
+                          "560 / month",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                       ],
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xffd17842),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Icon(Icons.add, size: 30, color: Colors.white),
+                    Row(
+                      children: [
+                        Text(
+                          '4.5',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xffd17842),
+                              fontSize: 12),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xffd17842),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child:
+                                Icon(Icons.star, size: 15, color: Colors.white),
+                          ),
+                        )
+                      ],
                     )
                   ],
                 )
