@@ -11,6 +11,8 @@ import '../pages/auth/auth_flow/freelance/registration.dart' as _i5;
 import '../pages/auth/auth_flow/hire/hireSignup.dart' as _i6;
 import '../pages/auth/FreelanceSignup.dart' as _i4;
 import '../pages/feedpage.dart' as _i7;
+import '../pages/freelance-request-details.dart' as _i19;
+import '../pages/notification.dart' as _i18;
 import '../pages/ProfileSheet.dart' as _i9;
 import '../pages/request.dart' as _i17;
 import '../pages/settings/changebio.dart' as _i11;
@@ -126,6 +128,16 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i17.RequestPage();
+        }),
+    NotificationScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i18.NotificationScreen();
+        }),
+    FreelanceReqDetails.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i19.FreelanceReqDetails();
         })
   };
 
@@ -147,7 +159,10 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(ChangeTitleRoute.name, path: '/change-title-page'),
         _i1.RouteConfig(UploadWorkRoute.name, path: '/upload-work-page'),
         _i1.RouteConfig(ChangeCatgRoute.name, path: '/change-catg-page'),
-        _i1.RouteConfig(RequestRoute.name, path: '/request-page')
+        _i1.RouteConfig(RequestRoute.name, path: '/request-page'),
+        _i1.RouteConfig(NotificationScreen.name, path: '/notification-screen'),
+        _i1.RouteConfig(FreelanceReqDetails.name,
+            path: '/freelance-req-details')
       ];
 }
 
@@ -332,4 +347,16 @@ class RequestRoute extends _i1.PageRouteInfo {
   const RequestRoute() : super(name, path: '/request-page');
 
   static const String name = 'RequestRoute';
+}
+
+class NotificationScreen extends _i1.PageRouteInfo {
+  const NotificationScreen() : super(name, path: '/notification-screen');
+
+  static const String name = 'NotificationScreen';
+}
+
+class FreelanceReqDetails extends _i1.PageRouteInfo {
+  const FreelanceReqDetails() : super(name, path: '/freelance-req-details');
+
+  static const String name = 'FreelanceReqDetails';
 }

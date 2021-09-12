@@ -27,14 +27,10 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
 
         if (userExist == true) {
           // await Future.delayed(Duration(seconds: 2));
-          String usertype = await _authentication.userTypecheck(user.user?.uid);
-          print("$usertype userexist");
 
           yield PushToFeed();
 
           yield GoogleSigninLoading(loading: false);
-
-          yield UserType(type: usertype);
         }
         if (userExist == false) {
           await _authentication.logout();
