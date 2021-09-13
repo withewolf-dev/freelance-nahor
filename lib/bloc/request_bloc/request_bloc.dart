@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:meta/meta.dart';
 
 part 'request_event.dart';
@@ -19,7 +20,7 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
       yield ReqLoading(loading: true);
 
       try {
-        // await req
+        await sendReqst(event.phonenum, event.descp, event.address);
         yield ReqLoading(loading: false);
         yield ReqSnackbar();
       } catch (e) {

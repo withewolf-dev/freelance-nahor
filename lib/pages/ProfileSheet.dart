@@ -8,8 +8,14 @@ import 'package:auto_route/auto_route.dart';
 class ProfileSheet extends StatelessWidget {
   final String name;
   final String bio;
+  final String freelancerId;
+
   const ProfileSheet(
-      {Key? key, required this.context, required this.name, required this.bio})
+      {Key? key,
+      required this.context,
+      required this.name,
+      required this.bio,
+      required this.freelancerId})
       : super(key: key);
 
   final BuildContext context;

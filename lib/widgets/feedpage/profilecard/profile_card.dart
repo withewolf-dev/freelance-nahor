@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 class ProfileCard extends StatelessWidget {
   final String name;
   final String bio;
-  const ProfileCard({Key? key, required this.name, required this.bio})
+  final String freelancerId;
+
+  const ProfileCard(
+      {Key? key,
+      required this.name,
+      required this.bio,
+      required this.freelancerId})
       : super(key: key);
 
   @override

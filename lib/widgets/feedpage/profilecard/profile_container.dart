@@ -5,7 +5,13 @@ import 'package:kilo/widgets/feedpage/profilecard/profile_card.dart';
 class ProfileContainer extends StatefulWidget {
   final String name;
   final String bio;
-  const ProfileContainer({Key? key, required this.bio, required this.name})
+  final String freelancerId;
+
+  const ProfileContainer(
+      {Key? key,
+      required this.bio,
+      required this.name,
+      required this.freelancerId})
       : super(key: key);
 
   @override
@@ -27,12 +33,14 @@ class _ProfileContainerState extends State<ProfileContainer> {
                         BorderRadius.vertical(top: Radius.circular(20))),
                 context: context,
                 builder: (BuildContext context) => Sheet.ProfileSheet(
+                      freelancerId: widget.freelancerId,
                       context: context,
                       name: widget.name,
                       bio: widget.bio,
                     ));
           },
           child: ProfileCard(
+            freelancerId: widget.freelancerId,
             bio: widget.bio,
             name: widget.name,
           ),

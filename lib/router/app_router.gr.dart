@@ -75,7 +75,8 @@ class AppRouter extends _i1.RootStackRouter {
               key: args.key,
               context: args.context,
               name: args.name,
-              bio: args.bio);
+              bio: args.bio,
+              freelancerId: args.freelancerId);
         }),
     SearchScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -126,8 +127,10 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     RequestRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i17.RequestPage();
+        builder: (data) {
+          final args = data.argsAs<RequestRouteArgs>(
+              orElse: () => const RequestRouteArgs());
+          return _i17.RequestPage(key: args.key);
         }),
     NotificationScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -230,19 +233,28 @@ class ProfileSheet extends _i1.PageRouteInfo<ProfileSheetArgs> {
   ProfileSheet(
       {_i2.Key? key,
       required _i2.BuildContext context,
-      required String name,
-      required String bio})
+      required String name0,
+      required String bio,
+      required String freelancerId})
       : super(name,
             path: '/profile-sheet',
             args: ProfileSheetArgs(
-                key: key, context: context, name: name, bio: bio));
+                key: key,
+                context: context,
+                name: name,
+                bio: bio,
+                freelancerId: freelancerId));
 
   static const String name = 'ProfileSheet';
 }
 
 class ProfileSheetArgs {
   const ProfileSheetArgs(
-      {this.key, required this.context, required this.name, required this.bio});
+      {this.key,
+      required this.context,
+      required this.name,
+      required this.bio,
+      required this.freelancerId});
 
   final _i2.Key? key;
 
@@ -251,6 +263,8 @@ class ProfileSheetArgs {
   final String name;
 
   final String bio;
+
+  final String freelancerId;
 }
 
 class SearchScreen extends _i1.PageRouteInfo<SearchScreenArgs> {
@@ -343,10 +357,17 @@ class ChangeCatgRouteArgs {
   final _i2.Key? key;
 }
 
-class RequestRoute extends _i1.PageRouteInfo {
-  const RequestRoute() : super(name, path: '/request-page');
+class RequestRoute extends _i1.PageRouteInfo<RequestRouteArgs> {
+  RequestRoute({_i2.Key? key})
+      : super(name, path: '/request-page', args: RequestRouteArgs(key: key));
 
   static const String name = 'RequestRoute';
+}
+
+class RequestRouteArgs {
+  const RequestRouteArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class NotificationScreen extends _i1.PageRouteInfo {

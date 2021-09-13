@@ -1,6 +1,5 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:kilo/pages/ProfileSheet.dart';
 import 'package:kilo/pages/auth/auth_flow/freelance/registration.dart';
 import 'package:kilo/pages/auth/auth_flow/hire/hireSignup.dart';
 import 'package:kilo/pages/auth/FreelanceSignup.dart';
@@ -27,7 +26,6 @@ import 'package:kilo/widgets/searchscreen/searchScreen.dart';
     AutoRoute(page: HireSignuPage),
     AutoRoute(page: FeedPage),
     AutoRoute(page: Setting),
-    AutoRoute(page: ProfileSheet),
     AutoRoute(page: SearchScreen),
     AutoRoute(page: ChangeBioPage),
     AutoRoute(page: ChangeFeesPage),

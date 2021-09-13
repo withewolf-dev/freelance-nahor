@@ -41,7 +41,11 @@ class _SearchResultState extends State<SearchResult> {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
                 print("data['name'] ${data['name']}");
-                return ProfileContainer(bio: data['bio'], name: data['name']);
+                return ProfileContainer(
+                  bio: data['bio'],
+                  name: data['name'],
+                  freelancerId: data['id'],
+                );
               }).toList(),
             );
           }

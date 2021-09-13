@@ -5,9 +5,9 @@ abstract class RequestEvent {}
 
 class SendRequest extends RequestEvent {
   final String phonenum;
-  final String city;
+  final String address;
   final String descp;
 
   SendRequest(
-      {required this.city, required this.descp, required this.phonenum});
+      {required this.address, required this.descp, required this.phonenum});
 }

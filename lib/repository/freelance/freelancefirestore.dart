@@ -13,13 +13,28 @@ CollectionReference userRole =
 CollectionReference freelanceUserInfo =
     FirebaseFirestore.instance.collection("freelanceUserInfo");
 
+CollectionReference freelanceRqst =
+    FirebaseFirestore.instance.collection("freelanceRqst");
+
 final user = FirebaseAuth.instance.currentUser;
 final String docId = user!.uid.toString().substring(8);
 
-Future addUserType(userType, uid) {
+Future<void> addUserType(userType, uid) {
   return userRole
       .add({'userType': userType, 'uid': uid})
       .then((value) => print("User type Added"))
+      .catchError((error) => print("Failed to add user: $error"));
+}
+
+Future<void> sendReqst(String phonenum, String descrp, String address) {
+  return freelanceRqst
+      .add({
+        'phonenum': phonenum,
+        'descrp': descrp,
+        'address': address,
+        'id': user!.uid
+      })
+      .then((value) => print("send request "))
       .catchError((error) => print("Failed to add user: $error"));
 }
 
