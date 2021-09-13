@@ -21,25 +21,29 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
     if (event is OnGoogleSignIn) {
       yield GoogleSigninLoading(loading: true);
       try {
-        UserCredential user = await _authentication.googleSignup();
+        UserCredential? user = await _authentication.googleSignup();
 
-        bool userExist = await _authentication.userExist(user.user?.uid);
+        if (user != null) {
+          bool userExist = await _authentication.userExist(user.user?.uid);
 
-        if (userExist == true) {
-          // await Future.delayed(Duration(seconds: 2));
+          if (userExist == true) {
+            // await Future.delayed(Duration(seconds: 2));
 
-          yield PushToFeed();
+            yield PushToFeed();
 
+            yield GoogleSigninLoading(loading: false);
+          }
+          if (userExist == false) {
+            await _authentication.logout();
+
+            await Future.delayed(Duration(seconds: 1));
+
+            yield GoogleSigninLoading(loading: false);
+
+            yield NoUserAccount();
+          }
+        } else {
           yield GoogleSigninLoading(loading: false);
-        }
-        if (userExist == false) {
-          await _authentication.logout();
-
-          await Future.delayed(Duration(seconds: 1));
-
-          yield GoogleSigninLoading(loading: false);
-
-          yield NoUserAccount();
         }
       } catch (e) {
         print(e);

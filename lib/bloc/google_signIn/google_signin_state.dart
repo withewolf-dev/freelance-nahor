@@ -35,3 +35,5 @@ class Testing extends GoogleSigninState {
   final String type;
   Testing({required this.type});
 }
+
+class PushToHome extends GoogleSigninState {}

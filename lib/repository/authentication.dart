@@ -15,17 +15,22 @@ class Authentication {
   Future googleSignup() async {
     try {
       final googleUser = await googleSignin.signIn();
-      if (googleUser == null) return;
-      _user = googleUser;
 
-      final googleAuth = await googleUser.authentication;
+      // if (googleUser == null) return ;
+      if (googleUser != null) {
+        _user = googleUser;
 
-      final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+        final googleAuth = await googleUser.authentication;
 
-      final signedUpUser =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-      return signedUpUser;
+        final credential = GoogleAuthProvider.credential(
+            accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+        final signedUpUser =
+            await FirebaseAuth.instance.signInWithCredential(credential);
+        return signedUpUser;
+      } else {
+        return null;
+      }
     } on FirebaseAuthException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);
