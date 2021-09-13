@@ -23,11 +23,11 @@ class FeedPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
-                  catg.Category(),
-                  SizedBox(
+                  const catg.Category(),
+                  const SizedBox(
                     height: 20,
                   ),
                 ],
@@ -73,7 +73,7 @@ class _SearchButtonState extends State<SearchButton> {
                   Icons.search,
                   color: Colors.black87,
                 ),
-                hintText: "Search you're looking for",
+                hintText: "Search by name",
                 hintStyle: TextStyle(color: Colors.grey, fontSize: 15)),
           ),
         ));
@@ -97,20 +97,22 @@ class FeedHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            width: 220,
+            // width: 180,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 CircleAvatar(
                   backgroundImage: NetworkImage(user!.photoURL!),
                   radius: 20,
                 ),
-                Text(
-                  user!.displayName!,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    user!.displayName!.toString().split(" ").first,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
                 )
               ],
             ),

@@ -38,10 +38,16 @@ class ProfileSheet extends StatelessWidget {
                 height: 150,
               ),
               ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black)),
                   onPressed: () {
                     context.pushRoute(RequestRoute());
                   },
-                  child: Text("Apply")),
+                  child: Text(
+                    "Ping",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  )),
             ],
           ),
         ),

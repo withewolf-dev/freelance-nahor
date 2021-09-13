@@ -19,6 +19,7 @@ class RequestPage extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       TextField(
+                        maxLength: 10,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Enter Phone no.'),
