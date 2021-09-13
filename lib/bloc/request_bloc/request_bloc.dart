@@ -20,7 +20,11 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
       yield ReqLoading(loading: true);
 
       try {
-        await sendReqst(event.phonenum, event.descp, event.address);
+        await sendReqst(
+          event.phonenum,
+          event.descp,
+          event.address,
+        );
         yield ReqLoading(loading: false);
         yield ReqSnackbar();
       } catch (e) {

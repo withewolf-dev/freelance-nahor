@@ -1,10 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/request_bloc/request_bloc.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
 
 class RequestPage extends StatelessWidget {
-  RequestPage({Key? key}) : super(key: key);
+  RequestPage({
+    Key? key,
+  }) : super(key: key);
+
   final snackBar = SnackBar(content: Text("Request send"));
 
   final addressController = TextEditingController();
@@ -65,9 +69,10 @@ class RequestPage extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         BlocProvider.of<RequestBloc>(context).add(SendRequest(
-                            address: addressController.text,
-                            descp: descriptionController.text,
-                            phonenum: phonenumController.text));
+                          address: addressController.text,
+                          descp: descriptionController.text,
+                          phonenum: phonenumController.text,
+                        ));
                       },
                       child: BlocBuilder<RequestBloc, RequestState>(
                         builder: (context, state) {

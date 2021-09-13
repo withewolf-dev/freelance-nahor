@@ -8,6 +8,9 @@ class SendRequest extends RequestEvent {
   final String address;
   final String descp;
 
-  SendRequest(
-      {required this.address, required this.descp, required this.phonenum});
+  SendRequest({
+    required this.address,
+    required this.descp,
+    required this.phonenum,
+  });
 }

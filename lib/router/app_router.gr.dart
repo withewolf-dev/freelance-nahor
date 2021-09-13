@@ -11,19 +11,18 @@ import '../pages/auth/auth_flow/freelance/registration.dart' as _i5;
 import '../pages/auth/auth_flow/hire/hireSignup.dart' as _i6;
 import '../pages/auth/FreelanceSignup.dart' as _i4;
 import '../pages/feedpage.dart' as _i7;
-import '../pages/freelance-request-details.dart' as _i19;
-import '../pages/notification.dart' as _i18;
-import '../pages/ProfileSheet.dart' as _i9;
-import '../pages/request.dart' as _i17;
-import '../pages/settings/changebio.dart' as _i11;
-import '../pages/settings/changecatg.dart' as _i16;
-import '../pages/settings/changefees.dart' as _i12;
-import '../pages/settings/changePhonenum.dart' as _i13;
-import '../pages/settings/changetitle.dart' as _i14;
+import '../pages/freelance-request-details.dart' as _i18;
+import '../pages/notification.dart' as _i17;
+import '../pages/request.dart' as _i16;
+import '../pages/settings/changebio.dart' as _i10;
+import '../pages/settings/changecatg.dart' as _i15;
+import '../pages/settings/changefees.dart' as _i11;
+import '../pages/settings/changePhonenum.dart' as _i12;
+import '../pages/settings/changetitle.dart' as _i13;
 import '../pages/settings/setting.dart' as _i8;
-import '../pages/settings/uploadwork.dart' as _i15;
+import '../pages/settings/uploadwork.dart' as _i14;
 import '../pages/welcomepage.dart' as _i3;
-import '../widgets/searchscreen/searchScreen.dart' as _i10;
+import '../widgets/searchscreen/searchScreen.dart' as _i9;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -67,80 +66,69 @@ class AppRouter extends _i1.RootStackRouter {
               data.argsAs<SettingArgs>(orElse: () => const SettingArgs());
           return _i8.Setting(key: args.key);
         }),
-    ProfileSheet.name: (routeData) => _i1.MaterialPageX<dynamic>(
-        routeData: routeData,
-        builder: (data) {
-          final args = data.argsAs<ProfileSheetArgs>();
-          return _i9.ProfileSheet(
-              key: args.key,
-              context: args.context,
-              name: args.name,
-              bio: args.bio,
-              freelancerId: args.freelancerId);
-        }),
     SearchScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<SearchScreenArgs>(
               orElse: () => const SearchScreenArgs());
-          return _i10.SearchScreen(key: args.key);
+          return _i9.SearchScreen(key: args.key);
         }),
     ChangeBioRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ChangeBioRouteArgs>(
               orElse: () => const ChangeBioRouteArgs());
-          return _i11.ChangeBioPage(key: args.key);
+          return _i10.ChangeBioPage(key: args.key);
         }),
     ChangeFeesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ChangeFeesRouteArgs>(
               orElse: () => const ChangeFeesRouteArgs());
-          return _i12.ChangeFeesPage(key: args.key);
+          return _i11.ChangeFeesPage(key: args.key);
         }),
     ChangePhonenumRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ChangePhonenumRouteArgs>(
               orElse: () => const ChangePhonenumRouteArgs());
-          return _i13.ChangePhonenumPage(key: args.key);
+          return _i12.ChangePhonenumPage(key: args.key);
         }),
     ChangeTitleRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i14.ChangeTitlePage();
+          return const _i13.ChangeTitlePage();
         }),
     UploadWorkRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<UploadWorkRouteArgs>(
               orElse: () => const UploadWorkRouteArgs());
-          return _i15.UploadWorkPage(key: args.key);
+          return _i14.UploadWorkPage(key: args.key);
         }),
     ChangeCatgRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<ChangeCatgRouteArgs>(
               orElse: () => const ChangeCatgRouteArgs());
-          return _i16.ChangeCatgPage(key: args.key);
+          return _i15.ChangeCatgPage(key: args.key);
         }),
     RequestRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (data) {
           final args = data.argsAs<RequestRouteArgs>(
               orElse: () => const RequestRouteArgs());
-          return _i17.RequestPage(key: args.key);
+          return _i16.RequestPage(key: args.key);
         }),
     NotificationScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i18.NotificationScreen();
+          return const _i17.NotificationScreen();
         }),
     FreelanceReqDetails.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i19.FreelanceReqDetails();
+          return const _i18.FreelanceReqDetails();
         })
   };
 
@@ -153,7 +141,6 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(HireSignuRoute.name, path: '/hire-signu-page'),
         _i1.RouteConfig(FeedRoute.name, path: '/feed-page'),
         _i1.RouteConfig(Setting.name, path: '/Setting'),
-        _i1.RouteConfig(ProfileSheet.name, path: '/profile-sheet'),
         _i1.RouteConfig(SearchScreen.name, path: '/search-screen'),
         _i1.RouteConfig(ChangeBioRoute.name, path: '/change-bio-page'),
         _i1.RouteConfig(ChangeFeesRoute.name, path: '/change-fees-page'),
@@ -227,44 +214,6 @@ class SettingArgs {
   const SettingArgs({this.key});
 
   final _i2.Key? key;
-}
-
-class ProfileSheet extends _i1.PageRouteInfo<ProfileSheetArgs> {
-  ProfileSheet(
-      {_i2.Key? key,
-      required _i2.BuildContext context,
-      required String name0,
-      required String bio,
-      required String freelancerId})
-      : super(name,
-            path: '/profile-sheet',
-            args: ProfileSheetArgs(
-                key: key,
-                context: context,
-                name: name,
-                bio: bio,
-                freelancerId: freelancerId));
-
-  static const String name = 'ProfileSheet';
-}
-
-class ProfileSheetArgs {
-  const ProfileSheetArgs(
-      {this.key,
-      required this.context,
-      required this.name,
-      required this.bio,
-      required this.freelancerId});
-
-  final _i2.Key? key;
-
-  final _i2.BuildContext context;
-
-  final String name;
-
-  final String bio;
-
-  final String freelancerId;
 }
 
 class SearchScreen extends _i1.PageRouteInfo<SearchScreenArgs> {
