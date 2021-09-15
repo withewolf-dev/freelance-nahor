@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kilo/router/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class FreelanceNoti extends StatelessWidget {
   final String texts;
@@ -7,7 +9,9 @@ class FreelanceNoti extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.pushRoute(FreelanceReqDetails());
+      },
       child: Ink(
         height: 70,
         decoration: BoxDecoration(

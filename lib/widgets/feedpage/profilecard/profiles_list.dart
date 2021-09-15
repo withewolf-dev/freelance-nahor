@@ -56,7 +56,7 @@ class _ProfilesListState extends State<ProfilesList> {
                 return ProfileContainer(
                   bio: data['bio'],
                   name: data['name'],
-                  freelancerId: data['id'],
+                  freelancerId: "id",
                 );
               }).toList(),
             );
