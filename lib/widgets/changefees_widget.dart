@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:kilo/bloc/updatefee_bloc/updatefee_bloc.dart';
 import 'package:kilo/widgets/settings/textfieldcustom.dart';
 
@@ -16,12 +15,6 @@ class ChangeFeesWidget extends StatelessWidget {
   final TextEditingController labelController = TextEditingController();
   final TextEditingController typeAheadController = TextEditingController();
 
-  final List<String> list = [
-    "days",
-    "hour",
-    "months",
-    "weekly",
-  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,32 +22,21 @@ class ChangeFeesWidget extends StatelessWidget {
       children: [
         Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                "duration: put duration as one of the following (day/month/week/year). e.g Rs 400/month",
+                style: TextStyle(fontSize: 11),
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TypeAheadField(
-                textFieldConfiguration: TextFieldConfiguration(
-                    controller: typeAheadController,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: durationLabel,
-                        labelStyle: TextStyle(fontSize: 14))),
-                suggestionsCallback: (pattern) => list.where((item) =>
-                    item.toLowerCase().contains(pattern.toLowerCase())),
-                itemBuilder: (context, suggestion) {
-                  print("---------------------");
-                  print(suggestion);
-                  return ListTile(
-                    title: Text(suggestion.toString()),
-                  );
-                },
-                onSuggestionSelected: (suggestion) {
-                  typeAheadController.text = suggestion.toString();
-                  print(suggestion);
-                },
-              ),
+            TextfieldCustom(
+              mycontroller: typeAheadController,
+              label: durationLabel,
+              hintext: "duration",
+              //maxleng: 5,
             ),
             SizedBox(
               height: 20,
@@ -62,6 +44,7 @@ class ChangeFeesWidget extends StatelessWidget {
             TextfieldCustom(
               mycontroller: labelController,
               label: feesLabel,
+              hintext: "price",
               //maxleng: 5,
             ),
           ],

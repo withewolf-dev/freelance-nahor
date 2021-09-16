@@ -18,6 +18,7 @@ import '../pages/settings/changebio.dart' as _i10;
 import '../pages/settings/changecatg.dart' as _i15;
 import '../pages/settings/changefees.dart' as _i11;
 import '../pages/settings/changePhonenum.dart' as _i12;
+import '../pages/settings/changePric.dart' as _i19;
 import '../pages/settings/changetitle.dart' as _i13;
 import '../pages/settings/setting.dart' as _i8;
 import '../pages/settings/uploadwork.dart' as _i14;
@@ -129,6 +130,13 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i18.FreelanceReqDetails();
+        }),
+    ChangePriceRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<ChangePriceRouteArgs>(
+              orElse: () => const ChangePriceRouteArgs());
+          return _i19.ChangePricePage(key: args.key);
         })
   };
 
@@ -152,7 +160,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(RequestRoute.name, path: '/request-page'),
         _i1.RouteConfig(NotificationScreen.name, path: '/notification-screen'),
         _i1.RouteConfig(FreelanceReqDetails.name,
-            path: '/freelance-req-details')
+            path: '/freelance-req-details'),
+        _i1.RouteConfig(ChangePriceRoute.name, path: '/change-price-page')
       ];
 }
 
@@ -329,4 +338,18 @@ class FreelanceReqDetails extends _i1.PageRouteInfo {
   const FreelanceReqDetails() : super(name, path: '/freelance-req-details');
 
   static const String name = 'FreelanceReqDetails';
+}
+
+class ChangePriceRoute extends _i1.PageRouteInfo<ChangePriceRouteArgs> {
+  ChangePriceRoute({_i2.Key? key})
+      : super(name,
+            path: '/change-price-page', args: ChangePriceRouteArgs(key: key));
+
+  static const String name = 'ChangePriceRoute';
+}
+
+class ChangePriceRouteArgs {
+  const ChangePriceRouteArgs({this.key});
+
+  final _i2.Key? key;
 }

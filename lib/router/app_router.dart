@@ -8,6 +8,7 @@ import 'package:kilo/pages/freelance-request-details.dart';
 import 'package:kilo/pages/notification.dart';
 import 'package:kilo/pages/request.dart';
 import 'package:kilo/pages/settings/changePhonenum.dart';
+import 'package:kilo/pages/settings/changePric.dart';
 import 'package:kilo/pages/settings/changebio.dart';
 import 'package:kilo/pages/settings/changecatg.dart';
 import 'package:kilo/pages/settings/changefees.dart';
@@ -36,6 +37,7 @@ import 'package:kilo/widgets/searchscreen/searchScreen.dart';
     AutoRoute(page: RequestPage),
     AutoRoute(page: NotificationScreen),
     AutoRoute(page: FreelanceReqDetails),
+    AutoRoute(page: ChangePricePage),
   ],
 )
 class $AppRouter {}

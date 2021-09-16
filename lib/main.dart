@@ -11,6 +11,7 @@ import 'package:kilo/bloc/logout_bloc/logout_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 import 'package:kilo/bloc/request_bloc/request_bloc.dart';
 import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
+import 'package:kilo/bloc/updatePrice/updateprice_bloc.dart';
 import 'package:kilo/bloc/updatecategory_bloc/updatecategory_bloc.dart';
 import 'package:kilo/bloc/updatefee_bloc/updatefee_bloc.dart';
 
@@ -43,6 +44,8 @@ Future<void> main() async {
           create: (BuildContext context) => UpdatefeeBloc()),
       BlocProvider<RequestBloc>(
           create: (BuildContext context) => RequestBloc()),
+      BlocProvider<UpdatepriceBloc>(
+          create: (BuildContext context) => UpdatepriceBloc()),
     ],
     child: App(),
   ));

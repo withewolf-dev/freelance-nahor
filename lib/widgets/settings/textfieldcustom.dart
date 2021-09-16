@@ -5,12 +5,14 @@ class TextfieldCustom extends StatefulWidget {
   final String? label;
   final int? maxleng;
   final int? maxline;
+  final String? hintext;
   TextfieldCustom(
       {Key? key,
       required this.mycontroller,
       this.label,
       this.maxleng,
-      this.maxline})
+      this.maxline,
+      this.hintext})
       : super(key: key);
 
   @override
@@ -36,7 +38,7 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
             decoration: InputDecoration(
               focusColor: Colors.purple.shade400,
               border: OutlineInputBorder(),
-              // labelText: widget.label,
+              hintText: widget.hintext,
             ),
             maxLength: widget.maxleng != null ? widget.maxleng : null,
             maxLines: widget.maxline != null ? widget.maxline : null,

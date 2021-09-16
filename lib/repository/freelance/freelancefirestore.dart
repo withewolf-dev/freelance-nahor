@@ -111,3 +111,11 @@ Future<void> createFreelanceInfo(
     "url": url
   });
 }
+
+Future<void> updatePrice(String price) {
+  return freelanceUserInfo
+      .doc(docId)
+      .update({"price": price})
+      .then((value) => print("price updated"))
+      .catchError((onError) => print(onError));
+}
