@@ -28,9 +28,10 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
             yield AccountExist();
           }
           if (noExistingUser == false) {
+            await createFreelanceInfo(user.user!.displayName!, user.user!.uid,
+                user.user!.photoURL!, user.user!.uid.toString().substring(8));
             await addUserType(event.type, user.user!.uid);
             yield PushToFeed();
-            await Future.delayed(Duration(seconds: 1));
 
             yield SignupLoading(loadingState: false);
           }

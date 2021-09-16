@@ -58,7 +58,7 @@ class ProfileCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  name.split(" ").first,
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.black,

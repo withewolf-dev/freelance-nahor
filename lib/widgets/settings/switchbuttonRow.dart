@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kilo/repository/freelance/freelancefirestore.dart';
 
 class SwitchButtonRow extends StatefulWidget {
   final String title;
@@ -33,7 +34,7 @@ class _SwitchButtonRowState extends State<SwitchButtonRow> {
                 setState(() {
                   isActive = val;
                 });
-                print(val);
+                accountActive(val);
               },
             ))
       ],

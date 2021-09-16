@@ -71,8 +71,6 @@ class Authentication {
     try {
       final snapshot = await userRole.where("uid", isEqualTo: uid).get();
 
-      print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ${snapshot.docs.isNotEmpty}");
-
       return snapshot.docs.isNotEmpty;
     } on FirebaseException catch (e) {
       print(e);
@@ -95,7 +93,6 @@ class Authentication {
     try {
       await googleSignin.disconnect();
       await FirebaseAuth.instance.signOut();
-      print("logout ho gaya");
     } on FirebaseAuthException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);

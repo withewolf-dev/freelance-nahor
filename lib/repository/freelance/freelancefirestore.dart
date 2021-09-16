@@ -76,8 +76,8 @@ Future<void> updateCategory(int selectedIndex, String categoryName) {
       .catchError((error) => print("Failed to update user: $error"));
 }
 
-Future<void> accountActive(bool isActive, String docId) {
-  return users
+Future<void> accountActive(bool isActive) {
+  return freelanceUserInfo
       .doc(docId)
       .update({
         'isActive': isActive,
@@ -90,10 +90,24 @@ doesFieldExist(uid) async {
   try {
     final snapshot = await userRole.where("uid", isEqualTo: uid).get();
 
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ${snapshot.docs.isNotEmpty}");
-
     return snapshot.docs.isNotEmpty;
   } on FirebaseException catch (e) {
     print(e);
   }
+}
+
+Future<void> createFreelanceInfo(
+    String name, String uid, String url, String id) async {
+  return freelanceUserInfo.doc(id).set({
+    "bio": "",
+    "bioTitle": "",
+    "categoryName": "",
+    "duration": "",
+    "fees": "",
+    "isActive": true,
+    "name": name,
+    "selectedIndex": 0,
+    "uid": uid,
+    "url": url
+  });
 }

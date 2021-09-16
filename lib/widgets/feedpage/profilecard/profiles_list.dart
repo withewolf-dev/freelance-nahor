@@ -12,7 +12,7 @@ class ProfilesList extends StatefulWidget {
 }
 
 class _ProfilesListState extends State<ProfilesList> {
-  String category = "education";
+  String category = "educational";
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class _ProfilesListState extends State<ProfilesList> {
       },
       child: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection('freelance')
-            .where('category', isEqualTo: category)
+            .collection('freelanceUserInfo')
+            .where('categoryName', isEqualTo: category)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -53,6 +53,8 @@ class _ProfilesListState extends State<ProfilesList> {
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
+                print(data["bioTitle"]);
+                print("object");
                 return ProfileContainer(
                   bio: data['bio'],
                   name: data['name'],

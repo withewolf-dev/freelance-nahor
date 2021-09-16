@@ -6,7 +6,6 @@ import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/settings/buildAccountOptionRow.dart';
 import 'package:kilo/widgets/settings/switchbuttonRow.dart';
-import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
 class Setting extends StatelessWidget {

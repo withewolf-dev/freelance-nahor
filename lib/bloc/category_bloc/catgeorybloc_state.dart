@@ -10,7 +10,7 @@ class Music extends CategoryblocState {
 }
 
 class Education extends CategoryblocState {
-  final String category = "education";
+  final String category = "educational";
 }
 
 class Art extends CategoryblocState {
