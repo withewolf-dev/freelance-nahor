@@ -6,12 +6,20 @@ class ProfileContainer extends StatefulWidget {
   final String name;
   final String bio;
   final String freelancerId;
+  final String bioTitle;
+  final String price;
+  final bool isActive;
+  final String profilePic;
 
   const ProfileContainer(
       {Key? key,
       required this.bio,
       required this.name,
-      required this.freelancerId})
+      required this.freelancerId,
+      required this.bioTitle,
+      required this.price,
+      required this.isActive,
+      required this.profilePic})
       : super(key: key);
 
   @override
@@ -37,12 +45,20 @@ class _ProfileContainerState extends State<ProfileContainer> {
                       context: context,
                       name: widget.name,
                       bio: widget.bio,
+                      bioTitle: widget.bioTitle,
+                      isActive: widget.isActive,
+                      price: widget.price,
+                      profilePic: widget.profilePic,
                     ));
           },
           child: ProfileCard(
             freelancerId: widget.freelancerId,
             bio: widget.bio,
             name: widget.name,
+            bioTitle: widget.bioTitle,
+            isActive: widget.isActive,
+            price: widget.price,
+            profilePic: widget.profilePic,
           ),
         ),
         SizedBox(

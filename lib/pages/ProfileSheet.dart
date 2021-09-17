@@ -9,13 +9,21 @@ class ProfileSheet extends StatelessWidget {
   final String name;
   final String bio;
   final String freelancerId;
+  final String bioTitle;
+  final String price;
+  final bool isActive;
+  final String profilePic;
 
   const ProfileSheet(
       {Key? key,
       required this.context,
       required this.name,
       required this.bio,
-      required this.freelancerId})
+      required this.freelancerId,
+      required this.bioTitle,
+      required this.price,
+      required this.isActive,
+      required this.profilePic})
       : super(key: key);
 
   final BuildContext context;
@@ -41,9 +49,12 @@ class ProfileSheet extends StatelessWidget {
               ProfileSheetHeader(
                 name: name,
               ),
-              ProfileSheetBio(bio: bio),
+              ProfileSheetBio(
+                bioTitle: bioTitle,
+                bio: bio,
+              ),
               sliderProfile.Slider(
-                freelancerId: "9ge1m2XnYhWUdzZJewUKfbuebWq1",
+                freelancerId: freelancerId,
               ),
               SizedBox(
                 height: 150,
@@ -53,8 +64,7 @@ class ProfileSheet extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.black)),
                   onPressed: () {
-                    context.pushRoute(RequestRoute(
-                        freelancerId: "9ge1m2XnYhWUdzZJewUKfbuebWq1"));
+                    context.pushRoute(RequestRoute(freelancerId: freelancerId));
                   },
                   child: Text(
                     "Ping",

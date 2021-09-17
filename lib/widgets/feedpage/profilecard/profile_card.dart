@@ -4,12 +4,20 @@ class ProfileCard extends StatelessWidget {
   final String name;
   final String bio;
   final String freelancerId;
+  final String bioTitle;
+  final String price;
+  final bool isActive;
+  final String profilePic;
 
   const ProfileCard(
       {Key? key,
       required this.name,
       required this.bio,
-      required this.freelancerId})
+      required this.freelancerId,
+      required this.bioTitle,
+      required this.price,
+      required this.isActive,
+      required this.profilePic})
       : super(key: key);
 
   @override
@@ -39,7 +47,7 @@ class ProfileCard extends StatelessWidget {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                        "https://images.unsplash.com/photo-1611695434369-a8f5d76ceb7b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80",
+                        profilePic,
                       ),
                     ),
                     borderRadius: BorderRadius.circular(20.0),
@@ -66,7 +74,7 @@ class ProfileCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  bio,
+                  bioTitle,
                   style: TextStyle(
                     color: Colors.black54,
                     fontWeight: FontWeight.w600,
@@ -85,7 +93,7 @@ class ProfileCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "560 / month",
+                          price,
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,

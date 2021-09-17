@@ -42,9 +42,13 @@ class _SearchResultState extends State<SearchResult> {
                     document.data() as Map<String, dynamic>;
                 print("data['name'] ${data['name']}");
                 return ProfileContainer(
+                  bioTitle: "bio title",
+                  isActive: false,
+                  price: "500",
                   bio: data['bio'],
                   name: data['name'],
                   freelancerId: data['id'],
+                  profilePic: "asdasd",
                 );
               }).toList(),
             );

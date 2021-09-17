@@ -53,12 +53,15 @@ class _ProfilesListState extends State<ProfilesList> {
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
-                print(data["bioTitle"]);
-                print("object");
+
                 return ProfileContainer(
+                  bioTitle: data["bioTitle"],
+                  isActive: data["isActive"],
+                  price: data["price"],
                   bio: data['bio'],
                   name: data['name'],
-                  freelancerId: "id",
+                  freelancerId: data['uid'],
+                  profilePic: data["url"],
                 );
               }).toList(),
             );
