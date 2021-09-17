@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 class ProfileSheetHeader extends StatelessWidget {
   final String name;
-  const ProfileSheetHeader({Key? key, required this.name}) : super(key: key);
+  final String profilePic;
+  const ProfileSheetHeader(
+      {Key? key, required this.name, required this.profilePic})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +16,10 @@ class ProfileSheetHeader extends StatelessWidget {
         children: <Widget>[
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://images.unsplash.com/photo-1607288946505-df9c0a0f3545?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"),
+              backgroundImage: NetworkImage(profilePic),
               radius: 30.0,
             ),
-            title: Text(name),
+            title: Text(name.split(" ").first),
             subtitle: Text('Top rated'),
           ),
         ],

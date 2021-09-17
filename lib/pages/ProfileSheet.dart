@@ -47,6 +47,7 @@ class ProfileSheet extends StatelessWidget {
               ),
               divider(),
               ProfileSheetHeader(
+                profilePic: profilePic,
                 name: name,
               ),
               ProfileSheetBio(

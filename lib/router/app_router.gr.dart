@@ -127,7 +127,7 @@ class AppRouter extends _i1.RootStackRouter {
     NotificationScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i17.NotificationScreen();
+          return _i17.NotificationScreen();
         }),
     FreelanceReqDetails.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,

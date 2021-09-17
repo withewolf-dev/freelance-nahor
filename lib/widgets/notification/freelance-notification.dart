@@ -3,8 +3,8 @@ import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
 
 class FreelanceNoti extends StatelessWidget {
-  final String texts;
-  const FreelanceNoti({Key? key, required this.texts}) : super(key: key);
+  final notification;
+  const FreelanceNoti({Key? key, required this.notification}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,18 @@ class FreelanceNoti extends StatelessWidget {
         child: Center(
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Text(
-              texts,
-              textDirection: TextDirection.ltr,
-            ),
+            child: notification["accepted"] == true
+                ? Text(
+                    "${notification["freelancerName"]} has accepted your request and will contact you",
+                    textDirection: TextDirection.ltr)
+                : Text(
+                    "${notification["name"]} has sent a freelance Request. Click to view more detail",
+                    textDirection: TextDirection.ltr),
           ),
         ),
       ),
     );
   }
+
+  toList() {}
 }
