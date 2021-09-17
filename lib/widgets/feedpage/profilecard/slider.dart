@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Slider extends StatelessWidget {
+  Slider({Key? key}) : super(key: key);
+
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
     'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -11,22 +13,41 @@ class Slider extends StatelessWidget {
     'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
     'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
   ];
+  final CollectionReference workmedia =
+      FirebaseFirestore.instance.collection('workmedia');
+
+  getMedia() async {
+    List? images;
+    try {
+      final snapshot = await workmedia
+          .where("uid", isEqualTo: "9ge1m2XnYhWUdzZJewUKfbuebWq1")
+          .get();
+
+      images = snapshot.docs[0]["images"];
+    } on FirebaseException catch (e) {
+      print(e);
+    }
+    return images;
+  }
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference workmedia =
-        FirebaseFirestore.instance.collection('workmedia');
     return FutureBuilder(
-        future: workmedia.where("uid", isEqualTo: "asds").get(),
+        future: getMedia(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            CarouselSlider(
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          }
+          if (snapshot.hasData == true) {
+            print(snapshot.data);
+            final imglist = snapshot.data as List;
+            return CarouselSlider(
               options: CarouselOptions(
                 enlargeCenterPage: true,
                 enableInfiniteScroll: false,
                 autoPlay: true,
               ),
-              items: imgList
+              items: imglist
                   .map((e) => ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Stack(

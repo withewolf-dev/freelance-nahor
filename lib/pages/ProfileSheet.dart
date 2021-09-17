@@ -33,10 +33,10 @@ class ProfileSheet extends StatelessWidget {
           child: ListView(
             controller: controller,
             children: <Widget>[
-              SizedBox(
-                height: 5,
+              const Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: const CancelButton(),
               ),
-              const CancelButton(),
               divider(),
               ProfileSheetHeader(
                 name: name,
