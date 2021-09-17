@@ -52,14 +52,22 @@ class ChangePricePage extends StatelessWidget {
                         children: [
                           Column(
                             children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Text(
+                                  "*price by default will be displayed in rupees.The format for the price should be price/(day/week/month/year/). E.g 400/day or 500/month",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
                               SizedBox(
                                 height: 20,
                               ),
                               TextfieldCustom(
                                 mycontroller: priceController,
                                 label: data["price"],
-                                maxleng: 200,
-                                maxline: 8,
+                                hintext: "price/",
                               ),
                             ],
                           ),
