@@ -65,7 +65,8 @@ class ProfileSheet extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.black)),
                   onPressed: () {
-                    context.pushRoute(RequestRoute(freelancerId: freelancerId));
+                    context.pushRoute(RequestRoute(
+                        freelancerId: freelancerId, freelancerName: name));
                   },
                   child: Text(
                     "Ping",

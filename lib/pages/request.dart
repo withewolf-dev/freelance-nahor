@@ -5,11 +5,15 @@ import 'package:kilo/bloc/request_bloc/request_bloc.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
 
 class RequestPage extends StatelessWidget {
-  RequestPage({Key? key, @PathParam('freelancerId') required this.freelancerId})
+  RequestPage(
+      {Key? key,
+      @PathParam('freelancerId') required this.freelancerId,
+      @PathParam('freelancerName') required this.freelancerName})
       : super(key: key);
 
   final snackBar = SnackBar(content: Text("Request send"));
   final String freelancerId;
+  final String freelancerName;
 
   final addressController = TextEditingController();
   final phonenumController = TextEditingController();
@@ -74,6 +78,7 @@ class RequestPage extends StatelessWidget {
                           descp: descriptionController.text,
                           phonenum: phonenumController.text,
                           freelancerId: freelancerId,
+                          freelancerName: freelancerName,
                         ));
                         addressController.text = "";
                         descriptionController.text = "";

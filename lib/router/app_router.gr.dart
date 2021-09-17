@@ -120,14 +120,19 @@ class AppRouter extends _i1.RootStackRouter {
           final pathParams = data.pathParams;
           final args = data.argsAs<RequestRouteArgs>(
               orElse: () => RequestRouteArgs(
-                  freelancerId: pathParams.getString('freelancerId')));
+                  freelancerId: pathParams.getString('freelancerId'),
+                  freelancerName: pathParams.getString('freelancerName')));
           return _i16.RequestPage(
-              key: args.key, freelancerId: args.freelancerId);
+              key: args.key,
+              freelancerId: args.freelancerId,
+              freelancerName: args.freelancerName);
         }),
     NotificationScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return _i17.NotificationScreen();
+        builder: (data) {
+          final args = data.argsAs<NotificationScreenArgs>(
+              orElse: () => const NotificationScreenArgs());
+          return _i17.NotificationScreen(key: args.key);
         }),
     FreelanceReqDetails.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -319,26 +324,44 @@ class ChangeCatgRouteArgs {
 }
 
 class RequestRoute extends _i1.PageRouteInfo<RequestRouteArgs> {
-  RequestRoute({_i2.Key? key, required String freelancerId})
+  RequestRoute(
+      {_i2.Key? key,
+      required String freelancerId,
+      required String freelancerName})
       : super(name,
             path: '/request-page',
-            args: RequestRouteArgs(key: key, freelancerId: freelancerId));
+            args: RequestRouteArgs(
+                key: key,
+                freelancerId: freelancerId,
+                freelancerName: freelancerName));
 
   static const String name = 'RequestRoute';
 }
 
 class RequestRouteArgs {
-  const RequestRouteArgs({this.key, required this.freelancerId});
+  const RequestRouteArgs(
+      {this.key, required this.freelancerId, required this.freelancerName});
 
   final _i2.Key? key;
 
   final String freelancerId;
+
+  final String freelancerName;
 }
 
-class NotificationScreen extends _i1.PageRouteInfo {
-  const NotificationScreen() : super(name, path: '/notification-screen');
+class NotificationScreen extends _i1.PageRouteInfo<NotificationScreenArgs> {
+  NotificationScreen({_i2.Key? key})
+      : super(name,
+            path: '/notification-screen',
+            args: NotificationScreenArgs(key: key));
 
   static const String name = 'NotificationScreen';
+}
+
+class NotificationScreenArgs {
+  const NotificationScreenArgs({this.key});
+
+  final _i2.Key? key;
 }
 
 class FreelanceReqDetails extends _i1.PageRouteInfo {

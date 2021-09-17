@@ -26,7 +26,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
         future: auth.userTypecheck(id),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            print(snapshot.data);
             return AppBar(
               backgroundColor: Colors.white,
               //brightness: Brightness.light,
