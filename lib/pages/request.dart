@@ -5,11 +5,11 @@ import 'package:kilo/bloc/request_bloc/request_bloc.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
 
 class RequestPage extends StatelessWidget {
-  RequestPage({
-    Key? key,
-  }) : super(key: key);
+  RequestPage({Key? key, @PathParam('freelancerId') required this.freelancerId})
+      : super(key: key);
 
   final snackBar = SnackBar(content: Text("Request send"));
+  final String freelancerId;
 
   final addressController = TextEditingController();
   final phonenumController = TextEditingController();
@@ -42,7 +42,7 @@ class RequestPage extends StatelessWidget {
                           maxLength: 10,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
-                              hintText: 'Enter Phone no.'),
+                              hintText: 'Enter your Phone no.'),
                         ),
                         SizedBox(
                           height: 40,
@@ -51,7 +51,7 @@ class RequestPage extends StatelessWidget {
                           controller: addressController,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
-                              hintText: 'Enter city/town name'),
+                              hintText: 'Enter your city/town name'),
                         ),
                         SizedBox(
                           height: 40,
@@ -60,7 +60,8 @@ class RequestPage extends StatelessWidget {
                           controller: descriptionController,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
-                              hintText: 'Enter Description for your task.'),
+                              hintText:
+                                  'Enter Description of the freelance work.'),
                           maxLength: 150,
                           maxLines: 7,
                         )
@@ -72,7 +73,11 @@ class RequestPage extends StatelessWidget {
                           address: addressController.text,
                           descp: descriptionController.text,
                           phonenum: phonenumController.text,
+                          freelancerId: freelancerId,
                         ));
+                        addressController.text = "";
+                        descriptionController.text = "";
+                        phonenumController.text = "";
                       },
                       child: BlocBuilder<RequestBloc, RequestState>(
                         builder: (context, state) {

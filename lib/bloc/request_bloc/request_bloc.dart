@@ -21,9 +21,10 @@ class RequestBloc extends Bloc<RequestEvent, RequestState> {
 
       try {
         await sendReqst(
-          event.phonenum,
-          event.descp,
-          event.address,
+          address: event.address,
+          descrp: event.descp,
+          freelancerId: event.freelancerId,
+          phonenum: event.phonenum,
         );
         yield ReqLoading(loading: false);
         yield ReqSnackbar();

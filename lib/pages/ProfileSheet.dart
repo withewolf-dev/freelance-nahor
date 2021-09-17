@@ -42,7 +42,9 @@ class ProfileSheet extends StatelessWidget {
                 name: name,
               ),
               ProfileSheetBio(bio: bio),
-              sliderProfile.Slider(),
+              sliderProfile.Slider(
+                freelancerId: "9ge1m2XnYhWUdzZJewUKfbuebWq1",
+              ),
               SizedBox(
                 height: 150,
               ),
@@ -51,7 +53,8 @@ class ProfileSheet extends StatelessWidget {
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.black)),
                   onPressed: () {
-                    context.pushRoute(RequestRoute());
+                    context.pushRoute(RequestRoute(
+                        freelancerId: "9ge1m2XnYhWUdzZJewUKfbuebWq1"));
                   },
                   child: Text(
                     "Ping",
