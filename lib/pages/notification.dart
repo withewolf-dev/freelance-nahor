@@ -1,39 +1,31 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/widgets/notification/freelance-notification.dart';
+import 'package:kilo/widgets/notification/hire-notification.dart';
 
-class NotificationScreen extends StatefulWidget {
+class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key}) : super(key: key);
 
-  @override
-  _NotificationScreenState createState() => _NotificationScreenState();
-}
-
-class _NotificationScreenState extends State<NotificationScreen> {
+  final id = FirebaseAuth.instance.currentUser!.uid;
+  final auth = Authentication();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('freelanceRqst')
-              .snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasData == true) {
-              print(snapshot.data!.docs.map((e) => e["address"]));
-              return ListView(
-                  children: snapshot.data!.docs
-                      .map((e) => FreelanceNoti(
-                            notification: e,
-                          ))
-                      .toList());
-            }
-
-            return Center(child: CircularProgressIndicator());
-          },
-        ),
-      ),
-    );
+        body: SafeArea(
+            child: FutureBuilder(
+      future: auth.userTypecheck(id),
+      builder: (context, snapshot) {
+        if (snapshot.data == "freelance") {
+          return FreelanceNoti();
+        }
+        if (snapshot.data == "hire") {
+          return HireNotif(texts: "texts");
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    )));
   }
 }
