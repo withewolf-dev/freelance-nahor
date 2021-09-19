@@ -46,6 +46,22 @@ Future<void> sendReqst({
       .catchError((error) => print("Failed to add user: $error"));
 }
 
+Future<void> responseToReqst({
+  required bool accepted,
+  required String toId,
+}) {
+  return freelanceRqst
+      .add({
+        'accepted': accepted,
+        'fromId': user!.uid,
+        'toId': toId,
+        'type': "response",
+        'name': user!.displayName!.split(" ")
+      })
+      .then((value) => print("send request "))
+      .catchError((error) => print("Failed to add user: $error"));
+}
+
 Future<void> updateBio(String bio, String bioTitle) {
   return freelanceUserInfo
       .doc(docId)
