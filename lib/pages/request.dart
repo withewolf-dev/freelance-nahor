@@ -64,7 +64,7 @@ class RequestPage extends StatelessWidget {
                               border: OutlineInputBorder(),
                               hintText:
                                   'Enter Description of the freelance work.'),
-                          maxLength: 150,
+                          maxLength: 200,
                           maxLines: 7,
                         )
                       ],

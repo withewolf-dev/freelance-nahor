@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:kilo/widgets/universal_appbar.dart';
 
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key});
@@ -11,6 +12,7 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: UniversalAppBar(),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
