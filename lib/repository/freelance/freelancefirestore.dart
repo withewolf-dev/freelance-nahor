@@ -27,22 +27,20 @@ Future<void> addUserType(userType, uid) {
 }
 
 Future<void> sendReqst({
-  required String phonenum,
+  required String phone,
   required String descrp,
   required String address,
-  required String freelancerId,
-  required String freelancerName,
+  required String toId,
 }) {
   return freelanceRqst
       .add({
-        'phonenum': phonenum,
+        'phonenum': phone,
         'descrp': descrp,
         'address': address,
-        'hireId': user!.uid,
-        'freelancerId': freelancerId,
-        'accepted': false,
-        'freelancerName': freelancerName,
-        'hirename': user!.displayName!.split(" ")
+        'fromId': user!.uid,
+        'toId': toId,
+        'type': "request",
+        'name': user!.displayName!.split(" ")
       })
       .then((value) => print("send request "))
       .catchError((error) => print("Failed to add user: $error"));
