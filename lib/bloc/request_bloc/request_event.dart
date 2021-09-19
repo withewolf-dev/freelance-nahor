@@ -7,14 +7,12 @@ class SendRequest extends RequestEvent {
   final String phonenum;
   final String address;
   final String descp;
-  final String freelancerId;
-  final String freelancerName;
+  final String toId;
 
   SendRequest({
     required this.address,
     required this.descp,
     required this.phonenum,
-    required this.freelancerId,
-    required this.freelancerName,
+    required this.toId,
   });
 }

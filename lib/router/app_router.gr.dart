@@ -120,12 +120,9 @@ class AppRouter extends _i1.RootStackRouter {
           final pathParams = data.pathParams;
           final args = data.argsAs<RequestRouteArgs>(
               orElse: () => RequestRouteArgs(
-                  freelancerId: pathParams.getString('freelancerId'),
-                  freelancerName: pathParams.getString('freelancerName')));
+                  freelancerId: pathParams.getString('freelancerId')));
           return _i16.RequestPage(
-              key: args.key,
-              freelancerId: args.freelancerId,
-              freelancerName: args.freelancerName);
+              key: args.key, freelancerId: args.freelancerId);
         }),
     NotificationScreen.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -324,29 +321,20 @@ class ChangeCatgRouteArgs {
 }
 
 class RequestRoute extends _i1.PageRouteInfo<RequestRouteArgs> {
-  RequestRoute(
-      {_i2.Key? key,
-      required String freelancerId,
-      required String freelancerName})
+  RequestRoute({_i2.Key? key, required String freelancerId})
       : super(name,
             path: '/request-page',
-            args: RequestRouteArgs(
-                key: key,
-                freelancerId: freelancerId,
-                freelancerName: freelancerName));
+            args: RequestRouteArgs(key: key, freelancerId: freelancerId));
 
   static const String name = 'RequestRoute';
 }
 
 class RequestRouteArgs {
-  const RequestRouteArgs(
-      {this.key, required this.freelancerId, required this.freelancerName});
+  const RequestRouteArgs({this.key, required this.freelancerId});
 
   final _i2.Key? key;
 
   final String freelancerId;
-
-  final String freelancerName;
 }
 
 class NotificationScreen extends _i1.PageRouteInfo<NotificationScreenArgs> {
