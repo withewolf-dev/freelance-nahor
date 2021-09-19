@@ -19,9 +19,32 @@ class FreelanceReqDetails extends StatelessWidget {
           children: <Widget>[
             Text(details["phone"]),
             Text(details["descrp"]),
+            Text(details["address"]),
+            ResponedButton(
+              toId: details["fromId"],
+            )
           ],
         ),
       )),
+    );
+  }
+}
+
+class ResponedButton extends StatelessWidget {
+  final String toId;
+  const ResponedButton({Key? key, required this.toId}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          OutlinedButton(onPressed: () {}, child: Text("Accept")),
+          OutlinedButton(onPressed: () {}, child: Text("Decline"))
+        ],
+      ),
     );
   }
 }

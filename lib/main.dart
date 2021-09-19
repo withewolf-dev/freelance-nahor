@@ -10,6 +10,7 @@ import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
 import 'package:kilo/bloc/logout_bloc/logout_bloc.dart';
 import 'package:kilo/bloc/phoneVerify/phoneverify_bloc.dart';
 import 'package:kilo/bloc/request_bloc/request_bloc.dart';
+import 'package:kilo/bloc/responseToRqst/responsetorqst_bloc.dart';
 import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
 import 'package:kilo/bloc/updatePrice/updateprice_bloc.dart';
 import 'package:kilo/bloc/updatecategory_bloc/updatecategory_bloc.dart';
@@ -46,6 +47,8 @@ Future<void> main() async {
           create: (BuildContext context) => RequestBloc()),
       BlocProvider<UpdatepriceBloc>(
           create: (BuildContext context) => UpdatepriceBloc()),
+      BlocProvider<ResponsetorqstBloc>(
+          create: (BuildContext context) => ResponsetorqstBloc()),
     ],
     child: App(),
   ));
