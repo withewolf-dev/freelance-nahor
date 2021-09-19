@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kilo/router/app_router.gr.dart';
+import 'package:auto_route/auto_route.dart';
 
 class NotificationScreen extends StatelessWidget {
   NotificationScreen({Key? key});
@@ -32,12 +34,16 @@ class NotificationScreen extends StatelessWidget {
                 return ListTile(
                   title: data["type"] == "request"
                       ? InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            context
+                                .pushRoute(FreelanceReqDetails(details: data));
+                          },
                           child: Text(
-                              "${data["responderName"]} has sent you a freelance request.Click! to view details"),
+                              "${data["name"]} has sent you a freelance request.Click! to view details"),
                         )
-                      : Text(
-                          "${data["responderName"]} has accepted your request"),
+                      : data["accepted"] == true
+                          ? Text("${data["name"]} has accepted your request")
+                          : Text("${data["name"]} has declined your request"),
                 );
               }).toList(),
             );

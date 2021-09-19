@@ -133,8 +133,12 @@ class AppRouter extends _i1.RootStackRouter {
         }),
     FreelanceReqDetails.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i18.FreelanceReqDetails();
+        builder: (data) {
+          final pathParams = data.pathParams;
+          final args = data.argsAs<FreelanceReqDetailsArgs>(
+              orElse: () =>
+                  FreelanceReqDetailsArgs(details: pathParams.get('details')));
+          return _i18.FreelanceReqDetails(key: args.key, details: args.details);
         }),
     ChangePriceRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
@@ -352,10 +356,21 @@ class NotificationScreenArgs {
   final _i2.Key? key;
 }
 
-class FreelanceReqDetails extends _i1.PageRouteInfo {
-  const FreelanceReqDetails() : super(name, path: '/freelance-req-details');
+class FreelanceReqDetails extends _i1.PageRouteInfo<FreelanceReqDetailsArgs> {
+  FreelanceReqDetails({_i2.Key? key, required dynamic details})
+      : super(name,
+            path: '/freelance-req-details',
+            args: FreelanceReqDetailsArgs(key: key, details: details));
 
   static const String name = 'FreelanceReqDetails';
+}
+
+class FreelanceReqDetailsArgs {
+  const FreelanceReqDetailsArgs({this.key, required this.details});
+
+  final _i2.Key? key;
+
+  final dynamic details;
 }
 
 class ChangePriceRoute extends _i1.PageRouteInfo<ChangePriceRouteArgs> {
