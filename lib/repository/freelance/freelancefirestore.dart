@@ -168,8 +168,10 @@ checkMediaLimit() async {
 }
 
 deleteMedia({required String imageurl}) async {
-  await workmedia.doc(docId).update({
+  final deletestorage = await workmedia.doc(docId).update({
     "images": FieldValue.arrayRemove([imageurl])
   });
-  return await FirebaseStorage.instance.ref().delete();
+
+  final deleteimage = await FirebaseStorage.instance.ref().delete();
+  return [deleteimage, deletestorage];
 }

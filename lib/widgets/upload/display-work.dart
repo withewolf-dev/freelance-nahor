@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
-import 'package:kilo/repository/freelance/freelancefirestore.dart';
 
 class Displaywork extends StatelessWidget {
   Displaywork({Key? key}) : super(key: key);
@@ -56,52 +55,41 @@ class ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UploadworkBloc, UploadworkState>(
-      builder: (context, state) {
-        if (state is MediaLoading) {
-          if (state.loading == true) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        }
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Stack(
-            children: [
-              Container(
-                height: 180.0,
-                width: 300.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(imageUrl),
-                    fit: BoxFit.fill,
-                  ),
-                  shape: BoxShape.rectangle,
-                ),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Stack(
+        children: [
+          Container(
+            height: 180.0,
+            width: 300.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(imageUrl),
+                fit: BoxFit.fill,
               ),
-              Positioned(
-                  top: -20,
-                  right: -25,
-                  //left: 10,
-                  child: InkWell(
-                    onTap: () {
-                      BlocProvider.of<UploadworkBloc>(context)
-                          .add(DeleteMedia(imageUrl: imageUrl));
-                    },
-                    child: Ink(
-                      child: Icon(
-                        Icons.cancel,
-                        size: 45,
-                        color: Colors.red.shade700,
-                      ),
-                    ),
-                  ))
-            ],
-            clipBehavior: Clip.none,
+              shape: BoxShape.rectangle,
+            ),
           ),
-        );
-      },
+          Positioned(
+              top: -20,
+              right: -25,
+              //left: 10,
+              child: InkWell(
+                onTap: () {
+                  BlocProvider.of<UploadworkBloc>(context)
+                      .add(DeleteMedia(imageUrl: imageUrl));
+                },
+                child: Ink(
+                  child: Icon(
+                    Icons.cancel,
+                    size: 45,
+                    color: Colors.red.shade700,
+                  ),
+                ),
+              ))
+        ],
+        clipBehavior: Clip.none,
+      ),
     );
   }
 }
