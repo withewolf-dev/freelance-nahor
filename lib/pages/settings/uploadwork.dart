@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -46,6 +47,7 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
         await task;
         String url = await uploadRef.getDownloadURL();
         print(url);
+        await updateWorkMedia(imageUrl: url);
         setState(() {
           progress = null;
         });

@@ -54,34 +54,37 @@ class ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          child: Image(
-              fit: BoxFit.fill,
-              height: 250,
-              width: 300,
-              image: NetworkImage(imageUrl)),
-        ),
-        Positioned(
-            top: -12,
-            right: -15,
-            //left: 10,
-            child: InkWell(
-              onTap: () {
-                print("on tap");
-              },
-              child: Ink(
-                child: Icon(
-                  Icons.cancel,
-                  size: 30,
-                  color: Colors.red.shade700,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            child: Image(
+                fit: BoxFit.fill,
+                height: 250,
+                width: 300,
+                image: NetworkImage(imageUrl)),
+          ),
+          Positioned(
+              top: -12,
+              right: -15,
+              //left: 10,
+              child: InkWell(
+                onTap: () {
+                  print("on tap");
+                },
+                child: Ink(
+                  child: Icon(
+                    Icons.cancel,
+                    size: 30,
+                    color: Colors.red.shade700,
+                  ),
                 ),
-              ),
-            ))
-      ],
-      clipBehavior: Clip.none,
+              ))
+        ],
+        clipBehavior: Clip.none,
+      ),
     );
   }
 }

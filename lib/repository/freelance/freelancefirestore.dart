@@ -16,6 +16,9 @@ CollectionReference freelanceUserInfo =
 CollectionReference freelanceRqst =
     FirebaseFirestore.instance.collection("freelanceRqst");
 
+CollectionReference workmedia =
+    FirebaseFirestore.instance.collection("workmedia");
+
 final user = FirebaseAuth.instance.currentUser;
 final String docId = user!.uid.toString().substring(8);
 
@@ -138,4 +141,14 @@ Future<void> updatePrice(String price) {
       .update({"price": price})
       .then((value) => print("price updated"))
       .catchError((onError) => print(onError));
+}
+
+Future<void> updateWorkMedia({required String? imageUrl}) {
+  return workmedia
+      .doc(docId)
+      .update({
+        "images": FieldValue.arrayUnion([imageUrl])
+      })
+      .then((value) => print("media Updated"))
+      .catchError((error) => print("Failed to update user: $error"));
 }
