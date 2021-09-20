@@ -17,7 +17,6 @@ class UploadWorkPage extends StatefulWidget {
 
 class _UploadWorkPageState extends State<UploadWorkPage> {
   int? x;
-
   double? progress;
 
   final ImagePicker _picker = ImagePicker();
@@ -46,8 +45,8 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
       try {
         await task;
         String url = await uploadRef.getDownloadURL();
-        print(url);
         await updateWorkMedia(imageUrl: url);
+
         setState(() {
           progress = null;
         });
@@ -85,8 +84,11 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: progress == null
-            ? () {
-                uploadFile();
+            ? () async {
+                var imagecoun = await checkMediaLimit();
+                if (imagecoun <= 3) {
+                  uploadFile();
+                }
               }
             : null,
         child: const Icon(Icons.upload_file_sharp),

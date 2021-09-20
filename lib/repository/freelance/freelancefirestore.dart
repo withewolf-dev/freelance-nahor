@@ -143,12 +143,24 @@ Future<void> updatePrice(String price) {
       .catchError((onError) => print(onError));
 }
 
-Future<void> updateWorkMedia({required String? imageUrl}) {
-  return workmedia
-      .doc(docId)
-      .update({
-        "images": FieldValue.arrayUnion([imageUrl])
-      })
-      .then((value) => print("media Updated"))
-      .catchError((error) => print("Failed to update user: $error"));
+Future<void> updateWorkMedia({required String? imageUrl}) async {
+  try {
+    return await workmedia.doc(docId).update({
+      "images": FieldValue.arrayUnion([imageUrl])
+    });
+  } catch (e) {
+    print(e);
+  }
+}
+
+checkMediaLimit() async {
+  var imageCount = [];
+  try {
+    final snapshot = await workmedia.where("uid", isEqualTo: user!.uid).get();
+
+    imageCount = snapshot.docs[0]["images"];
+  } catch (e) {
+    print(e);
+  }
+  return imageCount.length;
 }
