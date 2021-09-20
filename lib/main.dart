@@ -15,6 +15,7 @@ import 'package:kilo/bloc/searchbloc/searchbloc_bloc.dart';
 import 'package:kilo/bloc/updatePrice/updateprice_bloc.dart';
 import 'package:kilo/bloc/updatecategory_bloc/updatecategory_bloc.dart';
 import 'package:kilo/bloc/updatefee_bloc/updatefee_bloc.dart';
+import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +50,8 @@ Future<void> main() async {
           create: (BuildContext context) => UpdatepriceBloc()),
       BlocProvider<ResponsetorqstBloc>(
           create: (BuildContext context) => ResponsetorqstBloc()),
+      BlocProvider<UploadworkBloc>(
+          create: (BuildContext context) => UploadworkBloc()),
     ],
     child: App(),
   ));

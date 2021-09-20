@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kilo/bloc/uploadwork/uploadwork_bloc.dart';
+import 'package:kilo/repository/freelance/freelancefirestore.dart';
 
 class Displaywork extends StatelessWidget {
   Displaywork({Key? key}) : super(key: key);
@@ -27,7 +30,7 @@ class Displaywork extends StatelessWidget {
                   document.data()! as Map<String, dynamic>;
               final imagelist = data["images"] as List;
               return SizedBox(
-                height: double.infinity,
+                height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
                     itemCount: imagelist.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -53,40 +56,52 @@ class ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Stack(
-        children: [
-          Container(
-            height: 180.0,
-            width: 220.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(imageUrl),
-                fit: BoxFit.fill,
-              ),
-              shape: BoxShape.rectangle,
-            ),
-          ),
-          Positioned(
-              top: -12,
-              right: -15,
-              //left: 10,
-              child: InkWell(
-                onTap: () {
-                  print("on tap");
-                },
-                child: Ink(
-                  child: Icon(
-                    Icons.cancel,
-                    size: 30,
-                    color: Colors.red.shade700,
+    return BlocBuilder<UploadworkBloc, UploadworkState>(
+      builder: (context, state) {
+        if (state is MediaLoading) {
+          if (state.loading == true) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        }
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Stack(
+            children: [
+              Container(
+                height: 180.0,
+                width: 300.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(imageUrl),
+                    fit: BoxFit.fill,
                   ),
+                  shape: BoxShape.rectangle,
                 ),
-              ))
-        ],
-        clipBehavior: Clip.none,
-      ),
+              ),
+              Positioned(
+                  top: -20,
+                  right: -25,
+                  //left: 10,
+                  child: InkWell(
+                    onTap: () {
+                      BlocProvider.of<UploadworkBloc>(context)
+                          .add(DeleteMedia(imageUrl: imageUrl));
+                    },
+                    child: Ink(
+                      child: Icon(
+                        Icons.cancel,
+                        size: 45,
+                        color: Colors.red.shade700,
+                      ),
+                    ),
+                  ))
+            ],
+            clipBehavior: Clip.none,
+          ),
+        );
+      },
     );
   }
 }

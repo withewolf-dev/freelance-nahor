@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 
+import 'package:firebase_storage/firebase_storage.dart';
+
 CollectionReference freelanceUser =
     FirebaseFirestore.instance.collection('freelance');
 
@@ -163,4 +165,11 @@ checkMediaLimit() async {
     print(e);
   }
   return imageCount.length;
+}
+
+deleteMedia({required String imageurl}) async {
+  await workmedia.doc(docId).update({
+    "images": FieldValue.arrayRemove([imageurl])
+  });
+  return await FirebaseStorage.instance.ref().delete();
 }
