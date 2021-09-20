@@ -51,20 +51,26 @@ class FreelanceReqDetails extends StatelessWidget {
                   indent: 20,
                   endIndent: 20,
                 ),
-                Wrap(
+                Column(
                   children: <Widget>[
-                    Text(
-                      "Description-  ",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        "Description-  ",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                    Text(
-                      details["descrp"],
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        details["descrp"],
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     )
                   ],
@@ -108,95 +114,128 @@ class FreelanceReqDetails extends StatelessWidget {
   }
 }
 
-class ResponedButton extends StatelessWidget {
+class ResponedButton extends StatefulWidget {
   final String toId;
   const ResponedButton({Key? key, required this.toId}) : super(key: key);
 
   @override
+  _ResponedButtonState createState() => _ResponedButtonState();
+}
+
+class _ResponedButtonState extends State<ResponedButton> {
+  bool showbutton = true;
+  @override
   Widget build(BuildContext context) {
     return Container(
-      // width: 300,
-      child: BlocBuilder<ResponsetorqstBloc, ResponsetorqstState>(
-        builder: (context, state) {
-          if (state is RespLoading) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (state is ResState) {
-            if (state.resState == true) {
-              return Center(
-                child: MaterialButton(
-                    minWidth: double.infinity,
-                    height: 40,
-                    color: Colors.black,
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Text(
-                      "Accepted",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                          color: Colors.white),
-                    )),
-              );
-            }
-            if (state.resState == false) {
-              return Center(
-                child: MaterialButton(
-                    minWidth: double.infinity,
-                    height: 40,
-                    onPressed: () {},
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.black),
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Text(
-                      "Declined",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                    )),
-              );
-            }
-          }
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              MaterialButton(
-                  minWidth: 170,
-                  height: 40,
-                  onPressed: () {
-                    BlocProvider.of<ResponsetorqstBloc>(context)
-                        .add(Response(response: false, toId: toId));
-                  },
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(50)),
-                  child: Text(
-                    "Decline",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                  )),
-              MaterialButton(
-                  minWidth: 170,
-                  height: 40,
-                  color: Colors.black,
-                  onPressed: () {
-                    BlocProvider.of<ResponsetorqstBloc>(context)
-                        .add(Response(response: true, toId: toId));
-                  },
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(50)),
-                  child: Text(
-                    "Accept",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Colors.white),
-                  )),
-            ],
-          );
+        child: showbutton == true
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  MaterialButton(
+                      minWidth: 170,
+                      height: 40,
+                      onPressed: () {
+                        BlocProvider.of<ResponsetorqstBloc>(context)
+                            .add(Response(response: true, toId: widget.toId));
+                        setState(() {
+                          showbutton = false;
+                        });
+                      },
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Text(
+                        "Decline",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: Colors.black),
+                      )),
+                  MaterialButton(
+                      minWidth: 170,
+                      color: Colors.black,
+                      height: 40,
+                      onPressed: () {
+                        BlocProvider.of<ResponsetorqstBloc>(context)
+                            .add(Response(response: true, toId: widget.toId));
+                        setState(() {
+                          showbutton = false;
+                        });
+                      },
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Text(
+                        "Accepted",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: Colors.white),
+                      ))
+                ],
+              )
+            : Text("data"));
+  }
+}
+
+class AcceptedButton extends StatelessWidget {
+  final String title;
+  final bool pressed;
+  final String toId;
+  const AcceptedButton(
+      {Key? key,
+      required this.pressed,
+      required this.title,
+      required this.toId})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+        minWidth: pressed == true ? 170 : double.infinity,
+        color: Colors.black,
+        height: 40,
+        onPressed: () {
+          BlocProvider.of<ResponsetorqstBloc>(context)
+              .add(Response(response: true, toId: toId));
         },
-      ),
-    );
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(50)),
+        child: Text(
+          title,
+          style: TextStyle(
+              fontWeight: FontWeight.w600, fontSize: 18, color: Colors.white),
+        ));
+  }
+}
+
+class DeclinedButton extends StatelessWidget {
+  final String title;
+  final bool pressed;
+  final String toId;
+  const DeclinedButton(
+      {Key? key,
+      required this.pressed,
+      required this.title,
+      required this.toId})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+        minWidth: double.infinity,
+        height: 40,
+        onPressed: () {
+          BlocProvider.of<ResponsetorqstBloc>(context)
+              .add(Response(response: false, toId: toId));
+        },
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(50)),
+        child: Text(
+          title,
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+        ));
   }
 }

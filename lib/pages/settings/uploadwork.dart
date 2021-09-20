@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:kilo/widgets/upload/display-work.dart';
 
 class UploadWorkPage extends StatefulWidget {
   UploadWorkPage({Key? key}) : super(key: key);
@@ -41,8 +42,6 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
         }
       });
 
-      print("object");
-
       try {
         await task;
         String url = await uploadRef.getDownloadURL();
@@ -71,6 +70,10 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
               Text(
                 "upload work  url ",
                 textDirection: TextDirection.ltr,
+              ),
+              Displaywork(
+                imageUrl:
+                    "https://images.unsplash.com/photo-1611465577672-8fc7be1dc826?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
               ),
             ],
           ),

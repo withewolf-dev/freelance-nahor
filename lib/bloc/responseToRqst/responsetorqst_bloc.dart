@@ -23,6 +23,8 @@ class ResponsetorqstBloc
         //await responseToReqst(accepted: event.response, toId: event.toId);
         await Future.delayed(const Duration(milliseconds: 500));
         yield RespLoading(loading: false);
+        // responseStatus;
+        print("${event.response}, ${event.toId}");
         yield ResState(resState: event.response);
       } catch (e) {
         print(e);
