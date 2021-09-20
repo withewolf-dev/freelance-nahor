@@ -3,8 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Displaywork extends StatelessWidget {
-  final String imageUrl;
-  Displaywork({Key? key, required this.imageUrl}) : super(key: key);
+  Displaywork({Key? key}) : super(key: key);
 
   final id = FirebaseAuth.instance.currentUser!.uid;
   @override
@@ -28,7 +27,7 @@ class Displaywork extends StatelessWidget {
                   document.data()! as Map<String, dynamic>;
               final imagelist = data["images"] as List;
               return SizedBox(
-                height: MediaQuery.of(context).size.height,
+                height: double.infinity,
                 child: ListView.builder(
                     itemCount: imagelist.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -58,13 +57,16 @@ class ImageContainer extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Stack(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            child: Image(
+          Container(
+            height: 180.0,
+            width: 220.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(imageUrl),
                 fit: BoxFit.fill,
-                height: 250,
-                width: 300,
-                image: NetworkImage(imageUrl)),
+              ),
+              shape: BoxShape.rectangle,
+            ),
           ),
           Positioned(
               top: -12,
