@@ -62,20 +62,22 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: UniversalAppBar(),
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              if (progress != null) LinearProgressIndicator(),
-              Text(
-                "upload work  url ",
-                textDirection: TextDirection.ltr,
-              ),
-              Displaywork(
-                imageUrl:
-                    "https://images.unsplash.com/photo-1611465577672-8fc7be1dc826?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-              ),
-            ],
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              children: [
+                if (progress != null) LinearProgressIndicator(),
+                Text(
+                  "upload work  url ",
+                  textDirection: TextDirection.ltr,
+                ),
+                Displaywork(
+                  imageUrl:
+                      "https://images.unsplash.com/photo-1611465577672-8fc7be1dc826?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                ),
+              ],
+            ),
           ),
         ),
       ),
