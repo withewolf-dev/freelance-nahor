@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/logout_bloc/logout_bloc.dart';
 import 'package:kilo/pages/settings/changePric.dart';
+import 'package:kilo/pages/welcomepage.dart';
 import 'package:kilo/repository/authentication.dart';
 import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/settings/buildAccountOptionRow.dart';
@@ -110,6 +111,8 @@ class Setting extends StatelessWidget {
                 child: OutlinedButton(
                   onPressed: () {
                     BlocProvider.of<LogoutBloc>(context).add(Logout());
+                    // await auth.logout();
+                    //context.pushRoute(WelcomeRoute());
                   },
                   child: BlocBuilder<LogoutBloc, LogoutState>(
                     builder: (context, state) {

@@ -14,15 +14,19 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
       appBar: UniversalAppBar(),
       body: SafeArea(
-        child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
+        child: FutureBuilder<QuerySnapshot>(
+          future: FirebaseFirestore.instance
               .collection('freelanceRqst')
+              .orderBy("time", descending: true)
               .where("toId", isEqualTo: id)
-              .snapshots(),
+              .get(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text('Something went wrong');
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('No new notification'),
+              );
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {

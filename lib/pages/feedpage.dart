@@ -101,18 +101,22 @@ class FeedHeader extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 CircleAvatar(
-                  backgroundImage: NetworkImage(user!.photoURL!),
+                  backgroundImage: user != null
+                      ? NetworkImage(user!.photoURL.toString())
+                      : null,
                   radius: 20,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    user!.displayName!.toString().split(" ").first,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  child: user != null
+                      ? Text(
+                          user!.displayName!.toString().split(" ").first,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        )
+                      : null,
                 )
               ],
             ),

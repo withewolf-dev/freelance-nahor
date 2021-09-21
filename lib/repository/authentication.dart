@@ -91,8 +91,8 @@ class Authentication {
 
   logout() async {
     try {
-      await googleSignin.disconnect();
-      await FirebaseAuth.instance.signOut();
+      await googleSignin.signOut();
+      FirebaseAuth.instance.signOut();
     } on FirebaseAuthException catch (e) {
       print('Failed with error code: ${e.code}');
       print(e.message);
