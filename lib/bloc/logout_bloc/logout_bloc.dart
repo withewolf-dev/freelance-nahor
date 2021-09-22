@@ -24,6 +24,7 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
 
       try {
         await _auth.logout();
+
         yield PushToWelcome();
         yield Logoutloading(loading: false);
       } catch (e) {

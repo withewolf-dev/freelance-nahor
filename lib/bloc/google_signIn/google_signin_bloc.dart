@@ -18,8 +18,14 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
     GoogleSigninEvent event,
   ) async* {
     // TODO: implement mapEventToState
+
     if (event is OnGoogleSignIn) {
       yield GoogleSigninLoading(loading: true);
+      bool signedIn = (await _authentication.googleSignin.isSignedIn());
+
+      if (signedIn) {
+        _authentication.googleSignin.disconnect();
+      }
       try {
         UserCredential? user = await _authentication.googleSignup();
 

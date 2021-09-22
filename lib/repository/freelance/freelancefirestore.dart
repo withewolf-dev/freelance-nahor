@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
+import 'package:nanoid/nanoid.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -24,6 +25,8 @@ CollectionReference workmedia =
 final user = FirebaseAuth.instance.currentUser;
 final String docId = user!.uid.toString().substring(8);
 
+final newdocID = nanoid(10);
+
 Future<void> addUserType(userType, uid) {
   return userRole
       .add({'userType': userType, 'uid': uid})
@@ -45,7 +48,9 @@ Future<void> sendReqst({
         'fromId': user!.uid,
         'toId': toId,
         'type': "request",
-        'name': user!.displayName!.split(" ")
+        'name': user!.displayName!.split(" "),
+        'time': FieldValue.serverTimestamp(),
+        'docId': newdocID,
       })
       .then((value) => print("send request "))
       .catchError((error) => print("Failed to add user: $error"));
@@ -61,7 +66,8 @@ Future<void> responseToReqst({
         'fromId': user!.uid,
         'toId': toId,
         'type': "response",
-        'name': user!.displayName!.split(" ")
+        'name': user!.displayName!.split(" "),
+        'time': FieldValue.serverTimestamp(),
       })
       .then((value) => print("send request "))
       .catchError((error) => print("Failed to add user: $error"));
