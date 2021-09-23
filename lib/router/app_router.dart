@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:kilo/pages/auth/auth_flow/freelance/registration.dart';
 import 'package:kilo/pages/auth/auth_flow/hire/hireSignup.dart';
 import 'package:kilo/pages/auth/FreelanceSignup.dart';
+import 'package:kilo/pages/demo.dart';
 import 'package:kilo/pages/feedpage.dart';
 import 'package:kilo/pages/freelance-request-details.dart';
 import 'package:kilo/pages/notification.dart';
@@ -38,6 +39,7 @@ import 'package:kilo/widgets/searchscreen/searchScreen.dart';
     AutoRoute(page: NotificationScreen),
     AutoRoute(page: FreelanceReqDetails),
     AutoRoute(page: ChangePricePage),
+    AutoRoute(page: DemoPage),
   ],
 )
 class $AppRouter {}

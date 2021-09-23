@@ -17,8 +17,8 @@ class NotificationScreen extends StatelessWidget {
         child: FutureBuilder<QuerySnapshot>(
           future: FirebaseFirestore.instance
               .collection('freelanceRqst')
-              .orderBy("time", descending: true)
               .where("toId", isEqualTo: id)
+              .orderBy("time", descending: true)
               .get(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

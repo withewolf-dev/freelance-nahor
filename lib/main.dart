@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/app.dart';
 import 'package:kilo/bloc/authflow/authflow_bloc.dart';
 import 'package:kilo/bloc/bio_bloc/bio_bloc.dart';
+import 'package:kilo/bloc/bloc/demobloc_bloc.dart';
 import 'package:kilo/bloc/category_bloc/catgeorybloc_bloc.dart';
 import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
 import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
@@ -52,6 +53,8 @@ Future<void> main() async {
           create: (BuildContext context) => ResponsetorqstBloc()),
       BlocProvider<UploadworkBloc>(
           create: (BuildContext context) => UploadworkBloc()),
+      BlocProvider<DemoblocBloc>(
+          create: (BuildContext context) => DemoblocBloc()),
     ],
     child: App(),
   ));

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart' as _i2;
 import '../pages/auth/auth_flow/freelance/registration.dart' as _i5;
 import '../pages/auth/auth_flow/hire/hireSignup.dart' as _i6;
 import '../pages/auth/FreelanceSignup.dart' as _i4;
+import '../pages/demo.dart' as _i20;
 import '../pages/feedpage.dart' as _i7;
 import '../pages/freelance-request-details.dart' as _i18;
 import '../pages/notification.dart' as _i17;
@@ -146,6 +147,11 @@ class AppRouter extends _i1.RootStackRouter {
           final args = data.argsAs<ChangePriceRouteArgs>(
               orElse: () => const ChangePriceRouteArgs());
           return _i19.ChangePricePage(key: args.key);
+        }),
+    DemoRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i20.DemoPage();
         })
   };
 
@@ -170,7 +176,8 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(NotificationScreen.name, path: '/notification-screen'),
         _i1.RouteConfig(FreelanceReqDetails.name,
             path: '/freelance-req-details'),
-        _i1.RouteConfig(ChangePriceRoute.name, path: '/change-price-page')
+        _i1.RouteConfig(ChangePriceRoute.name, path: '/change-price-page'),
+        _i1.RouteConfig(DemoRoute.name, path: '/demo-page')
       ];
 }
 
@@ -385,4 +392,10 @@ class ChangePriceRouteArgs {
   const ChangePriceRouteArgs({this.key});
 
   final _i2.Key? key;
+}
+
+class DemoRoute extends _i1.PageRouteInfo {
+  const DemoRoute() : super(name, path: '/demo-page');
+
+  static const String name = 'DemoRoute';
 }

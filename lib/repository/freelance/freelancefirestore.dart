@@ -48,7 +48,7 @@ Future<void> sendReqst({
         'fromId': user!.uid,
         'toId': toId,
         'type': "request",
-        'name': user!.displayName!.split(" "),
+        'name': user!.displayName!.split(" ").first,
         'time': FieldValue.serverTimestamp(),
         'docId': newdocID,
       })
@@ -56,18 +56,19 @@ Future<void> sendReqst({
       .catchError((error) => print("Failed to add user: $error"));
 }
 
-Future<void> responseToReqst({
-  required bool accepted,
-  required String toId,
-}) {
+Future<void> responseToReqst(
+    {required bool accepted,
+    required String toId,
+    required String responseId}) {
   return freelanceRqst
       .add({
         'accepted': accepted,
         'fromId': user!.uid,
         'toId': toId,
         'type': "response",
-        'name': user!.displayName!.split(" "),
+        'name': user!.displayName!.split(" ").first,
         'time': FieldValue.serverTimestamp(),
+        'responseId': responseId,
       })
       .then((value) => print("send request "))
       .catchError((error) => print("Failed to add user: $error"));
@@ -180,4 +181,23 @@ deleteMedia({required String imageurl}) async {
 
   final deleteimage = await FirebaseStorage.instance.ref().delete();
   return [deleteimage, deletestorage];
+}
+
+checkResponseDoc({required String respId}) async {
+  bool? exist;
+  bool? accepted;
+  String? responseId;
+  try {
+    final snapshot =
+        await freelanceRqst.where("responseId", isEqualTo: respId).get();
+
+    exist = snapshot.docs[0].exists;
+    if (exist) {
+      accepted = snapshot.docs[0]["accepted"];
+      responseId = snapshot.docs[0]["responseId"];
+    }
+  } catch (e) {
+    print(e);
+  }
+  return [responseId, accepted];
 }

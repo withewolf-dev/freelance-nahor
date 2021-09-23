@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:http/http.dart';
-import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:meta/meta.dart';
 
 part 'authflow_event.dart';
@@ -17,7 +15,6 @@ class AuthflowBloc extends Bloc<AuthflowEvent, AuthflowState> {
   Stream<AuthflowState> mapEventToState(
     AuthflowEvent event,
   ) async* {
-    // TODO: implement mapEventToState
     if (event is StepOneEvent) {
       //yield CreateFreelanceUser(session: event.session, dept: event.dept);
       user.setSession(event.session);

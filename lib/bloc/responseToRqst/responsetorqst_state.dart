@@ -11,7 +11,13 @@ class RespLoading extends ResponsetorqstState {
 }
 
 class ResState extends ResponsetorqstState {
-  final bool resState;
+  final String respId;
+  final bool accepte;
+  ResState({required this.respId, required this.accepte});
+}
 
-  ResState({required this.resState});
+class ResStateChange extends ResponsetorqstState {
+  final String respId;
+  final bool accept;
+  ResStateChange({required this.accept, required this.respId});
 }
