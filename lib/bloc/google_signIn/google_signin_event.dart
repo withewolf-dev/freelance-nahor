@@ -4,3 +4,5 @@ part of 'google_signin_bloc.dart';
 abstract class GoogleSigninEvent {}
 
 class OnGoogleSignIn extends GoogleSigninEvent {}
+
+class OnGoogleSignOut extends GoogleSigninEvent {}

@@ -37,3 +37,9 @@ class Testing extends GoogleSigninState {
 }
 
 class PushToHome extends GoogleSigninState {}
+
+class IsUser extends GoogleSigninState {
+  final bool isUser;
+
+  IsUser({required this.isUser});
+}

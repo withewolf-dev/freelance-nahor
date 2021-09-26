@@ -186,7 +186,6 @@ deleteMedia({required String imageurl}) async {
 checkResponseDoc({required String respId}) async {
   bool? exist;
   bool? accepted;
-  String? responseId;
   try {
     final snapshot =
         await freelanceRqst.where("responseId", isEqualTo: respId).get();
@@ -194,7 +193,6 @@ checkResponseDoc({required String respId}) async {
     exist = snapshot.docs[0].exists;
     if (exist) {
       accepted = snapshot.docs[0]["accepted"];
-      responseId = snapshot.docs[0]["responseId"];
     }
   } catch (e) {
     print(e);

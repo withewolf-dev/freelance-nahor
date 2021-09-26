@@ -33,10 +33,8 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
           bool userExist = await _authentication.userExist(user.user?.uid);
 
           if (userExist == true) {
-            // await Future.delayed(Duration(seconds: 2));
-
-            yield PushToFeed();
-
+            // yield PushToFeed();
+            yield IsUser(isUser: true);
             yield GoogleSigninLoading(loading: false);
           }
           if (userExist == false) {
@@ -51,6 +49,18 @@ class GoogleSigninBloc extends Bloc<GoogleSigninEvent, GoogleSigninState> {
         } else {
           yield GoogleSigninLoading(loading: false);
         }
+      } catch (e) {
+        print(e);
+      }
+    }
+
+    if (event is OnGoogleSignOut) {
+      yield GoogleSigninLoading(loading: true);
+
+      try {
+        await _authentication.logout();
+        yield IsUser(isUser: false);
+        yield GoogleSigninLoading(loading: false);
       } catch (e) {
         print(e);
       }
