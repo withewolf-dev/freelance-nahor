@@ -1,7 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/bloc/demobloc_bloc.dart';
 import 'package:kilo/bloc/responseToRqst/responsetorqst_bloc.dart';
 import 'package:kilo/repository/freelance/freelancefirestore.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
@@ -18,126 +17,253 @@ class FreelanceReqDetails extends StatelessWidget {
     return Scaffold(
       appBar: UniversalAppBar(),
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "Phone No :-  ",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      details["phone"],
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                const Divider(
-                  height: 20,
-                  thickness: 1,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                Column(
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Description-  ",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        details["descrp"],
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                const Divider(
-                  height: 20,
-                  thickness: 1,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "Address :-  ",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      details["address"],
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            BlocBuilder<ResponsetorqstBloc, ResponsetorqstState>(
-              builder: (context, state) {
-                if (state is RespLoading) {
-                  if (state.loading == true) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                }
-                if (state is ResStateChange) {
-                  print("${state.respId} ${details["docId"]}");
-                  if (state.respId == details["docId"] &&
-                      state.accept == true) {
-                    return AcceptButton();
-                  }
+        child: FutureBuilder(
+            future: checkResponseDoc(respId: details["docId"]),
+            builder: (BuildContext context, snapshot) {
+              if (snapshot.hasError) {
+                return Text("Something went wrong");
+              }
 
-                  if (state.respId == details["docId"] &&
-                      state.accept == false) {
-                    return DeclinedButton();
-                  }
-                }
-
-                return ResponedButton(
-                  toId: details["fromId"],
-                  responseId: details["docId"],
+              if (snapshot.hasData) {
+                return Details(
+                  details: details,
+                  respDoc: snapshot.data,
                 );
-              },
-            ),
-          ],
-        ),
-      )),
+              }
+              return DetailsWithoutData(details: details);
+            }),
+      ),
+    );
+  }
+}
+
+class Details extends StatelessWidget {
+  final details;
+  final respDoc;
+  const Details({Key? key, required this.details, required this.respDoc})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(
+                    "Phone No :-  ",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    details["phone"],
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              const Divider(
+                height: 20,
+                thickness: 1,
+                indent: 20,
+                endIndent: 20,
+              ),
+              Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Description-  ",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      details["descrp"],
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              const Divider(
+                height: 20,
+                thickness: 1,
+                indent: 20,
+                endIndent: 20,
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    "Address :-  ",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    details["address"],
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+          if (respDoc != null)
+            respDoc == true ? AcceptButton() : DeclinedButton(),
+        ],
+      ),
+    );
+  }
+}
+
+class DetailsWithoutData extends StatelessWidget {
+  final details;
+  const DetailsWithoutData({Key? key, required this.details}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(
+                    "Phone No :-  ",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    details["phone"],
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              const Divider(
+                height: 20,
+                thickness: 1,
+                indent: 20,
+                endIndent: 20,
+              ),
+              Column(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Description-  ",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      details["descrp"],
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              const Divider(
+                height: 20,
+                thickness: 1,
+                indent: 20,
+                endIndent: 20,
+              ),
+              Row(
+                children: <Widget>[
+                  Text(
+                    "Address :-  ",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    details["address"],
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+          BlocBuilder<ResponsetorqstBloc, ResponsetorqstState>(
+            builder: (context, state) {
+              if (state is RespLoading) {
+                if (state.loading == true) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              }
+              if (state is ResStateChange) {
+                if (state.accept == true) {
+                  return AcceptButton();
+                }
+
+                if (state.accept == false) {
+                  return DeclinedButton();
+                }
+              }
+
+              return ResponedButton(
+                toId: details["fromId"],
+                responseId: details["docId"],
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

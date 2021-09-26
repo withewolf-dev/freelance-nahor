@@ -17,7 +17,6 @@ class ResState extends ResponsetorqstState {
 }
 
 class ResStateChange extends ResponsetorqstState {
-  final String respId;
   final bool accept;
-  ResStateChange({required this.accept, required this.respId});
+  ResStateChange({required this.accept});
 }

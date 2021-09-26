@@ -199,5 +199,5 @@ checkResponseDoc({required String respId}) async {
   } catch (e) {
     print(e);
   }
-  return [responseId, accepted];
+  return accepted;
 }
