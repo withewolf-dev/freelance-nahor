@@ -42,10 +42,17 @@ class _RegistrationForVerificationState
 
   @override
   Widget build(BuildContext context) {
-    print(sessionStartController.text);
-    print(sessionEndController.text);
-
-    print(typeAheadController.text);
+    final AlertDialog dialog = AlertDialog(
+      title: Text('Registration Done'),
+      content: Text(
+          'Your account is sent for verification. Please login with the same account after 78 hours. In case of any inconvenience contact your respective DR'),
+      actions: [
+        OutlinedButton(
+          onPressed: () => context.router.replaceAll([WelcomeRoute()]),
+          child: Text('OK'),
+        ),
+      ],
+    );
 
     return Scaffold(
       appBar: UniversalAppBar(),
@@ -57,8 +64,8 @@ class _RegistrationForVerificationState
                 content: Text("Account Already exist with the email ID")));
           }
 
-          if (state is PushToFeed) {
-            context.replaceRoute(FeedRoute());
+          if (state is ShowAlert) {
+            showDialog<void>(context: context, builder: (context) => dialog);
           }
         },
         child: BlocBuilder<GoogleSignUpBloc, GoogleSignupState>(

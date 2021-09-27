@@ -21,7 +21,6 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<GoogleSigninBloc, GoogleSigninState>(
       listener: (context, state) {
-        // TODO: implement listener
         if (state is NoUserAccount) {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }

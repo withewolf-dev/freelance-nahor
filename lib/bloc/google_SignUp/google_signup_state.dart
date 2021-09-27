@@ -32,3 +32,5 @@ class SignupLoading extends GoogleSignupState {
   final bool loadingState;
   SignupLoading({required this.loadingState});
 }
+
+class ShowAlert extends GoogleSignupState {}
