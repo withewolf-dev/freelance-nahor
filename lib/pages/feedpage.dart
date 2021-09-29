@@ -35,9 +35,7 @@ class FeedPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: // TODO: implement listener
-
-                  ProfilesList(),
+              child: ProfilesList(),
             )
           ],
         ),
@@ -97,7 +95,6 @@ class FeedHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            // width: 180,
             child: Row(
               children: <Widget>[
                 CircleAvatar(

@@ -129,7 +129,7 @@ doesFieldExist(uid) async {
 }
 
 Future<void> createFreelanceInfo(
-    String name, String uid, String url, String id) async {
+    {String? name, String? uid, String? url, String? id, List? keyword}) async {
   return freelanceUserInfo.doc(id).set({
     "bio": "",
     "bioTitle": "",
@@ -140,7 +140,8 @@ Future<void> createFreelanceInfo(
     "name": name,
     "selectedIndex": 0,
     "uid": uid,
-    "url": url
+    "url": url,
+    "keyword": keyword,
   });
 }
 
@@ -198,4 +199,18 @@ checkResponseDoc({required String respId}) async {
     print(e);
   }
   return accepted;
+}
+
+nameToArray({String? name}) async {
+  var possibleNumOfPairs = (name!.length / 3).floor();
+
+  var list = [];
+
+  for (var i = 1; i <= possibleNumOfPairs; i++) {
+    var newName = name.substring(0, i * 3);
+
+    list.add(newName);
+  }
+
+  return list;
 }

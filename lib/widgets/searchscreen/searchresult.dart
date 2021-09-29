@@ -15,11 +15,9 @@ class _SearchResultState extends State<SearchResult> {
   String? searchTerm = " ";
   @override
   Widget build(BuildContext context) {
-    print("searchTerm $searchTerm");
     return BlocListener<SearchBloc, SearchblocState>(
       listener: (context, state) {
         if (state is SearchTerm) {
-          print("result ${state.searchTerm}");
           setState(() {
             searchTerm = state.searchTerm;
           });
@@ -27,7 +25,7 @@ class _SearchResultState extends State<SearchResult> {
       },
       child: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
-            .collection('search')
+            .collection('freelanceUserInfo')
             .where('keyword', arrayContains: searchTerm)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
