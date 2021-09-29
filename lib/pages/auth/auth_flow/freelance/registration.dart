@@ -43,12 +43,11 @@ class _RegistrationForVerificationState
   @override
   Widget build(BuildContext context) {
     final AlertDialog dialog = AlertDialog(
-      title: Text('Registration Done'),
-      content: Text(
-          'Your account is sent for verification. Please login with the same account after 78 hours. In case of any inconvenience contact your respective DR'),
+      title: Text('qoohoo trial'),
+      content: Text('congratulations🥳 you are Registered. You can Sign in🤗'),
       actions: [
         OutlinedButton(
-          onPressed: () => context.router.replaceAll([WelcomeRoute()]),
+          onPressed: () => Navigator.pop(context),
           child: Text('OK'),
         ),
       ],
@@ -64,8 +63,13 @@ class _RegistrationForVerificationState
                 content: Text("Account Already exist with the email ID")));
           }
 
-          if (state is ShowAlert) {
-            showDialog<void>(context: context, builder: (context) => dialog);
+          if (state is SignupLoading) {
+            if (state.loadingState == false) {
+              {
+                showDialog<void>(
+                    context: context, builder: (context) => dialog);
+              }
+            }
           }
         },
         child: BlocBuilder<GoogleSignUpBloc, GoogleSignupState>(
