@@ -51,8 +51,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       )),
                 if (snapshot.data == "hire")
                   IconButton(
-                      onPressed: () {
-                        context.pushRoute(Setting());
+                      onPressed: () async {
+                        await auth.logout();
+                        context.router.replaceAll([WelcomeRoute()]);
                       },
                       icon: Icon(
                         Icons.logout,

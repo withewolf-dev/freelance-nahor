@@ -63,12 +63,9 @@ class _RegistrationForVerificationState
                 content: Text("Account Already exist with the email ID")));
           }
 
-          if (state is SignupLoading) {
-            if (state.loadingState == false) {
-              {
-                showDialog<void>(
-                    context: context, builder: (context) => dialog);
-              }
+          if (state is ShowAlert) {
+            {
+              showDialog<void>(context: context, builder: (context) => dialog);
             }
           }
         },
