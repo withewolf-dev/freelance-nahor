@@ -37,8 +37,6 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
                 uid: user.user!.uid.toString().substring(8),
                 url: user.user!.photoURL!);
 
-            await addUserType(event.type, user.user!.uid);
-
             yield SignupLoading(loadingState: false);
 
             yield ShowAlert();

@@ -69,7 +69,7 @@ class ChangeBioPage extends StatelessWidget {
                               TextfieldCustom(
                                 mycontroller: bioController,
                                 label: data["bio"],
-                                maxleng: 200,
+                                maxleng: 380,
                                 maxline: 8,
                               ),
                             ],

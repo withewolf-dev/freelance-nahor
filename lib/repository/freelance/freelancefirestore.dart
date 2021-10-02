@@ -136,7 +136,7 @@ Future<void> createFreelanceInfo(
     "categoryName": "",
     "duration": "",
     "fees": "",
-    "isActive": true,
+    "isActive": false,
     "name": name,
     "selectedIndex": 0,
     "uid": uid,
