@@ -30,7 +30,43 @@ class _ProfilesListState extends State<ProfilesList> {
           });
         }
 
-        if (state is Education) {
+        if (state is Tuition) {
+          setState(() {
+            category = state.category;
+          });
+        }
+
+        if (state is PgRent) {
+          setState(() {
+            category = state.category;
+          });
+        }
+
+        if (state is Writing) {
+          setState(() {
+            category = state.category;
+          });
+        }
+
+        if (state is Editing) {
+          setState(() {
+            category = state.category;
+          });
+        }
+
+        if (state is Videography) {
+          setState(() {
+            category = state.category;
+          });
+        }
+
+        if (state is PhotoGraphy) {
+          setState(() {
+            category = state.category;
+          });
+        }
+
+        if (state is Cooking) {
           setState(() {
             category = state.category;
           });

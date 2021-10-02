@@ -10,9 +10,15 @@ class ChangeCatgPage extends StatelessWidget {
   ChangeCatgPage({Key? key}) : super(key: key);
   static List categoriesList = [
     "No Category Selected",
-    "educational",
-    "art",
-    "music"
+    "tuition",
+    "pg&rent",
+    "art&craft",
+    "music",
+    "writing",
+    "editing",
+    "videography",
+    "photography",
+    "cooking"
   ];
   final int selectedIndex = 0;
   final String categoryName = categoriesList[0];

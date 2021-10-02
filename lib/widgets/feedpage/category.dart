@@ -12,7 +12,17 @@ class Category extends StatefulWidget {
 
 class _CategoryState extends State<Category> {
   int selectedIndex = 0;
-  static List categoriesList = ["educational", "art", "music"];
+  static List categoriesList = [
+    "tuition",
+    "pg&rent",
+    "art&craft",
+    "music",
+    "writing",
+    "editing",
+    "videography",
+    "photography",
+    "cooking"
+  ];
   String category = categoriesList[0];
 
   @override

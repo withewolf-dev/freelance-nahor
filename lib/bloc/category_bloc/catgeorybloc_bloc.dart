@@ -19,12 +19,39 @@ class CategoryBloc extends Bloc<CategoryblocEvent, CategoryblocState> {
         yield Music();
       }
 
-      if (event.category == "art") {
+      if (event.category == "art&craft") {
         yield Art();
       }
 
-      if (event.category == "educational") {
-        yield Education();
+      if (event.category == "pg&rent") {
+        yield PgRent();
+      }
+
+      if (event.category == "tuition") {
+        yield Tuition();
+      }
+
+      if (event.category == "writing") {
+        yield Writing();
+      }
+
+      if (event.category == "writing") {
+        yield Writing();
+      }
+
+      if (event.category == "editing") {
+        yield Editing();
+      }
+
+      if (event.category == "videography") {
+        yield Videography();
+      }
+
+      if (event.category == "photography") {
+        yield PhotoGraphy();
+      }
+      if (event.category == "cooking") {
+        yield Cooking();
       }
     }
   }

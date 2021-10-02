@@ -27,6 +27,7 @@ class _SearchResultState extends State<SearchResult> {
         stream: FirebaseFirestore.instance
             .collection('freelanceUserInfo')
             .where('keyword', arrayContains: searchTerm)
+            .where("isActive", isEqualTo: true)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {

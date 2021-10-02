@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kilo/bloc/google_SignUp/google_signup_bloc.dart';
-import 'package:kilo/router/app_router.gr.dart';
 import 'package:kilo/widgets/auth/campus.dart';
 import 'package:kilo/widgets/auth/chooseDept.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:kilo/widgets/calender-session-end.dart';
 import 'package:kilo/widgets/calender-session-start.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
@@ -57,7 +55,6 @@ class _RegistrationForVerificationState
       appBar: UniversalAppBar(),
       body: BlocListener<GoogleSignUpBloc, GoogleSignupState>(
         listener: (context, state) {
-          // TODO: implement listener
           if (state is AccountExist) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text("Account Already exist with the email ID")));
