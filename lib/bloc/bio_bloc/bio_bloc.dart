@@ -14,12 +14,9 @@ class BioBloc extends Bloc<BioEvent, BioState> {
   Stream<BioState> mapEventToState(
     BioEvent event,
   ) async* {
-    // TODO: implement mapEventToState
-
     if (event is UpdateBio) {
       yield Loading(loading: true);
       try {
-        // check if the field exist
         await updateBio(event.bio, event.bioTitle);
 
         yield Loading(loading: false);

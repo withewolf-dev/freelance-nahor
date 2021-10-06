@@ -23,14 +23,12 @@ class SignupHire extends StatelessWidget {
         height: 60,
         onPressed: () {
           context.pushRoute(HireSignuRoute());
-          // BlocProvider.of<GoogleSignUpBloc>(context)
-          //     .add(SignupUserType(type: "hire"));
         },
         color: Colors.yellow,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         child: Text(
-          "signup to hire here",
+          "signup to hire ",
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
         ),
       ),

@@ -8,7 +8,8 @@ import 'package:auto_route/auto_route.dart';
 class HireSignuPage extends StatelessWidget {
   const HireSignuPage({Key? key}) : super(key: key);
 
-  final String body = "understand the terms and conditon and guidance ";
+  final String body =
+      "We recommend using a google account with your own name and photo. This is to reduce duplicacy and fraud. The app is going to use your google account profile photo and name to setup your profile";
   final String header = "Hire";
 
   @override

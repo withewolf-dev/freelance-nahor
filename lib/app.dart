@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kilo/bloc/google_signIn/google_signin_bloc.dart';
-import 'package:kilo/pages/welcomepage.dart';
+
 import 'package:kilo/router/app_router.gr.dart';
 
 class App extends StatefulWidget {
