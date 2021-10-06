@@ -36,9 +36,7 @@ class _SearchBoxState extends State<SearchBox> {
     return BlocListener<SearchBloc, SearchblocState>(
         listener: (context, state) {
           // TODO: implement listener
-          if (state is SearchTerm) {
-            print("state.searchTerm ${state.searchTerm}");
-          }
+          if (state is SearchTerm) {}
         },
         child: Container(
           margin: const EdgeInsets.only(top: 8),

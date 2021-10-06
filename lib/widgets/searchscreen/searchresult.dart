@@ -39,10 +39,11 @@ class _SearchResultState extends State<SearchResult> {
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data() as Map<String, dynamic>;
+
                 return ProfileContainer(
                   bioTitle: data["bioTitle"],
                   isActive: data["isActive"],
-                  price: data["price"],
+                  price: data["fees"],
                   bio: data['bio'],
                   name: data['name'],
                   freelancerId: data['uid'],

@@ -11,8 +11,15 @@ class SignupUserType extends GoogleSignupEvent {
 
 class Signupfreelance extends GoogleSignupEvent {
   final String type;
+  final String deptname;
+  final String endDate;
+  final String startDate;
 
-  Signupfreelance({required this.type});
+  Signupfreelance(
+      {required this.type,
+      required this.deptname,
+      required this.endDate,
+      required this.startDate});
 }
 
 class SignupHire extends GoogleSignupEvent {

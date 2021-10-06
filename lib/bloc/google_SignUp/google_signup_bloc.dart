@@ -30,11 +30,18 @@ class GoogleSignUpBloc extends Bloc<GoogleSignupEvent, GoogleSignupState> {
           if (noExistingUser == false) {
             List keywords = await nameToArray(
                 name: user.user!.displayName!.toString().split(" ").first);
+
+            await addToVerification(
+                deptname: event.deptname,
+                startDate: event.startDate,
+                endDate: event.startDate,
+                name: user.user!.displayName!.toString(),
+                uid: user.user!.uid.toString());
             await createFreelanceInfo(
                 name: user.user!.displayName!,
                 id: user.user!.uid,
                 keyword: keywords,
-                uid: user.user!.uid.toString().substring(8),
+                docId: user.user!.uid.toString().substring(8),
                 url: user.user!.photoURL!);
 
             yield SignupLoading(loadingState: false);

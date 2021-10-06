@@ -62,17 +62,15 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: UniversalAppBar(),
+      appBar: UniversalAppBar(
+        title: "Upload Work",
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
             child: Column(
               children: [
                 if (progress != null) LinearProgressIndicator(),
-                Text(
-                  "upload work  url ",
-                  textDirection: TextDirection.ltr,
-                ),
                 Displaywork(),
               ],
             ),

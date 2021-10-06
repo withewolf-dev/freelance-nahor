@@ -22,6 +22,9 @@ CollectionReference freelanceRqst =
 CollectionReference workmedia =
     FirebaseFirestore.instance.collection("workmedia");
 
+CollectionReference verification =
+    FirebaseFirestore.instance.collection("verification");
+
 final user = FirebaseAuth.instance.currentUser;
 final String docId = user!.uid.toString().substring(8);
 
@@ -82,7 +85,7 @@ Future<void> updateBio(String bio, String bioTitle) {
         'bio': bio,
         'bioTitle': bioTitle,
       })
-      .then((value) => print("User Updated"))
+      .then((value) => print("User Updated "))
       .catchError((error) => print("Failed to update user: $error"));
 }
 
@@ -114,7 +117,7 @@ Future<void> accountActive(bool isActive) {
       .update({
         'isActive': isActive,
       })
-      .then((value) => print("User Updated"))
+      .then((value) => print("User Updated ${user!.uid}"))
       .catchError((error) => print("Failed to update user: $error"));
 }
 
@@ -129,8 +132,12 @@ doesFieldExist(uid) async {
 }
 
 Future<void> createFreelanceInfo(
-    {String? name, String? uid, String? url, String? id, List? keyword}) async {
-  return freelanceUserInfo.doc(id).set({
+    {String? name,
+    String? docId,
+    String? url,
+    String? id,
+    List? keyword}) async {
+  return freelanceUserInfo.doc(docId).set({
     "bio": "",
     "bioTitle": "",
     "categoryName": "",
@@ -139,7 +146,7 @@ Future<void> createFreelanceInfo(
     "isActive": false,
     "name": name,
     "selectedIndex": 0,
-    "uid": uid,
+    "uid": id,
     "url": url,
     "keyword": keyword,
   });
@@ -209,8 +216,27 @@ nameToArray({String? name}) async {
   for (var i = 1; i <= possibleNumOfPairs; i++) {
     var newName = name.substring(0, i * 3);
 
-    list.add(newName);
+    list.add(newName.toLowerCase());
   }
 
   return list;
+}
+
+Future<void> addToVerification(
+    {String? deptname,
+    String? startDate,
+    String? endDate,
+    String? name,
+    String? uid}) {
+  return verification
+      .add({
+        "department": deptname?.toLowerCase(),
+        "startDate": startDate,
+        "endDate": endDate,
+        "uid": uid,
+        "name": name,
+        "time": FieldValue.serverTimestamp()
+      })
+      .then((value) => print("User type Added"))
+      .catchError((error) => print("Failed to add user: $error"));
 }

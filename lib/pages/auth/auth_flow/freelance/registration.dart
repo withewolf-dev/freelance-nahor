@@ -6,6 +6,8 @@ import 'package:kilo/widgets/auth/chooseDept.dart';
 import 'package:kilo/widgets/calender-session-end.dart';
 import 'package:kilo/widgets/calender-session-start.dart';
 import 'package:kilo/widgets/universal_appbar.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:kilo/router/app_router.gr.dart';
 
 class RegistrationForVerification extends StatefulWidget {
   RegistrationForVerification({Key? key}) : super(key: key);
@@ -18,11 +20,39 @@ class RegistrationForVerification extends StatefulWidget {
 class _RegistrationForVerificationState
     extends State<RegistrationForVerification> {
   final List<String> list = [
-    "computer",
-    "law",
-    "physics",
-    "chemistry",
-    "coomputer"
+    "Department of Assamese",
+    "Department of English",
+    "Department of History",
+    "Department of Political Science",
+    "Department of Sociology",
+    "Department of Economics",
+    "Department of Education",
+    "Department of Commerce",
+    "Department of Physics",
+    "Department of Chemistry",
+    "Department of Mathematics",
+    "Department of Statistics",
+    "Department of Anthropology",
+    "Department of Pharmaceutical Sciences",
+    "Department of Life Sciences",
+    "Department of Applied Geology",
+    "Department of Petroleum Technology",
+    " Centre for Studies in Languages",
+    "Centre for Studies in Philosophy",
+    "Centre for Juridical Studies",
+    "Dr. Bhupen Hazarika Centre for studies in Performing Arts",
+    "UGC Centre for Studies on Bangladesh and Myanmar",
+    "Centre for Studies in Physical Education And Sports",
+    "Centre for Studies in Applied Psychology",
+    "Centre for Library and Information Science Studies",
+    "Centre for Management Studies",
+    "Centre for Tea and Agro Studies",
+    "Centre for Computer Science and Applications",
+    "Centre for Atmospheric Studies",
+    "Centre for Studies in Journalism and Mass Communication",
+    "Centre for Biotechnology and Bioinformatics",
+    "Centre for Studies in Geography",
+    "Centre for social work studies",
   ];
 
   final TextEditingController typeAheadController = TextEditingController();
@@ -45,7 +75,7 @@ class _RegistrationForVerificationState
       content: Text('congratulations🥳 you are Registered. You can Sign in🤗'),
       actions: [
         OutlinedButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.router.replaceAll([WelcomeRoute()]),
           child: Text('OK'),
         ),
       ],
@@ -108,8 +138,12 @@ class _RegistrationForVerificationState
                                     sessionStartController.text != " "
                                 ? () {
                                     BlocProvider.of<GoogleSignUpBloc>(context)
-                                        .add(
-                                            Signupfreelance(type: "freelance"));
+                                        .add(Signupfreelance(
+                                            type: "freelance",
+                                            deptname: typeAheadController.text,
+                                            endDate: sessionEndController.text,
+                                            startDate:
+                                                sessionStartController.text));
                                   }
                                 : null,
                             child: const Text('Sign up with google'),
