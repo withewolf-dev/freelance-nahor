@@ -7,6 +7,7 @@ import 'package:kilo/widgets/universal_appbar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:kilo/widgets/upload/display-work.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class UploadWorkPage extends StatefulWidget {
   UploadWorkPage({Key? key}) : super(key: key);
@@ -59,6 +60,22 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
     }
   }
 
+  checkPermission() async {
+    var camera = await Permission.camera.status;
+
+    if (!camera.isGranted) {
+      await Permission.camera.request();
+    }
+
+    if (camera.isGranted) {
+      // print("permission granted ");
+      var imagecoun = await checkMediaLimit();
+      if (imagecoun <= 3) {
+        uploadFile();
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,11 +96,12 @@ class _UploadWorkPageState extends State<UploadWorkPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: progress == null
-            ? () async {
-                var imagecoun = await checkMediaLimit();
-                if (imagecoun <= 3) {
-                  uploadFile();
-                }
+            ? () {
+                checkPermission();
+                // var imagecoun = await checkMediaLimit();
+                // if (imagecoun <= 3) {
+                //   uploadFile();
+                // }
               }
             : null,
         child: const Icon(Icons.upload_file_sharp),
