@@ -22,7 +22,7 @@ import 'package:kilo/widgets/searchscreen/searchScreen.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: WelcomePage, initial: true),
+    AutoRoute(page: WelcomePage),
     AutoRoute(page: FreelanceSignUp),
     AutoRoute(page: RegistrationForVerification),
     AutoRoute(page: HireSignuPage),

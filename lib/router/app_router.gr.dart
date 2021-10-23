@@ -157,7 +157,7 @@ class AppRouter extends _i1.RootStackRouter {
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(WelcomeRoute.name, path: '/'),
+        _i1.RouteConfig(WelcomeRoute.name, path: '/welcome-page'),
         _i1.RouteConfig(FreelanceSignUp.name, path: '/freelance-sign-up'),
         _i1.RouteConfig(RegistrationForVerification.name,
             path: '/registration-for-verification'),
@@ -183,7 +183,7 @@ class AppRouter extends _i1.RootStackRouter {
 
 class WelcomeRoute extends _i1.PageRouteInfo<WelcomeRouteArgs> {
   WelcomeRoute({_i2.Key? key})
-      : super(name, path: '/', args: WelcomeRouteArgs(key: key));
+      : super(name, path: '/welcome-page', args: WelcomeRouteArgs(key: key));
 
   static const String name = 'WelcomeRoute';
 }

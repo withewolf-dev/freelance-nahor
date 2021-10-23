@@ -26,7 +26,7 @@ class WelcomePage extends StatelessWidget {
         }
         if (state is IsUser) {
           if (state.isUser == true) {
-            context.replaceRoute(FeedRoute());
+            context.router.replaceAll([FeedRoute()]);
           }
         }
       },
@@ -39,6 +39,7 @@ class WelcomePage extends StatelessWidget {
                   return LinearProgressIndicator();
                 }
               }
+
               return Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height,

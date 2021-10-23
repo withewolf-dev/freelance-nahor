@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:kilo/router/app_router.gr.dart';
@@ -16,7 +17,10 @@ class _AppState extends State<App> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'AutoRoute Bascis',
-      routerDelegate: appRouter.delegate(),
+      routerDelegate: appRouter.delegate(initialRoutes: [
+        if (FirebaseAuth.instance.currentUser != null) FeedRoute(),
+        if (FirebaseAuth.instance.currentUser == null) WelcomeRoute(),
+      ]),
       routeInformationParser:
           appRouter.defaultRouteParser(includePrefixMatches: true),
     );

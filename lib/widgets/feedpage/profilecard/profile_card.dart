@@ -101,28 +101,28 @@ class ProfileCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          '4.5',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xffd17842),
-                              fontSize: 12),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 4.0, right: 4.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Color(0xffd17842),
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child:
-                                Icon(Icons.star, size: 15, color: Colors.white),
-                          ),
-                        )
-                      ],
-                    )
+                    // Row(
+                    //   children: [
+                    //     Text(
+                    //       '4.5',
+                    //       style: TextStyle(
+                    //           fontWeight: FontWeight.bold,
+                    //           color: Color(0xffd17842),
+                    //           fontSize: 12),
+                    //     ),
+                    //     Padding(
+                    //       padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                    //       child: Container(
+                    //         decoration: BoxDecoration(
+                    //           color: Color(0xffd17842),
+                    //           borderRadius: BorderRadius.circular(5.0),
+                    //         ),
+                    //         child:
+                    //             Icon(Icons.star, size: 15, color: Colors.white),
+                    //       ),
+                    //     )
+                    //   ],
+                    // )
                   ],
                 )
               ],
